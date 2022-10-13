@@ -214,7 +214,7 @@
         <!--Friends-->
         <scene sceneID="YHM-QY-VOj">
             <objects>
-                <viewController id="0EW-pO-kg4" sceneMemberID="viewController">
+                <viewController id="0EW-pO-kg4" customClass="FriendsViewController" customModule="StudyStoryBoardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w9q-0Y-Bli">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,6 +235,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Friends" id="Mv6-nV-Ahk"/>
                     <connections>
+                        <outlet property="tableView" destination="lu3-rZ-OmL" id="yst-en-48A"/>
                         <segue destination="vsI-Zj-dh1" kind="show" identifier="showProfile" id="JGP-Bh-trP"/>
                     </connections>
                 </viewController>

@@ -21,6 +21,9 @@
 		BAEE353B28F7202500004183 /* sf-ui-display-thin-58646e9b26e8b.otf in Resources */ = {isa = PBXBuildFile; fileRef = BAEE353328F7202500004183 /* sf-ui-display-thin-58646e9b26e8b.otf */; };
 		BAEE353C28F7202500004183 /* sf-ui-display-light-58646b33e0551.otf in Resources */ = {isa = PBXBuildFile; fileRef = BAEE353428F7202500004183 /* sf-ui-display-light-58646b33e0551.otf */; };
 		BAEE353D28F7202500004183 /* sf-ui-display-bold-58646a511e3d9.otf in Resources */ = {isa = PBXBuildFile; fileRef = BAEE353528F7202500004183 /* sf-ui-display-bold-58646a511e3d9.otf */; };
+		BAEE354328F8AC3F00004183 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE354228F8AC3F00004183 /* FriendsViewController.swift */; };
+		BAEE355028F8B42600004183 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE354E28F8B42600004183 /* CustomTableViewCell.swift */; };
+		BAEE355128F8B42600004183 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAEE354F28F8B42600004183 /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		BAEE353328F7202500004183 /* sf-ui-display-thin-58646e9b26e8b.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sf-ui-display-thin-58646e9b26e8b.otf"; path = "../../../../../../Other/Fonts/sf-ui-display-cufonfonts/sf-ui-display-thin-58646e9b26e8b.otf"; sourceTree = "<group>"; };
 		BAEE353428F7202500004183 /* sf-ui-display-light-58646b33e0551.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sf-ui-display-light-58646b33e0551.otf"; path = "../../../../../../Other/Fonts/sf-ui-display-cufonfonts/sf-ui-display-light-58646b33e0551.otf"; sourceTree = "<group>"; };
 		BAEE353528F7202500004183 /* sf-ui-display-bold-58646a511e3d9.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sf-ui-display-bold-58646a511e3d9.otf"; path = "../../../../../../Other/Fonts/sf-ui-display-cufonfonts/sf-ui-display-bold-58646a511e3d9.otf"; sourceTree = "<group>"; };
+		BAEE354228F8AC3F00004183 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		BAEE354E28F8B42600004183 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		BAEE354F28F8B42600004183 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,9 +124,28 @@
 		BAEE354028F89A3C00004183 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BAEE354D28F8B41400004183 /* CustomTableViewCell */,
+				BAEE354128F8AC1500004183 /* FriendsController */,
 				BAEE353F28F89A1E00004183 /* AuthController */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BAEE354128F8AC1500004183 /* FriendsController */ = {
+			isa = PBXGroup;
+			children = (
+				BAEE354228F8AC3F00004183 /* FriendsViewController.swift */,
+			);
+			path = FriendsController;
+			sourceTree = "<group>";
+		};
+		BAEE354D28F8B41400004183 /* CustomTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				BAEE354E28F8B42600004183 /* CustomTableViewCell.swift */,
+				BAEE354F28F8B42600004183 /* CustomTableViewCell.xib */,
+			);
+			path = CustomTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +208,7 @@
 			files = (
 				BAEE353C28F7202500004183 /* sf-ui-display-light-58646b33e0551.otf in Resources */,
 				BA6DAD6828F628C900AA544F /* LaunchScreen.storyboard in Resources */,
+				BAEE355128F8B42600004183 /* CustomTableViewCell.xib in Resources */,
 				BAEE353B28F7202500004183 /* sf-ui-display-thin-58646e9b26e8b.otf in Resources */,
 				BA6DAD6528F628C900AA544F /* Assets.xcassets in Resources */,
 				BAEE353828F7202500004183 /* sf-ui-display-ultralight-58646b19bf205.otf in Resources */,
@@ -202,6 +228,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAEE354328F8AC3F00004183 /* FriendsViewController.swift in Sources */,
+				BAEE355028F8B42600004183 /* CustomTableViewCell.swift in Sources */,
 				BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */,
 				BA6DAD7028F7078300AA544F /* AuthViewController.swift in Sources */,
 				BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */,
