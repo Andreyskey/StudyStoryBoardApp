@@ -21,26 +21,49 @@ class AuthViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) { super.viewWillAppear(animated)
             // Подписываемся на два уведомления: одно приходит при появлении клавиатуры
-    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShow), name: UIResponder.keyboardWillShowNotification, object: nil)
             // Второе — когда она пропадает
-    NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) { super.viewWillDisappear(animated)
-    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    //MARK: - Segue, check login and password
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        let resultCheck = checkUserData()
+        
+        if !checkUserData() {
+            showLoginError()
+        }
+        
+        return resultCheck
     }
     
-    @IBAction func authSucces(_ sender: Any) {
-        let (log, pass) = ("aaa", "123")
+    func checkUserData() -> Bool {
+        guard let log = login.text,
+              let pass = password.text
+        else { return false }
         
-        if (log, pass) == (login.text, password.text) {
-            print("OK")
+        if log == "admin", pass == "admin" {
+            return true
         } else {
-            print("NOT OK")
+            return false
         }
     }
     
+    func showLoginError() {
+        let alert = UIAlertController(title: "Ошибка", message: "Не верно введены данные аккаунта", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel)
+        
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+    
+    //MARK: - func Show Password
+
     @IBAction func showPass(_ sender: Any) {
         
         let isHiddenPass = password.isSecureTextEntry
