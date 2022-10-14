@@ -152,7 +152,7 @@
         <!--Public-->
         <scene sceneID="OSe-cC-e21">
             <objects>
-                <viewController id="gRk-TO-HxA" sceneMemberID="viewController">
+                <viewController id="gRk-TO-HxA" customClass="GroupViewController" customModule="StudyStoryBoardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YiI-ZV-RYc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -174,10 +174,14 @@
                     <navigationItem key="navigationItem" title="Public" id="qst-Jd-FDQ">
                         <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" id="rau-iH-s1v">
                             <connections>
-                                <segue destination="eQe-QQ-8wu" kind="show" identifier="" id="pgE-xv-bcJ"/>
+                                <action selector="searchGroup:" destination="gRk-TO-HxA" id="nOc-CR-eFi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="0v5-vz-GTQ" id="Dbi-Fc-g2b"/>
+                        <segue destination="eQe-QQ-8wu" kind="show" identifier="searchGroup" id="0n7-QC-XUA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bk5-Wi-zCK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -186,7 +190,7 @@
         <!--Search-->
         <scene sceneID="9xV-Ds-aJn">
             <objects>
-                <viewController id="eQe-QQ-8wu" sceneMemberID="viewController">
+                <viewController id="eQe-QQ-8wu" customClass="SearchViewController" customModule="StudyStoryBoardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4ZY-gz-lKG">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,9 +209,20 @@
                             <constraint firstItem="W9S-UW-1Bm" firstAttribute="leading" secondItem="DSK-3Y-Rm8" secondAttribute="leading" id="twx-F1-3b3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="A9l-Pv-9nS"/>
+                    <navigationItem key="navigationItem" title="Search" id="A9l-Pv-9nS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Tkh-SJ-jem">
+                            <connections>
+                                <segue destination="vC1-zB-TcB" kind="unwind" identifier="addGroup" unwindAction="unwindToGroup:" id="2FF-TR-AZs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="button" destination="Tkh-SJ-jem" id="sl6-sU-aQw"/>
+                        <outlet property="tableView" destination="W9S-UW-1Bm" id="VID-id-DvR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qOZ-ra-8sB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="vC1-zB-TcB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3758" y="309"/>
         </scene>
@@ -236,7 +251,7 @@
                     <navigationItem key="navigationItem" title="Friends" id="Mv6-nV-Ahk"/>
                     <connections>
                         <outlet property="tableView" destination="lu3-rZ-OmL" id="yst-en-48A"/>
-                        <segue destination="vsI-Zj-dh1" kind="show" identifier="showProfile" id="JGP-Bh-trP"/>
+                        <segue destination="vsI-Zj-dh1" kind="show" identifier="showAlbum" id="JGP-Bh-trP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="79f-Wu-Oih" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -246,15 +261,15 @@
         <!--Photo-->
         <scene sceneID="Ygk-7h-rF0">
             <objects>
-                <viewController id="vsI-Zj-dh1" sceneMemberID="viewController">
+                <viewController id="vsI-Zj-dh1" customClass="AlbumUserViewController" customModule="StudyStoryBoardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ego-Hb-Igu">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wav-iD-x3t">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wav-iD-x3t">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mfO-Ik-4TA">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="70w-Ac-wDi">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -273,6 +288,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photo" id="XiF-AV-HEG"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Wav-iD-x3t" id="XkE-v3-jOi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="grn-jj-RzV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

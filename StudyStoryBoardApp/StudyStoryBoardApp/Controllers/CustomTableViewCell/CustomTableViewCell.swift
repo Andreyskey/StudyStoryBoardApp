@@ -12,8 +12,8 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var photoProfile: UIImageView!
     @IBOutlet weak var name: UILabel!
     
-    func configurationCell(photo: UIImage, fullName: String) {
-        photoProfile.image = photo
+    func configurationCell(photo: UIImage?, fullName: String) {
+        photoProfile.image = photo ?? UIImage(systemName: "person.3")
         name.text = fullName
     }
     
@@ -25,8 +25,8 @@ class CustomTableViewCell: UITableViewCell {
     
     // Очистка ячейки
     func clearCell() {
-        photoProfile = nil
-        name = nil
+        photoProfile.image = nil
+        name.text = nil
     }
     
     // Переиспользование ячейки
@@ -38,5 +38,6 @@ class CustomTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
+        clearCell()
     }
 }

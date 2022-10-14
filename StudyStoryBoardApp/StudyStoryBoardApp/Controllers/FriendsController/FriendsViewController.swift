@@ -9,6 +9,16 @@ import UIKit
 
 class FriendsViewController: UIViewController {
     
+    let myFriends = [
+        "Dmitry Rogozin",
+        "Paul Walker",
+        "Susan Coffey",
+        "Somato Dope",
+        "Kate Anderson"
+    ]
+    
+    var indexCell = 0
+    
     // Идентификатор ячейки
     let friendsViewControllerIdentifier = "friendsViewControllerIdentifier"
     
@@ -26,6 +36,14 @@ class FriendsViewController: UIViewController {
         // Регистрация ячейки
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: friendsViewControllerIdentifier)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard segue.identifier == "showAlbum" else { return }
+        guard let destination = segue.destination as? AlbumUserViewController
+        else { return }
+        destination.name = myFriends[indexCell]
+    }
 
 }
 
@@ -34,7 +52,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     
     // Количество строк ячеек
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return myFriends.count
     }
     
     // Количество секций
@@ -48,11 +66,19 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: friendsViewControllerIdentifier, for: indexPath) as? CustomTableViewCell
         else { return UITableViewCell() }
         
-        guard let img = UIImage(named: "pers") else { return cell }
-        
-        cell.configurationCell(photo: img, fullName: "Anton Volkov")
+        guard let img = UIImage(named: myFriends[indexPath.row])
+        else { return cell }
+    
+        cell.configurationCell(photo: img, fullName: myFriends[indexPath.row])
         
         return cell
+    }
+    
+    // Убираем выделение ячейки
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        indexCell = indexPath.row
+        performSegue(withIdentifier: "showAlbum", sender: nil)
     }
     
 }
