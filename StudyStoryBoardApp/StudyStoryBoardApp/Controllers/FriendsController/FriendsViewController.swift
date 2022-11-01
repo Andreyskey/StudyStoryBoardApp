@@ -44,6 +44,10 @@ class FriendsViewController: UIViewController {
         else { return }
         destination.name = myFriends[indexCell]
     }
+    
+    deinit {
+        print("Delete FriendsController")
+    }
 
 }
 

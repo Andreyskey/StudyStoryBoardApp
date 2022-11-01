@@ -44,6 +44,10 @@ class GroupViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    
+    deinit {
+        print("Delete GroupController")
+    }
 }
 
 

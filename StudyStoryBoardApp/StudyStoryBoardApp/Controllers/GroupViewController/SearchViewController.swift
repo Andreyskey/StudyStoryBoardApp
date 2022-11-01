@@ -38,6 +38,9 @@ class SearchViewController: UIViewController {
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: searchViewControllerIndentifier)
         
         button.isHidden = true
+        
+//        let view = UIView()
+//        view.layer.borderWidth =
     }
 }
 
