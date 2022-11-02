@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -530,12 +530,13 @@
                         <outlet property="viewLog" destination="t2C-4V-lYF" id="yIO-Mg-d2u"/>
                         <outlet property="viewPass" destination="cvE-G0-H65" id="4Rf-Mp-KN4"/>
                         <outlet property="viewPassRepeat" destination="0e6-Z5-C4B" id="2Uj-dk-kUF"/>
+                        <segue destination="AMI-6P-N2F" kind="presentation" identifier="goAfterGergistration" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="bMw-jM-sxK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7Y-L8-kcK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="bKc-C1-W4Z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="124.61538461538461" y="639.81042654028431"/>
+            <point key="canvasLocation" x="125" y="685"/>
         </scene>
         <!--Public-->
         <scene sceneID="OSe-cC-e21">
@@ -696,12 +697,14 @@
             <objects>
                 <tabBarController id="AMI-6P-N2F" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="yWA-QC-AuY"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uyQ-po-Ytd">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" itemSpacing="1" id="uyQ-po-Ytd">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.9882352941176471" green="0.23921568627450979" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
+                        <segue destination="haz-gv-ugB" kind="relationship" relationship="viewControllers" id="dQ3-Vz-yoN"/>
                         <segue destination="jzN-OR-WJ6" kind="relationship" relationship="viewControllers" id="aM9-Hg-fL5"/>
                         <segue destination="qzX-sk-qXD" kind="relationship" relationship="viewControllers" id="NZx-If-08m"/>
                     </connections>
@@ -709,6 +712,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUC-sK-pav" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="989" y="-34"/>
+        </scene>
+        <!--Новости-->
+        <scene sceneID="qQn-d7-qBN">
+            <objects>
+                <viewController id="z5t-ta-prV" customClass="NewsfeedViewController" customModule="StudyStoryBoardApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g7j-7h-Chc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="L0S-kl-1hc">
+                                <rect key="frame" x="0.0" y="91" width="390" height="670"/>
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="z5t-ta-prV" id="06D-E1-Khn"/>
+                                    <outlet property="delegate" destination="z5t-ta-prV" id="HNa-C6-vGf"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HlC-oE-BVj"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="HlC-oE-BVj" firstAttribute="trailing" secondItem="L0S-kl-1hc" secondAttribute="trailing" id="S3B-za-frg"/>
+                            <constraint firstItem="L0S-kl-1hc" firstAttribute="leading" secondItem="HlC-oE-BVj" secondAttribute="leading" id="rKG-CC-tXo"/>
+                            <constraint firstItem="L0S-kl-1hc" firstAttribute="top" secondItem="HlC-oE-BVj" secondAttribute="top" id="rOb-GF-wUg"/>
+                            <constraint firstItem="HlC-oE-BVj" firstAttribute="bottom" secondItem="L0S-kl-1hc" secondAttribute="bottom" id="vbP-T3-eBv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Новости" id="aW1-4U-a6S">
+                        <barButtonItem key="leftBarButtonItem" image="Little logo" id="Ui9-Gb-FzY">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="L0S-kl-1hc" id="hDM-Jy-OPN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gr6-of-DyL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2829.2307692307691" y="-1063.5071090047393"/>
         </scene>
         <!--Friends-->
         <scene sceneID="Mmx-YG-1Me">
@@ -748,18 +791,48 @@
             </objects>
             <point key="canvasLocation" x="1900" y="308.53080568720378"/>
         </scene>
+        <!--Новости-->
+        <scene sceneID="JGP-xE-Vff">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="haz-gv-ugB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Новости" image="newsfeed" badgeValue="2" id="qcV-lf-gNF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IS0-M5-d8B">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="MullerMedium" family="Muller" pointSize="18"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="z5t-ta-prV" kind="relationship" relationship="rootViewController" id="pxi-FS-XM8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pL0-J0-h0M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="-1063.5071090047393"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bMw-jM-sxK"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Backround" width="512" height="506"/>
+        <image name="Little logo" width="16" height="33"/>
         <image name="Logo" width="166" height="57"/>
         <image name="RegText" width="279" height="129"/>
         <image name="Succes" width="40" height="40"/>
         <image name="UI" width="46" height="6"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="newsfeed" width="28" height="28"/>
         <image name="person.2" catalog="system" width="128" height="82"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

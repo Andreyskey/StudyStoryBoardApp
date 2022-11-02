@@ -87,7 +87,7 @@ import UIKit
                 user.login = log
                 user.password = pass
                 animationLoading()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) { self.performSegue(withIdentifier: "succesRegistration", sender: nil) }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) { self.performSegue(withIdentifier: "goAfterGergistration", sender: nil) }
             } else {
                 alertsUser(view: viewPassRepeat, alertViewRepeatPass, lableVievRepeatPass, "Пароли не совпадают")
                 alertsUser(view: viewPass, nil, nil, nil)

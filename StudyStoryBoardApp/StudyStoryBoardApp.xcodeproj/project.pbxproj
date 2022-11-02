@@ -13,9 +13,13 @@
 		BA6DAD6528F628C900AA544F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA6DAD6428F628C900AA544F /* Assets.xcassets */; };
 		BA6DAD6828F628C900AA544F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA6DAD6628F628C900AA544F /* LaunchScreen.storyboard */; };
 		BA6DAD7028F7078300AA544F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD6F28F7078300AA544F /* AuthViewController.swift */; };
+		BA89D1FB29118F5200D88D61 /* NewsfeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D1FA29118F5200D88D61 /* NewsfeedViewController.swift */; };
+		BA89D1FE29118FE900D88D61 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */; };
+		BA89D1FF29118FE900D88D61 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */; };
+		BA89D2012911A3DF00D88D61 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D2002911A3DF00D88D61 /* PostModel.swift */; };
 		BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4376290D406D00FCD98F /* RegistrationViewController.swift */; };
 		BABC437A290D4D9D00FCD98F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4379290D4D9D00FCD98F /* Data.swift */; };
-		BABC437C290D5CED00FCD98F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC437B290D5CED00FCD98F /* UserData.swift */; };
+		BABC437C290D5CED00FCD98F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC437B290D5CED00FCD98F /* User.swift */; };
 		BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC437F290D73CF00FCD98F /* CustomButton.swift */; };
 		BABC4384290DA4A700FCD98F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4383290DA4A700FCD98F /* TestViewController.swift */; };
 		BABC43C5290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */; };
@@ -67,9 +71,13 @@
 		BA6DAD6728F628C900AA544F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA6DAD6928F628C900AA544F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA6DAD6F28F7078300AA544F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		BA89D1FA29118F5200D88D61 /* NewsfeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedViewController.swift; sourceTree = "<group>"; };
+		BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		BA89D2002911A3DF00D88D61 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		BABC4376290D406D00FCD98F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		BABC4379290D4D9D00FCD98F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		BABC437B290D5CED00FCD98F /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		BABC437B290D5CED00FCD98F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BABC437F290D73CF00FCD98F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BABC4383290DA4A700FCD98F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerHeavyItalic.otf"; sourceTree = "<group>"; };
@@ -156,6 +164,16 @@
 			path = StudyStoryBoardApp;
 			sourceTree = "<group>";
 		};
+		BA89D1F929118F2C00D88D61 /* NewsfeedController */ = {
+			isa = PBXGroup;
+			children = (
+				BA89D1FA29118F5200D88D61 /* NewsfeedViewController.swift */,
+				BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */,
+				BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */,
+			);
+			path = NewsfeedController;
+			sourceTree = "<group>";
+		};
 		BABC4378290D4D8E00FCD98F /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +247,7 @@
 		BAEE354028F89A3C00004183 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BA89D1F929118F2C00D88D61 /* NewsfeedController */,
 				BAEE354D28F8B41400004183 /* CustomTableViewCell */,
 				BAEE355228F9779D00004183 /* CustomCollectionViewCell */,
 				BAEE355C28F993B100004183 /* GroupViewController */,
@@ -279,7 +298,8 @@
 			children = (
 				BAEE356228F9C00000004183 /* Group.swift */,
 				BAEE356428F9C02E00004183 /* Friend.swift */,
-				BABC437B290D5CED00FCD98F /* UserData.swift */,
+				BABC437B290D5CED00FCD98F /* User.swift */,
+				BA89D2002911A3DF00D88D61 /* PostModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -371,6 +391,7 @@
 				BABC43C9290EDD3400FCD98F /* Fontfabric - MullerRegularItalic.otf in Resources */,
 				BAEE353D28F7202500004183 /* sf-ui-display-bold-58646a511e3d9.otf in Resources */,
 				BABC43D0290EDD3400FCD98F /* Fontfabric - MullerMediumItalic.otf in Resources */,
+				BA89D1FF29118FE900D88D61 /* PostTableViewCell.xib in Resources */,
 				BABC43D5290EDD3400FCD98F /* Fontfabric - MullerExtraBoldItalic.otf in Resources */,
 				BABC43CE290EDD3400FCD98F /* Fontfabric - MullerBlackItalic.otf in Resources */,
 				BABC43D4290EDD3400FCD98F /* Fontfabric - MullerUltraLightItalic.otf in Resources */,
@@ -389,6 +410,7 @@
 				BAEE354328F8AC3F00004183 /* FriendsViewController.swift in Sources */,
 				BAEE355728F9789A00004183 /* CustomCollectionViewCell.swift in Sources */,
 				BAEE356328F9C00000004183 /* Group.swift in Sources */,
+				BA89D1FB29118F5200D88D61 /* NewsfeedViewController.swift in Sources */,
 				BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */,
 				BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */,
 				BAEE356028F993DB00004183 /* SearchViewController.swift in Sources */,
@@ -396,11 +418,13 @@
 				BABC437A290D4D9D00FCD98F /* Data.swift in Sources */,
 				BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */,
 				BA6DAD7028F7078300AA544F /* AuthViewController.swift in Sources */,
-				BABC437C290D5CED00FCD98F /* UserData.swift in Sources */,
+				BABC437C290D5CED00FCD98F /* User.swift in Sources */,
 				BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */,
+				BA89D2012911A3DF00D88D61 /* PostModel.swift in Sources */,
 				BAEE356528F9C02E00004183 /* Friend.swift in Sources */,
 				BABC4384290DA4A700FCD98F /* TestViewController.swift in Sources */,
 				BAEE355A28F9806200004183 /* AlbumUserViewController.swift in Sources */,
+				BA89D1FE29118FE900D88D61 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

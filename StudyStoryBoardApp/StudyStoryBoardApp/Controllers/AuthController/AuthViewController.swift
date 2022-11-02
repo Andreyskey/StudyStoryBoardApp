@@ -86,7 +86,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         
         self.view.endEditing(true)
         
-        if log == user.login && pass == user.password {
+        if log == user.login && pass == user.password && log != "" && pass != "" {
              animationLoading()
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
                 self.performSegue(withIdentifier: "login", sender: nil)
