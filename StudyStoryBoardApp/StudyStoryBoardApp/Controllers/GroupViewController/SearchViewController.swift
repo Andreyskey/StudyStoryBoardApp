@@ -18,29 +18,11 @@ class SearchViewController: UIViewController {
     }
     
     let searchViewControllerIndentifier = "searchViewControllerIndentifier"
-    let allGroups = [
-        "Apple",
-        "Microsoft",
-        "The New York Times",
-        "Developer iOS",
-        "Amediateka",
-        "GitHub",
-        "Spotify",
-        "Yandex",
-        "Netflix"
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         button.isHidden = true
-        
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: searchViewControllerIndentifier)
-        
-        button.isHidden = true
-        
-//        let view = UIView()
-//        view.layer.borderWidth =
     }
 }
 
@@ -48,7 +30,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allGroups.count
+        return 1
     }
     
     
@@ -57,18 +39,28 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: searchViewControllerIndentifier, for: indexPath) as? CustomTableViewCell
         else { return UITableViewCell() }
         
-        cell.configurationCell(photo: UIImage(named: allGroups[indexPath.row]), fullName: allGroups[indexPath.row])
+        cell.configurationCell(friend: nil, group: groups[indexPath.section])
         
         return cell
     }
     
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return groups.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var cell = tableView.cellForRow(at: indexPath)
+        cell?.backgroundConfiguration?.backgroundColor = .white
+        cell?.backgroundConfiguration?.strokeColor = .systemRed
         button.isHidden = false
     }
+    
+    func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
+        var cell = tableView.cellForRow(at: indexPath)
+        cell?.backgroundConfiguration?.backgroundColor = .white
+        cell?.backgroundConfiguration?.strokeColor = UIColor(red: 0.90, green: 0.95, blue: 0.96, alpha: 1.00)
+        return indexPath
+    }
+    
     
 }

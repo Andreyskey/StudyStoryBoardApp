@@ -19,7 +19,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     }
     
     func clearCell() {
-        img = nil
+        img.image = nil
     }
     
     override func prepareForReuse() {

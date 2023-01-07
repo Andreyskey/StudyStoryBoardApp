@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA11CBA52969D4A20006CB7A /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA42969D4A20006CB7A /* MessageViewController.swift */; };
+		BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */; };
+		BA11CBAB2969FB000006CB7A /* ShowImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */; };
+		BA11CBAC2969FB000006CB7A /* ShowImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */; };
+		BA350E842915BA6200B4DCE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA350E832915BA6200B4DCE6 /* ViewController.swift */; };
+		BA350E872915BB3D00B4DCE6 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA350E852915BB3D00B4DCE6 /* TableViewCell.swift */; };
+		BA350E882915BB3D00B4DCE6 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA350E862915BB3D00B4DCE6 /* TableViewCell.xib */; };
+		BA350E8A2916E7C700B4DCE6 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA350E892916E7C700B4DCE6 /* UserData.swift */; };
 		BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD5B28F628C700AA544F /* AppDelegate.swift */; };
 		BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD5D28F628C700AA544F /* SceneDelegate.swift */; };
 		BA6DAD6328F628C700AA544F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA6DAD6128F628C700AA544F /* Main.storyboard */; };
@@ -19,7 +27,6 @@
 		BA89D2012911A3DF00D88D61 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D2002911A3DF00D88D61 /* PostModel.swift */; };
 		BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4376290D406D00FCD98F /* RegistrationViewController.swift */; };
 		BABC437A290D4D9D00FCD98F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4379290D4D9D00FCD98F /* Data.swift */; };
-		BABC437C290D5CED00FCD98F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC437B290D5CED00FCD98F /* User.swift */; };
 		BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC437F290D73CF00FCD98F /* CustomButton.swift */; };
 		BABC4384290DA4A700FCD98F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4383290DA4A700FCD98F /* TestViewController.swift */; };
 		BABC43C5290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */; };
@@ -63,6 +70,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA11CBA42969D4A20006CB7A /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoViewController.swift; sourceTree = "<group>"; };
+		BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		BA350E832915BA6200B4DCE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BA350E852915BB3D00B4DCE6 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		BA350E862915BB3D00B4DCE6 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		BA350E892916E7C700B4DCE6 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserData.swift; path = ../../../../../../../Music/UserData.swift; sourceTree = "<group>"; };
 		BA6DAD5828F628C700AA544F /* StudyStoryBoardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyStoryBoardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA6DAD5B28F628C700AA544F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA6DAD5D28F628C700AA544F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,7 +92,6 @@
 		BA89D2002911A3DF00D88D61 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		BABC4376290D406D00FCD98F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		BABC4379290D4D9D00FCD98F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		BABC437B290D5CED00FCD98F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BABC437F290D73CF00FCD98F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BABC4383290DA4A700FCD98F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerHeavyItalic.otf"; sourceTree = "<group>"; };
@@ -131,6 +145,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA11CBA32969D46D0006CB7A /* MessageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BA11CBA42969D4A20006CB7A /* MessageViewController.swift */,
+			);
+			path = MessageViewController;
+			sourceTree = "<group>";
+		};
+		BA11CBA62969FA5B0006CB7A /* ShowPhotoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */,
+				BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */,
+				BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */,
+			);
+			path = ShowPhotoViewController;
+			sourceTree = "<group>";
+		};
 		BA6DAD4F28F628C700AA544F = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +192,9 @@
 				BA6DAD6428F628C900AA544F /* Assets.xcassets */,
 				BABC437F290D73CF00FCD98F /* CustomButton.swift */,
 				BABC4383290DA4A700FCD98F /* TestViewController.swift */,
+				BA350E832915BA6200B4DCE6 /* ViewController.swift */,
+				BA350E852915BB3D00B4DCE6 /* TableViewCell.swift */,
+				BA350E862915BB3D00B4DCE6 /* TableViewCell.xib */,
 			);
 			path = StudyStoryBoardApp;
 			sourceTree = "<group>";
@@ -247,6 +282,8 @@
 		BAEE354028F89A3C00004183 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BA11CBA62969FA5B0006CB7A /* ShowPhotoViewController */,
+				BA11CBA32969D46D0006CB7A /* MessageViewController */,
 				BA89D1F929118F2C00D88D61 /* NewsfeedController */,
 				BAEE354D28F8B41400004183 /* CustomTableViewCell */,
 				BAEE355228F9779D00004183 /* CustomCollectionViewCell */,
@@ -298,8 +335,8 @@
 			children = (
 				BAEE356228F9C00000004183 /* Group.swift */,
 				BAEE356428F9C02E00004183 /* Friend.swift */,
-				BABC437B290D5CED00FCD98F /* User.swift */,
 				BA89D2002911A3DF00D88D61 /* PostModel.swift */,
+				BA350E892916E7C700B4DCE6 /* UserData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -377,7 +414,9 @@
 				BABC43CD290EDD3400FCD98F /* Fontfabric - MullerThinItalic.otf in Resources */,
 				BA6DAD6528F628C900AA544F /* Assets.xcassets in Resources */,
 				BABC43C6290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf in Resources */,
+				BA11CBAC2969FB000006CB7A /* ShowImageCollectionViewCell.xib in Resources */,
 				BAEE353828F7202500004183 /* sf-ui-display-ultralight-58646b19bf205.otf in Resources */,
+				BA350E882915BB3D00B4DCE6 /* TableViewCell.xib in Resources */,
 				BAEE353628F7202500004183 /* sf-ui-display-black-58646a6b80d5a.otf in Resources */,
 				BAEE355828F9789A00004183 /* CustomCollectionViewCell.xib in Resources */,
 				BABC43D8290EDD3400FCD98F /* Fontfabric - MullerMedium.otf in Resources */,
@@ -407,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAEE355E28F993D200004183 /* GroupViewController.swift in Sources */,
+				BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */,
 				BAEE354328F8AC3F00004183 /* FriendsViewController.swift in Sources */,
 				BAEE355728F9789A00004183 /* CustomCollectionViewCell.swift in Sources */,
 				BAEE356328F9C00000004183 /* Group.swift in Sources */,
@@ -416,13 +456,17 @@
 				BAEE356028F993DB00004183 /* SearchViewController.swift in Sources */,
 				BAEE355028F8B42600004183 /* CustomTableViewCell.swift in Sources */,
 				BABC437A290D4D9D00FCD98F /* Data.swift in Sources */,
+				BA350E842915BA6200B4DCE6 /* ViewController.swift in Sources */,
 				BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */,
+				BA350E872915BB3D00B4DCE6 /* TableViewCell.swift in Sources */,
 				BA6DAD7028F7078300AA544F /* AuthViewController.swift in Sources */,
-				BABC437C290D5CED00FCD98F /* User.swift in Sources */,
 				BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */,
+				BA350E8A2916E7C700B4DCE6 /* UserData.swift in Sources */,
 				BA89D2012911A3DF00D88D61 /* PostModel.swift in Sources */,
 				BAEE356528F9C02E00004183 /* Friend.swift in Sources */,
+				BA11CBA52969D4A20006CB7A /* MessageViewController.swift in Sources */,
 				BABC4384290DA4A700FCD98F /* TestViewController.swift in Sources */,
+				BA11CBAB2969FB000006CB7A /* ShowImageCollectionViewCell.swift in Sources */,
 				BAEE355A28F9806200004183 /* AlbumUserViewController.swift in Sources */,
 				BA89D1FE29118FE900D88D61 /* PostTableViewCell.swift in Sources */,
 			);

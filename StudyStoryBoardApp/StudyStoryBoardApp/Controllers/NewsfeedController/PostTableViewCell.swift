@@ -7,10 +7,11 @@
 
 import UIKit
 
-@IBDesignable class PostTableViewCell: UITableViewCell {
+class PostTableViewCell: UITableViewCell {
     
     @IBOutlet weak var superView: UIView!
     
+    @IBOutlet weak var imagePost: UIImageView!
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var whenBePublic: UILabel!
@@ -18,21 +19,22 @@ import UIKit
     @IBOutlet weak var doubleTapLikeView: UIView!
     
     @IBOutlet weak var textPost: UILabel!
-    @IBOutlet weak var imagePost: UIImageView!
     
     @IBOutlet weak var likeButton: UIView!
     @IBOutlet weak var commentButton: UIView!
     @IBOutlet weak var shareButton: UIView!
     @IBOutlet weak var seesPostCount: UILabel!
-    
+
+    //MARK: - Предустановка и конфигурация ячейки
     var indexPathRow = 0
     
+    var postData: Post?
+    
     func setup() {
+        
         superView.layer.cornerRadius = 20
         superView.layer.borderColor = UIColor(red: 0.902, green: 0.945, blue: 0.965, alpha: 1).cgColor
         superView.layer.borderWidth = 1
-        
-        imagePost.layer.masksToBounds = true
         
         imageProfile.layer.cornerRadius = imageProfile.layer.frame.size.height / 2
         likeButton.layer.cornerRadius = likeButton.layer.frame.size.height / 2
@@ -40,7 +42,7 @@ import UIKit
         shareButton.layer.cornerRadius = shareButton.frame.size.height / 2
     }
     
-    func configurate(post: Post, indexPath: Int) {
+    func configurate(post: Post, indexPath: IndexPath) {
         
         guard let likesCount = likeButton.subviews[1] as? UILabel,
               let commentCount = commentButton.subviews[1] as? UILabel,
@@ -48,7 +50,9 @@ import UIKit
               let likeImage = likeButton.subviews[0] as? UIImageView
         else { return }
         
-        indexPathRow = indexPath
+        indexPathRow = indexPath.row
+                          
+        postData = post
         
         name.text = post.name
         imageProfile.image = post.imageProfile
@@ -59,21 +63,26 @@ import UIKit
         shareCount.text = String(post.countShare)
         seesPostCount.text = post.seesCount
         
+        if post.ImagePost[0] != nil {
+            let img = UIImage(named: post.ImagePost[0] ?? "")!
+            imagePost.image = resizeImage(image: img, targetSize: CGSize(width: imagePost.bounds.width, height: 0 ))
+        }
+        
+        
         if post.isLiked {
             likeImage.image = UIImage(named: "likefill")
             likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
             likesCount.textColor = .white
-            
         } else {
             likeImage.image = UIImage(named: "like")
             likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
             likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
         }
         
-        if let image = post.ImagePost {
-            imagePost.image = resizeImage(image: image, targetSize: imagePost.bounds.size)
-        }
+        
     }
+    
+    //MARK: - Функция преобразования картинки в нужный размер для поста
     
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         
@@ -93,6 +102,8 @@ import UIKit
         return newImage!
     }
     
+    //MARK: - Переопределние ячейки
+    
     func clearCell() {
         
         guard let likesCount = likeButton.subviews[1] as? UILabel,
@@ -105,12 +116,12 @@ import UIKit
         name.text = nil
         whenBePublic.text = nil
         textPost.text = nil
-        imagePost.image = nil
         likesCount.text = nil
         commentCount.text = nil
         shareCount.text = nil
         likeImage.image = nil
-        
+        imagePost.image = nil
+    
     }
     
     override func prepareForReuse() {
@@ -174,4 +185,18 @@ import UIKit
     }
     
     
+}
+
+
+
+
+extension UILabel {
+    func calculateMaxLines() -> Int {
+        let maxSize = CGSize(width: frame.size.width, height: CGFloat(Float.infinity))
+        let charSize = font.lineHeight
+        let text = (self.text ?? "") as NSString
+        let textSize = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font as Any], context: nil)
+        let linesRoundedUp = Int(ceil(textSize.height/charSize))
+        return linesRoundedUp
+    }
 }

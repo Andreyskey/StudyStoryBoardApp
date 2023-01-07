@@ -32,9 +32,8 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: newsfeedViewControllerIdentificator, for: indexPath) as? PostTableViewCell
         else { return UITableViewCell() }
         
-        cell.configurate(post: postOne[indexPath.row], indexPath: indexPath.row)
+        cell.configurate(post: postOne[indexPath.row], indexPath: indexPath)
         
         return cell
     }
-    
 }

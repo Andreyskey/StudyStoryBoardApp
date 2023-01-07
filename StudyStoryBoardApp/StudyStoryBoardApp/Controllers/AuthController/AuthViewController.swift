@@ -18,6 +18,8 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var login: UITextField!
     @IBOutlet weak var password: UITextField!
     
+    @IBOutlet weak var registrationButton: UIButton!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var viewLogin: UIView!
@@ -80,6 +82,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func buttonLogin(_ sender: Any) {
+        registrationButton.isUserInteractionEnabled = false
         guard let log = login.text,
               let pass = password.text
         else { return }
@@ -101,11 +104,16 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         guard let alertLog = alertWrongLog.subviews[1] as? UILabel,
               let alertPass = alertWrongPass.subviews[1] as? UILabel else { return }
         
-        if login.text == "" && password.text == "" {
+        if login.text == "" {
             alertLog.text = "Введите логин"
+        }
+        if password.text == "" {
             alertPass.text = "Введите пароль"
-        } else if login.text != "" || password.text != "" {
+        }
+        if login.text != "" {
             alertLog.text = "Неверный логин"
+        }
+        if password.text != "" {
             alertPass.text = "Неверный пароль"
         }
         
@@ -131,6 +139,7 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         viewPassword.layer.backgroundColor = UIColor.white.cgColor
         buttonLogIn.isTouched(true)
         buttonLogIn.layoutIfNeeded()
+        registrationButton.isUserInteractionEnabled = true
         
     }
     
@@ -138,18 +147,25 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     
     func animationDefaultBounds() {
         
-        viewLogin.layer.borderColor = UIColor(red: 0.988, green: 0.239, blue: 0.282, alpha: 0.5).cgColor
-        viewPassword.layer.borderColor = UIColor(red: 0.988, green: 0.239, blue: 0.282, alpha: 0.5).cgColor
-        alertWrongLog.alpha = 1
-        alertWrongPass.alpha = 1
-        
-        UIView.animate(withDuration: 2, delay: 2, options: .allowUserInteraction) { [weak self] in
-            guard let self = self else { return }
-            
-            self.setupView(view: self.viewLogin)
-            self.setupView(view: self.viewPassword)
-            self.alertWrongLog.alpha = 0
-            self.alertWrongPass.alpha = 0
+        if login.text != user.login {
+            viewLogin.layer.borderColor = UIColor(red: 0.988, green: 0.239, blue: 0.282, alpha: 0.5).cgColor
+            alertWrongLog.alpha = 1
+            UIView.animate(withDuration: 2, delay: 2, options: .allowUserInteraction) { [weak self] in
+                guard let self = self else { return }
+                
+                self.setupView(view: self.viewLogin)
+                self.alertWrongLog.alpha = 0
+            }
+        }
+        if password.text != user.password {
+            viewPassword.layer.borderColor = UIColor(red: 0.988, green: 0.239, blue: 0.282, alpha: 0.5).cgColor
+            alertWrongPass.alpha = 1
+            UIView.animate(withDuration: 2, delay: 2, options: .allowUserInteraction) { [weak self] in
+                guard let self = self else { return }
+                
+                self.setupView(view: self.viewPassword)
+                self.alertWrongPass.alpha = 0
+            }
         }
     }
     

@@ -18,9 +18,9 @@ class GroupViewController: UIViewController {
     
     let groupViewControllerIdentifier = "groupViewControllerIdentifier"
     
-    var groups = [
-        "Apple"
-    ]
+    var myGroups = [
+        Group(name: "Amediateka", image: "Amediateka", infoGroup: "Онлайн-кинотеатр, 450К подписчиков")
+        ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +34,16 @@ class GroupViewController: UIViewController {
     @IBAction func unwindToGroup(_ unwindSegue: UIStoryboardSegue) {
         guard unwindSegue.identifier == "addGroup",
               let segue = unwindSegue.source as? SearchViewController,
-              let indexPath = segue.tableView.indexPathForSelectedRow?.row
+              let indexPaths = segue.tableView.indexPathsForSelectedRows
         else { return }
         
-        let group = segue.allGroups[indexPath]
-        
-        if !groups.contains(group) {
-            groups.append(group)
-            tableView.reloadData()
+        for i in indexPaths {
+            let group = groups[i.section]
+            if !myGroups.contains(where: {$0 == group}) {
+                myGroups.append(group)
+            }
         }
+        tableView.reloadData()
     }
     
     deinit {
@@ -54,21 +55,25 @@ class GroupViewController: UIViewController {
 extension GroupViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        if myGroups.count == 0 {
+            return 0
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: groupViewControllerIdentifier, for: indexPath) as? CustomTableViewCell
         else { return UITableViewCell() }
         
-        cell.configurationCell(photo: UIImage(named: groups[indexPath.row]), fullName: groups[indexPath.row])
+        cell.configurationCell(friend: nil, group: myGroups[indexPath.section])
         
         return cell
     }
 
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return myGroups.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -76,8 +81,22 @@ extension GroupViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        groups.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .fade)
+        myGroups.remove(at: indexPath.section)
+        print(myGroups.count)
+        tableView.deleteSections(IndexSet(arrayLiteral: indexPath.section), with: .fade)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { action, view, complete in
+            self.myGroups.remove(at: indexPath.section)
+            tableView.deleteSections(IndexSet(arrayLiteral: indexPath.section), with: .fade)
+            complete(true)
+        }
+        deleteAction.image = UIImage(named: "deleteSection")
+        deleteAction.backgroundColor = UIColor(cgColor: CGColor(red: 1, green: 1, blue: 1, alpha: 0))
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
     
 }

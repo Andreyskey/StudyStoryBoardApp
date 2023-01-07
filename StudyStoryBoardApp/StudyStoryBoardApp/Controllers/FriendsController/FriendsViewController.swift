@@ -9,16 +9,6 @@ import UIKit
 
 class FriendsViewController: UIViewController {
     
-    let myFriends = [
-        "Dmitry Rogozin",
-        "Paul Walker",
-        "Susan Coffey",
-        "Somato Dope",
-        "Kate Anderson"
-    ]
-    
-    var indexCell = 0
-    
     // Идентификатор ячейки
     let friendsViewControllerIdentifier = "friendsViewControllerIdentifier"
     
@@ -37,18 +27,32 @@ class FriendsViewController: UIViewController {
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: friendsViewControllerIdentifier)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard segue.identifier == "showAlbum" else { return }
-        guard let destination = segue.destination as? AlbumUserViewController
-        else { return }
-        destination.name = myFriends[indexCell]
+    func letter(array: [Friend]) -> [String] {
+        var letters = [String]()
+        for item in array {
+            let letter = String(item.fullName.prefix(1))
+            if !letters.contains(letter) {
+                letters.append(letter)
+            }
+        }
+        return letters.sorted()
     }
+    
+    func arrayByLetter(letter: String) -> [Friend] {
+        var result = [Friend]()
+        for item in friends {
+            let letterItem = String(item.fullName.prefix(1))
+            if letterItem ==  letter {
+                result.append(item)
+            }
+        }
+        return result
+    }
+    
     
     deinit {
         print("Delete FriendsController")
     }
-
 }
 
 
@@ -56,12 +60,12 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     
     // Количество строк ячеек
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myFriends.count
+        return arrayByLetter(letter: letter(array: friends)[section]).count
     }
     
     // Количество секций
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return letter(array: friends).count
     }
     
     // Создание и конфигурация ячейки
@@ -70,19 +74,54 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: friendsViewControllerIdentifier, for: indexPath) as? CustomTableViewCell
         else { return UITableViewCell() }
         
-        guard let img = UIImage(named: myFriends[indexPath.row])
-        else { return cell }
+        let arrayItems = arrayByLetter(letter: letter(array: friends)[indexPath.section])
+        
+        let isLast = arrayItems[indexPath.row] == arrayItems.last
+        let isFirst = arrayItems[indexPath.row] == arrayItems.first
     
-        cell.configurationCell(photo: img, fullName: myFriends[indexPath.row])
+        cell.configurationCell(friend: arrayItems[indexPath.row], group: nil, isLast: isLast, isFirst: isFirst)
         
         return cell
     }
     
-    // Убираем выделение ячейки
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        indexCell = indexPath.row
-        performSegue(withIdentifier: "showAlbum", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let albumVC = storyboard.instantiateViewController(identifier: "AlbumUserViewController") as? AlbumUserViewController
+        else { return }
+        
+        albumVC.friend = arrayByLetter(letter: letter(array: friends)[indexPath.section])[indexPath.row]
+        
+        show(albumVC, sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let font = UIFont(name: "MullerMedium", size: 16),
+              let header = view as? UITableViewHeaderFooterView
+        else {
+            print(UIFont.fontNames(forFamilyName: "Muller"))
+            fatalError("Don't find font")
+        }
+        var headerConfig = UIListContentConfiguration.groupedHeader()
+        headerConfig.text = letter(array: friends)[section].uppercased()
+        headerConfig.textProperties.font = font
+        headerConfig.textProperties.color = .black
+        headerConfig.textProperties.adjustsFontForContentSizeCategory = true
+        header.contentConfiguration = headerConfig
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return letter(array: friends)[section].uppercased()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 43
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
     
 }
