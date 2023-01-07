@@ -551,13 +551,22 @@
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
                                 <color key="backgroundColor" red="0.95707637069999996" green="0.98020476099999998" blue="0.99215894940000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="У вас нет групп" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQd-PX-P0b">
+                                <rect key="frame" x="134" y="106" width="123" height="16"/>
+                                <fontDescription key="fontDescription" name="MullerRegular" family="Muller" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.34214095564078023" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zSy-pm-fjF"/>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="zSy-pm-fjF" firstAttribute="trailing" secondItem="0v5-vz-GTQ" secondAttribute="trailing" id="FLH-hq-kBX"/>
+                            <constraint firstItem="ZQd-PX-P0b" firstAttribute="leading" secondItem="zSy-pm-fjF" secondAttribute="leading" constant="134" id="Z3g-qT-dyM"/>
                             <constraint firstItem="zSy-pm-fjF" firstAttribute="bottom" secondItem="0v5-vz-GTQ" secondAttribute="bottom" id="bsr-a1-t24"/>
+                            <constraint firstItem="zSy-pm-fjF" firstAttribute="trailing" secondItem="ZQd-PX-P0b" secondAttribute="trailing" constant="133" id="cBR-ta-UDm"/>
                             <constraint firstItem="0v5-vz-GTQ" firstAttribute="top" secondItem="zSy-pm-fjF" secondAttribute="top" id="hfb-V9-Fcd"/>
+                            <constraint firstItem="ZQd-PX-P0b" firstAttribute="top" secondItem="zSy-pm-fjF" secondAttribute="top" constant="15" id="jW8-aU-cj2"/>
                             <constraint firstItem="0v5-vz-GTQ" firstAttribute="leading" secondItem="zSy-pm-fjF" secondAttribute="leading" id="moP-8D-Oze"/>
                         </constraints>
                     </view>
@@ -573,6 +582,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noHaveGroupText" destination="ZQd-PX-P0b" id="hfJ-UB-NtF"/>
                         <outlet property="tableView" destination="0v5-vz-GTQ" id="Dbi-Fc-g2b"/>
                         <segue destination="eQe-QQ-8wu" kind="show" identifier="searchGroup" id="0n7-QC-XUA"/>
                     </connections>
@@ -707,7 +717,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nyf-da-0St">
-                                <rect key="frame" x="0.0" y="101" width="390" height="650"/>
+                                <rect key="frame" x="0.0" y="101" width="390" height="649"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="syK-em-b9I">
                                     <size key="itemSize" width="390" height="650"/>
@@ -718,13 +728,13 @@
                                 <cells/>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aah-FX-BNF">
-                                <rect key="frame" x="96" y="761" width="52.666666666666657" height="30"/>
+                                <rect key="frame" x="96" y="760" width="51" height="31"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-heart 1" translatesAutoresizingMaskIntoConstraints="NO" id="GJs-jH-oMH">
-                                        <rect key="frame" x="8" y="4" width="22" height="22"/>
+                                        <rect key="frame" x="8" y="4" width="22" height="23"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Td-rQ-08m">
-                                        <rect key="frame" x="34" y="8.6666666666666288" width="8.6666666666666643" height="13"/>
+                                        <rect key="frame" x="34" y="8.6666666666666288" width="7" height="14"/>
                                         <fontDescription key="fontDescription" name="MullerMedium" family="Muller" pointSize="12"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -743,13 +753,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPI-Lg-Ea1">
-                                <rect key="frame" x="156.66666666666666" y="761" width="52.666666666666657" height="30"/>
+                                <rect key="frame" x="155" y="760" width="51" height="31"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-topic 1" translatesAutoresizingMaskIntoConstraints="NO" id="1cq-sY-DzC">
-                                        <rect key="frame" x="8" y="4" width="22" height="22"/>
+                                        <rect key="frame" x="8" y="4" width="22" height="23"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvz-xd-hU0">
-                                        <rect key="frame" x="34" y="8.6666666666666288" width="8.6666666666666643" height="13"/>
+                                        <rect key="frame" x="34" y="8.6666666666666288" width="7" height="14"/>
                                         <fontDescription key="fontDescription" name="MullerMedium" family="Muller" pointSize="12"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -768,16 +778,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E4B-Ux-hHf">
-                                <rect key="frame" x="217.33333333333334" y="761" width="52.666666666666657" height="30"/>
+                                <rect key="frame" x="214" y="760" width="51" height="31"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDi-Ur-pwD">
-                                        <rect key="frame" x="34" y="8.6666666666666288" width="8.6666666666666643" height="13"/>
+                                        <rect key="frame" x="34" y="8.6666666666666288" width="7" height="14"/>
                                         <fontDescription key="fontDescription" name="MullerMedium" family="Muller" pointSize="12"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-forward_arrow 1" translatesAutoresizingMaskIntoConstraints="NO" id="5G0-ST-BSR">
-                                        <rect key="frame" x="8" y="4" width="22" height="22"/>
+                                        <rect key="frame" x="8" y="4" width="22" height="23"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>

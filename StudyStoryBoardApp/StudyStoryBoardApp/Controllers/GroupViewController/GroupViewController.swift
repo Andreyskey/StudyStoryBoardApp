@@ -16,6 +16,8 @@ class GroupViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var noHaveGroupText: UILabel!
+    
     let groupViewControllerIdentifier = "groupViewControllerIdentifier"
     
     var myGroups = [
@@ -43,6 +45,7 @@ class GroupViewController: UIViewController {
                 myGroups.append(group)
             }
         }
+        self.noHaveGroupText.isHidden = true
         tableView.reloadData()
     }
     
@@ -90,6 +93,11 @@ extension GroupViewController: UITableViewDelegate, UITableViewDataSource {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { action, view, complete in
             self.myGroups.remove(at: indexPath.section)
             tableView.deleteSections(IndexSet(arrayLiteral: indexPath.section), with: .fade)
+            if self.myGroups.count == 0 {
+                self.noHaveGroupText.isHidden = false
+            } else {
+                self.noHaveGroupText.isHidden = true
+            }
             complete(true)
         }
         deleteAction.image = UIImage(named: "deleteSection")
