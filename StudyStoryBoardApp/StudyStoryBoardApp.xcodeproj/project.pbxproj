@@ -11,9 +11,6 @@
 		BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */; };
 		BA11CBAB2969FB000006CB7A /* ShowImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */; };
 		BA11CBAC2969FB000006CB7A /* ShowImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */; };
-		BA350E842915BA6200B4DCE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA350E832915BA6200B4DCE6 /* ViewController.swift */; };
-		BA350E872915BB3D00B4DCE6 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA350E852915BB3D00B4DCE6 /* TableViewCell.swift */; };
-		BA350E882915BB3D00B4DCE6 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA350E862915BB3D00B4DCE6 /* TableViewCell.xib */; };
 		BA350E8A2916E7C700B4DCE6 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA350E892916E7C700B4DCE6 /* UserData.swift */; };
 		BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD5B28F628C700AA544F /* AppDelegate.swift */; };
 		BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD5D28F628C700AA544F /* SceneDelegate.swift */; };
@@ -25,10 +22,10 @@
 		BA89D1FE29118FE900D88D61 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */; };
 		BA89D1FF29118FE900D88D61 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */; };
 		BA89D2012911A3DF00D88D61 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D2002911A3DF00D88D61 /* PostModel.swift */; };
+		BA948C8E296C9CF60038415F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA948C8D296C9CF60038415F /* Singleton.swift */; };
 		BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4376290D406D00FCD98F /* RegistrationViewController.swift */; };
 		BABC437A290D4D9D00FCD98F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4379290D4D9D00FCD98F /* Data.swift */; };
 		BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC437F290D73CF00FCD98F /* CustomButton.swift */; };
-		BABC4384290DA4A700FCD98F /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4383290DA4A700FCD98F /* TestViewController.swift */; };
 		BABC43C5290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */; };
 		BABC43C6290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43B2290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf */; };
 		BABC43C7290EDD3400FCD98F /* Fontfabric - MullerHeavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43B3290EDD3400FCD98F /* Fontfabric - MullerHeavy.otf */; };
@@ -74,9 +71,6 @@
 		BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoViewController.swift; sourceTree = "<group>"; };
 		BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		BA350E832915BA6200B4DCE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BA350E852915BB3D00B4DCE6 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		BA350E862915BB3D00B4DCE6 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		BA350E892916E7C700B4DCE6 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserData.swift; path = ../../../../../../../Music/UserData.swift; sourceTree = "<group>"; };
 		BA6DAD5828F628C700AA544F /* StudyStoryBoardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyStoryBoardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA6DAD5B28F628C700AA544F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,10 +84,10 @@
 		BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		BA89D2002911A3DF00D88D61 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		BA948C8D296C9CF60038415F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		BABC4376290D406D00FCD98F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		BABC4379290D4D9D00FCD98F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		BABC437F290D73CF00FCD98F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		BABC4383290DA4A700FCD98F /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerHeavyItalic.otf"; sourceTree = "<group>"; };
 		BABC43B2290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerLightItalic.otf"; sourceTree = "<group>"; };
 		BABC43B3290EDD3400FCD98F /* Fontfabric - MullerHeavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerHeavy.otf"; sourceTree = "<group>"; };
@@ -182,6 +176,7 @@
 		BA6DAD5A28F628C700AA544F /* StudyStoryBoardApp */ = {
 			isa = PBXGroup;
 			children = (
+				BA948C8C296C9CE90038415F /* Singleton */,
 				BABC4378290D4D8E00FCD98F /* Data */,
 				BAEE356128F9BFF300004183 /* Model */,
 				BAEE354028F89A3C00004183 /* Controllers */,
@@ -191,10 +186,6 @@
 				BA6DAD6128F628C700AA544F /* Main.storyboard */,
 				BA6DAD6428F628C900AA544F /* Assets.xcassets */,
 				BABC437F290D73CF00FCD98F /* CustomButton.swift */,
-				BABC4383290DA4A700FCD98F /* TestViewController.swift */,
-				BA350E832915BA6200B4DCE6 /* ViewController.swift */,
-				BA350E852915BB3D00B4DCE6 /* TableViewCell.swift */,
-				BA350E862915BB3D00B4DCE6 /* TableViewCell.xib */,
 			);
 			path = StudyStoryBoardApp;
 			sourceTree = "<group>";
@@ -207,6 +198,14 @@
 				BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */,
 			);
 			path = NewsfeedController;
+			sourceTree = "<group>";
+		};
+		BA948C8C296C9CE90038415F /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				BA948C8D296C9CF60038415F /* Singleton.swift */,
+			);
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 		BABC4378290D4D8E00FCD98F /* Data */ = {
@@ -416,7 +415,6 @@
 				BABC43C6290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf in Resources */,
 				BA11CBAC2969FB000006CB7A /* ShowImageCollectionViewCell.xib in Resources */,
 				BAEE353828F7202500004183 /* sf-ui-display-ultralight-58646b19bf205.otf in Resources */,
-				BA350E882915BB3D00B4DCE6 /* TableViewCell.xib in Resources */,
 				BAEE353628F7202500004183 /* sf-ui-display-black-58646a6b80d5a.otf in Resources */,
 				BAEE355828F9789A00004183 /* CustomCollectionViewCell.xib in Resources */,
 				BABC43D8290EDD3400FCD98F /* Fontfabric - MullerMedium.otf in Resources */,
@@ -454,18 +452,16 @@
 				BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */,
 				BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */,
 				BAEE356028F993DB00004183 /* SearchViewController.swift in Sources */,
+				BA948C8E296C9CF60038415F /* Singleton.swift in Sources */,
 				BAEE355028F8B42600004183 /* CustomTableViewCell.swift in Sources */,
 				BABC437A290D4D9D00FCD98F /* Data.swift in Sources */,
-				BA350E842915BA6200B4DCE6 /* ViewController.swift in Sources */,
 				BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */,
-				BA350E872915BB3D00B4DCE6 /* TableViewCell.swift in Sources */,
 				BA6DAD7028F7078300AA544F /* AuthViewController.swift in Sources */,
 				BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */,
 				BA350E8A2916E7C700B4DCE6 /* UserData.swift in Sources */,
 				BA89D2012911A3DF00D88D61 /* PostModel.swift in Sources */,
 				BAEE356528F9C02E00004183 /* Friend.swift in Sources */,
 				BA11CBA52969D4A20006CB7A /* MessageViewController.swift in Sources */,
-				BABC4384290DA4A700FCD98F /* TestViewController.swift in Sources */,
 				BA11CBAB2969FB000006CB7A /* ShowImageCollectionViewCell.swift in Sources */,
 				BAEE355A28F9806200004183 /* AlbumUserViewController.swift in Sources */,
 				BA89D1FE29118FE900D88D61 /* PostTableViewCell.swift in Sources */,
