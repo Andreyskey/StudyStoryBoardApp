@@ -49,14 +49,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var cell = tableView.cellForRow(at: indexPath)
+        let cell = tableView.cellForRow(at: indexPath)
         cell?.backgroundConfiguration?.backgroundColor = .white
         cell?.backgroundConfiguration?.strokeColor = .systemRed
         button.isHidden = false
     }
     
     func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-        var cell = tableView.cellForRow(at: indexPath)
+        let cell = tableView.cellForRow(at: indexPath)
         cell?.backgroundConfiguration?.backgroundColor = .white
         cell?.backgroundConfiguration?.strokeColor = UIColor(red: 0.90, green: 0.95, blue: 0.96, alpha: 1.00)
         return indexPath
