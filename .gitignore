@@ -90,3 +90,5 @@ fastlane/test_output
 iOSInjectionProject/
 
 StudyStoryBoardApp/StudyStoryBoardApp/AppleDevProfile.developerprofile
+
+StudyStoryBoardApp/.DS_Store
