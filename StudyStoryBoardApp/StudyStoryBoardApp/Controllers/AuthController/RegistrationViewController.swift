@@ -18,8 +18,7 @@ import WebKit
         
     }
     
-    deinit {
-        print("Delete AuthController")
+    @IBAction func updatePage(_ sender: Any) {
     }
 }
 

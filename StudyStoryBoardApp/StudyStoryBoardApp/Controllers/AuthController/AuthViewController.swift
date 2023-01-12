@@ -10,6 +10,7 @@ import UIKit
 class AuthViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var backroundImage: UIImageView!
+    @IBOutlet weak var secondImageBackround: UIImageView!
     
     @IBOutlet weak var constraintRight: NSLayoutConstraint!
     @IBOutlet weak var buttonLogIn: CustomButton!
@@ -28,7 +29,8 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         
         UIView.animate(withDuration: 1.5, delay: 0) { [weak self] in
             guard let self = self else { return }
-            self.backroundImage.alpha = 1
+            self.backroundImage.alpha = 0.5
+            self.secondImageBackround.alpha = 1
         }
     
         NotificationCenter.default.addObserver(self, selector: #selector(animate), name: startApp, object: nil)
@@ -50,7 +52,8 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     
     @objc func animate() {
         print("subscribe succes")
-        backroundImage.rotate()
+        backroundImage.rotate(duration: 75, route: .left)
+        secondImageBackround.rotate(duration: 120, route: .left)
     }
     
 
@@ -89,12 +92,18 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension UIImageView{
-    func rotate() {
+    func rotate(duration: Double, route: RouteRotate) {
         let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.toValue = NSNumber(value: Double.pi * 2)
-        rotation.duration = 60
+        if route == .left { rotation.toValue = NSNumber(value: Double.pi * 2) }
+        else if route == .right { rotation.toValue = NSNumber(value: -Double.pi * 2) }
+        rotation.duration = duration
         rotation.isCumulative = true
         rotation.repeatCount = Float.greatestFiniteMagnitude
         self.layer.add(rotation, forKey: "rotationAnimation")
     }
+}
+
+enum RouteRotate {
+    case left
+    case right
 }
