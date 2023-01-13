@@ -37,10 +37,10 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="hEx-Na-nRM">
-                                        <rect key="frame" x="104" y="191" width="182" height="57"/>
+                                        <rect key="frame" x="104" y="191" width="182" height="40"/>
                                     </imageView>
                                     <button contentMode="scaleToFill" highlighted="YES" selected="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQ9-mt-zH3" customClass="CustomButton" customModule="StudyStoryBoardApp" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="539" width="326" height="64"/>
+                                        <rect key="frame" x="32" y="522" width="326" height="64"/>
                                         <color key="backgroundColor" red="0.9882352941176471" green="0.23921568627450979" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="MGz-UI-QsD"/>
@@ -57,17 +57,17 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="KhH-pW-ruS" kind="show" id="Biw-wN-vDy"/>
+                                            <segue destination="KhH-pW-ruS" kind="show" identifier="authVK" id="Biw-wN-vDy"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Новый дизайн в новом приложении" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2j-hk-OVV">
-                                        <rect key="frame" x="84" y="256" width="222" height="36"/>
+                                        <rect key="frame" x="84" y="239" width="222" height="36"/>
                                         <fontDescription key="fontDescription" name="MullerRegular" family="Muller" pointSize="18"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHv-e9-8Rz">
-                                        <rect key="frame" x="163" y="539" width="64" height="64"/>
+                                        <rect key="frame" x="163" y="522" width="64" height="64"/>
                                         <subviews>
                                             <activityIndicatorView userInteractionEnabled="NO" alpha="0.0" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-Ce-UGr">
                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
@@ -159,12 +159,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TR-95-Vsa">
-                                <rect key="frame" x="0.0" y="3" width="390" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                                 <items>
                                     <navigationItem id="Rvq-tD-liT">
                                         <barButtonItem key="leftBarButtonItem" title="Закрыть" id="c3v-rK-9Sc">
                                             <connections>
-                                                <segue destination="bKc-C1-W4Z" kind="unwind" unwindAction="unwindToAuth:" id="S5H-J9-g8G"/>
+                                                <segue destination="bKc-C1-W4Z" kind="unwind" identifier="closePage" unwindAction="unwindToAuth:" id="S5H-J9-g8G"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.counterclockwise" catalog="system" id="tBb-Rn-8iL">
@@ -176,30 +176,38 @@
                                 </items>
                             </navigationBar>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3i9-eD-a2W">
-                                <rect key="frame" x="0.0" y="59" width="390" height="728"/>
+                                <rect key="frame" x="0.0" y="56" width="390" height="761"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="SuS-qY-r89">
+                                <rect key="frame" x="353" y="19" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" systemColor="systemRedColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZaN-Fb-qBb"/>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="3i9-eD-a2W" firstAttribute="leading" secondItem="ZaN-Fb-qBb" secondAttribute="leading" id="DNn-3W-GmO"/>
                             <constraint firstItem="3i9-eD-a2W" firstAttribute="trailing" secondItem="ZaN-Fb-qBb" secondAttribute="trailing" id="So7-WW-GiT"/>
-                            <constraint firstItem="ZaN-Fb-qBb" firstAttribute="bottom" secondItem="3i9-eD-a2W" secondAttribute="bottom" id="eB8-4j-dlO"/>
+                            <constraint firstItem="ZaN-Fb-qBb" firstAttribute="bottom" secondItem="3i9-eD-a2W" secondAttribute="bottom" constant="-30" id="eB8-4j-dlO"/>
                             <constraint firstItem="8TR-95-Vsa" firstAttribute="leading" secondItem="CoN-gb-Qg3" secondAttribute="leading" id="ech-r4-oGw"/>
-                            <constraint firstItem="8TR-95-Vsa" firstAttribute="top" secondItem="CoN-gb-Qg3" secondAttribute="top" constant="3" id="iiD-Ey-f7w"/>
+                            <constraint firstItem="8TR-95-Vsa" firstAttribute="top" secondItem="CoN-gb-Qg3" secondAttribute="top" id="iiD-Ey-f7w"/>
                             <constraint firstAttribute="trailing" secondItem="8TR-95-Vsa" secondAttribute="trailing" id="yQY-X8-hI1"/>
                             <constraint firstItem="3i9-eD-a2W" firstAttribute="top" secondItem="8TR-95-Vsa" secondAttribute="bottom" id="zbL-Ts-UWZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5BO-6k-ZQU"/>
                     <connections>
+                        <outlet property="closeButton" destination="c3v-rK-9Sc" id="dJ0-xm-d3z"/>
+                        <outlet property="loadingIndicator" destination="SuS-qY-r89" id="33V-by-0MQ"/>
                         <outlet property="updateButton" destination="tBb-Rn-8iL" id="hZo-SM-UCY"/>
                         <outlet property="webKitView" destination="3i9-eD-a2W" id="qPp-r1-fZR"/>
+                        <segue destination="bKc-C1-W4Z" kind="unwind" identifier="succesAuth" unwindAction="unwindToAuth:" id="BNK-FH-zoh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7Y-L8-kcK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -565,8 +573,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Новости" id="aW1-4U-a6S">
-                        <barButtonItem key="leftBarButtonItem" image="Little logo" id="Ui9-Gb-FzY">
+                        <barButtonItem key="leftBarButtonItem" title="Выход" id="Ui9-Gb-FzY">
                             <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <segue destination="AlU-9e-QiN" kind="unwind" unwindAction="unwindToAuth:" id="aZc-BY-ATC"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -574,6 +585,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gr6-of-DyL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="AlU-9e-QiN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2829.2307692307691" y="-1063.5071090047393"/>
         </scene>
@@ -697,7 +709,7 @@
     <resources>
         <image name="Backround" width="512" height="506"/>
         <image name="Little logo" width="16" height="33"/>
-        <image name="Logo" width="166" height="57"/>
+        <image name="Logo" width="250" height="40"/>
         <image name="MessagesIcon" width="28" height="28"/>
         <image name="Succes" width="40" height="40"/>
         <image name="arrow.counterclockwise" catalog="system" width="113" height="128"/>
