@@ -1,27 +1,47 @@
 //
-//  File.swift
+//  Data.swift
 //  StudyStoryBoardApp
 //
-//  Created by Андрей Волков on 14.10.2022.
+//  Created by Андрей Волков on 29.10.2022.
 //
 
 import UIKit
 
-struct Friend {
-    let fullName: String
-    let image: String
-    let isFrom: String
-    var isOnline : Bool
-    let albumImages: [String]
-    let lastMessage: String
+class AllResponceFriends: Decodable {
+    var response: FriendsResponce
 }
 
-extension Friend: Equatable {}
+class FriendsResponce: Decodable {
+    var items: [Friend]
+}
 
-func ==(lhs: Friend, rhs: Friend) -> Bool {
-    let areEqual = lhs.fullName == rhs.fullName &&
-        lhs.image == rhs.image &&
-        lhs.albumImages == rhs.albumImages
+class Friend: Decodable {
+    var id: Int = 0
+    var online: Int = 0
+    var firstName: String = ""
+    var lastName: String = ""
+    var avatar: String = ""
+    var status: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case online
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case avatar = "photo_200_orig"
+        case status
+    }
+    
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
         
-    return areEqual
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.id = try values.decode(Int.self, forKey: .id)
+        self.online = try values.decode(Int.self, forKey: .online)
+        self.firstName = try values.decode(String.self, forKey: .firstName)
+        self.lastName = try values.decode(String.self, forKey: .lastName)
+        self.avatar = try values.decode(String.self, forKey: .avatar)
+        self.status = try? values.decode(String.self, forKey: .status)
+    }
 }

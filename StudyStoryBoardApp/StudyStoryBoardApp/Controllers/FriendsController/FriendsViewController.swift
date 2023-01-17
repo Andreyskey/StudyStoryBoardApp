@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import Alamofire
 
 class FriendsViewController: UIViewController {
     
     // Идентификатор ячейки
     let friendsViewControllerIdentifier = "friendsViewControllerIdentifier"
+    var friends = [Friend]()
+    let paramsFriend: Parameters = [
+        "access_token" : Session.share.token,
+        "user_id" : Session.share.userId,
+        "order" : "random",
+        "fields" : "photo_200_orig, online, status",
+        "v" : "5.131"
+    ]
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -18,19 +27,28 @@ class FriendsViewController: UIViewController {
             tableView.dataSource = self // Указывваем контрллер как источник данных
         }
     }
-    
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Регистрация ячейки
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: friendsViewControllerIdentifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadingIndicator.startAnimating()
+        ServiseAPI().getRequestFriends(method: "friends.get", parammeters: paramsFriend, completion: { array in
+            guard let friendsArr = array else { return }
+            self.friends = friendsArr
+            self.tableView.reloadData()
+            self.loadingIndicator.stopAnimating()
+        })
     }
     
     func letter(array: [Friend]) -> [String] {
         var letters = [String]()
         for item in array {
-            let letter = String(item.fullName.prefix(1))
+            let letter = String(item.firstName.prefix(1))
             if !letters.contains(letter) {
                 letters.append(letter)
             }
@@ -41,17 +59,12 @@ class FriendsViewController: UIViewController {
     func arrayByLetter(letter: String) -> [Friend] {
         var result = [Friend]()
         for item in friends {
-            let letterItem = String(item.fullName.prefix(1))
+            let letterItem = String(item.firstName.prefix(1))
             if letterItem ==  letter {
                 result.append(item)
             }
         }
         return result
-    }
-    
-    
-    deinit {
-        print("Delete FriendsController")
     }
 }
 
@@ -75,25 +88,22 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
         else { return UITableViewCell() }
         
         let arrayItems = arrayByLetter(letter: letter(array: friends)[indexPath.section])
-        
-        let isLast = arrayItems[indexPath.row] == arrayItems.last
-        let isFirst = arrayItems[indexPath.row] == arrayItems.first
     
-        cell.configurationCell(friend: arrayItems[indexPath.row], group: nil, isLast: isLast, isFirst: isFirst)
+        cell.configurationCell(object: arrayItems[indexPath.row])
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let albumVC = storyboard.instantiateViewController(identifier: "AlbumUserViewController") as? AlbumUserViewController
-        else { return }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let albumVC = storyboard.instantiateViewController(identifier: "AlbumUserViewController") as? AlbumUserViewController
+//        else { return }
         
-        albumVC.friend = arrayByLetter(letter: letter(array: friends)[indexPath.section])[indexPath.row]
+//        albumVC.friend = arrayByLetter(letter: letter(array: friends)[indexPath.section])[indexPath.row]
         
-        show(albumVC, sender: nil)
-    }
+//        show(albumVC, sender: nil)
+//    }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let font = UIFont(name: "MullerMedium", size: 16),
@@ -117,11 +127,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 43
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
+        return 38
     }
     
 }

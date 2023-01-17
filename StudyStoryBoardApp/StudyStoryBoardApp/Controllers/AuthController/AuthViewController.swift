@@ -22,7 +22,6 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     
     let startApp = Notification.Name("StartApp")
-    let baseUrl = "https://api.vk.com/method"
     
     //MARK: - Циклы жзини ViewController
     
@@ -70,59 +69,14 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         performSegue(withIdentifier: "login", sender: nil)
     }
     
-    func getRequest(method: String, parammeters: Parameters) {
-        AF.request(baseUrl + "/" + method, method: .get , parameters: parammeters).responseJSON { json in
-            print(json)
-        }
-    }
-    
     //MARK: - Анимации загрузки
     
     @IBAction func unwindToAuth(_ unwindSegue: UIStoryboardSegue) {
         guard let identifier = unwindSegue.identifier else { return }
         if identifier == "succesAuth" {
-            
             animationLoading()
-            
-            let paramsFriend: Parameters = [
-                "access_token" : Session.share.token,
-                "user_id" : Session.share.userId,
-                "order" : "random",
-                "count" : "8",
-                "fields" : "nickname",
-                "v" : "5.131"
-            ]
-            
-            let paramsGroup: Parameters = [
-                "access_token" : Session.share.token,
-                "user_id" : Session.share.userId,
-                "extended" : "1",
-                "count" : "8",
-                "v" : "5.131"
-            ]
-            
-            let paramsPhoto: Parameters = [
-                "access_token" : Session.share.token,
-                "owner_id" : Session.share.userId,
-                "album_id" : "profile",
-                "count" : "8",
-                "rev" : "0",
-                "v" : "5.131"
-            ]
-            
-            let paramsSearch: Parameters = [
-                "access_token" : Session.share.token,
-                "user_id" : Session.share.userId,
-                "q" : "apple",
-                "type" : "page",
-                "count" : "8",
-                "v" : "5.131"
-            ]
-            
-            getRequest(method: "friends.get", parammeters: paramsFriend)
-            getRequest(method: "groups.search", parammeters: paramsSearch)
-            getRequest(method: "groups.get", parammeters: paramsGroup)
-            getRequest(method: "photos.get", parammeters: paramsPhoto)
+        } else if identifier == "exit" {
+            self.storyboard?.instantiateInitialViewController()
         }
     }
     
