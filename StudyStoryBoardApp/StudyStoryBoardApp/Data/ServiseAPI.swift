@@ -29,6 +29,22 @@ class ServiseAPI {
             completion(groups)
         }
     }
+    
+    func getRequestPhotos(method: String, parammeters: Parameters, completion: @escaping ([PhotoUser]?) -> ()) {
+        AF.request(baseUrl + "/" + method, method: .get, parameters: parammeters).responseData { responce in
+            guard let data = responce.data else { return }
+            let photos = try! JSONDecoder().decode(AllResponcePhoto.self, from: data).response.items
+            
+            completion(photos)
+        }
+        
+//        AF.request(baseUrl + "/" + method, method: .get , parameters: parammeters).responseData { responce in
+//            guard let data = responce.data else { return }
+//            let photos = try? JSONDecoder().decode(AllResponcePhoto.self, from: data).response.items
+//
+//            completion(photos)
+//        }
+    }
 }
 //
 //

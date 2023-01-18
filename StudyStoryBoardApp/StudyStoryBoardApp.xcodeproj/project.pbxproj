@@ -47,6 +47,7 @@
 		BABC43D7290EDD3400FCD98F /* Fontfabric - MullerRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43C3290EDD3400FCD98F /* Fontfabric - MullerRegular.otf */; };
 		BABC43D8290EDD3400FCD98F /* Fontfabric - MullerMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43C4290EDD3400FCD98F /* Fontfabric - MullerMedium.otf */; };
 		BADB89D32976470D0036BB30 /* ServiseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB89D22976470D0036BB30 /* ServiseAPI.swift */; };
+		BADB89D529769FCB0036BB30 /* PhotosUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB89D429769FCB0036BB30 /* PhotosUser.swift */; };
 		BAEE353628F7202500004183 /* sf-ui-display-black-58646a6b80d5a.otf in Resources */ = {isa = PBXBuildFile; fileRef = BAEE352E28F7202500004183 /* sf-ui-display-black-58646a6b80d5a.otf */; };
 		BAEE353728F7202500004183 /* sf-ui-display-medium-58646be638f96.otf in Resources */ = {isa = PBXBuildFile; fileRef = BAEE352F28F7202500004183 /* sf-ui-display-medium-58646be638f96.otf */; };
 		BAEE353828F7202500004183 /* sf-ui-display-ultralight-58646b19bf205.otf in Resources */ = {isa = PBXBuildFile; fileRef = BAEE353028F7202500004183 /* sf-ui-display-ultralight-58646b19bf205.otf */; };
@@ -108,6 +109,7 @@
 		BABC43C3290EDD3400FCD98F /* Fontfabric - MullerRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerRegular.otf"; sourceTree = "<group>"; };
 		BABC43C4290EDD3400FCD98F /* Fontfabric - MullerMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerMedium.otf"; sourceTree = "<group>"; };
 		BADB89D22976470D0036BB30 /* ServiseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiseAPI.swift; sourceTree = "<group>"; };
+		BADB89D429769FCB0036BB30 /* PhotosUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUser.swift; sourceTree = "<group>"; };
 		BAEE352E28F7202500004183 /* sf-ui-display-black-58646a6b80d5a.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sf-ui-display-black-58646a6b80d5a.otf"; path = "../../../../../../Other/Fonts/sf-ui-display-cufonfonts/sf-ui-display-black-58646a6b80d5a.otf"; sourceTree = "<group>"; };
 		BAEE352F28F7202500004183 /* sf-ui-display-medium-58646be638f96.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sf-ui-display-medium-58646be638f96.otf"; path = "../../../../../../Other/Fonts/sf-ui-display-cufonfonts/sf-ui-display-medium-58646be638f96.otf"; sourceTree = "<group>"; };
 		BAEE353028F7202500004183 /* sf-ui-display-ultralight-58646b19bf205.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sf-ui-display-ultralight-58646b19bf205.otf"; path = "../../../../../../Other/Fonts/sf-ui-display-cufonfonts/sf-ui-display-ultralight-58646b19bf205.otf"; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				BABC4379290D4D9D00FCD98F /* Friend.swift */,
 				BAEE356228F9C00000004183 /* Group.swift */,
 				BA89D2002911A3DF00D88D61 /* Newsfeed.swift */,
+				BADB89D429769FCB0036BB30 /* PhotosUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				BA89D1FB29118F5200D88D61 /* NewsfeedViewController.swift in Sources */,
 				BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */,
 				BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */,
+				BADB89D529769FCB0036BB30 /* PhotosUser.swift in Sources */,
 				BAEE356028F993DB00004183 /* SearchViewController.swift in Sources */,
 				BA948C8E296C9CF60038415F /* Singleton.swift in Sources */,
 				BAEE355028F8B42600004183 /* CustomTableViewCell.swift in Sources */,

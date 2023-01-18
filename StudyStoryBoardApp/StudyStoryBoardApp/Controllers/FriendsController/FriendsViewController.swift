@@ -94,16 +94,16 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let albumVC = storyboard.instantiateViewController(identifier: "AlbumUserViewController") as? AlbumUserViewController
-//        else { return }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let albumVC = storyboard.instantiateViewController(identifier: "AlbumUserViewController") as? AlbumUserViewController
+        else { return }
         
-//        albumVC.friend = arrayByLetter(letter: letter(array: friends)[indexPath.section])[indexPath.row]
+        albumVC.userId = arrayByLetter(letter: letter(array: friends)[indexPath.section])[indexPath.row]
         
-//        show(albumVC, sender: nil)
-//    }
+        show(albumVC, sender: nil)
+    }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let font = UIFont(name: "MullerMedium", size: 16),

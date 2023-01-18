@@ -54,19 +54,19 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return groups.count
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.backgroundConfiguration?.backgroundColor = .white
-        cell?.backgroundConfiguration?.strokeColor = .systemRed
-
-    }
-
-    func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.backgroundConfiguration?.backgroundColor = .white
-        cell?.backgroundConfiguration?.strokeColor = UIColor(red: 0.90, green: 0.95, blue: 0.96, alpha: 1.00)
-        return indexPath
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath)
+//        cell?.backgroundConfiguration?.backgroundColor = .white
+//        cell?.backgroundConfiguration?.strokeColor = .systemRed
+//
+//    }
+//
+//    func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
+//        let cell = tableView.cellForRow(at: indexPath)
+//        cell?.backgroundConfiguration?.backgroundColor = .white
+//        cell?.backgroundConfiguration?.strokeColor = UIColor(red: 0.90, green: 0.95, blue: 0.96, alpha: 1.00)
+//        return indexPath
+//    }
 }
 
 extension SearchViewController: UISearchBarDelegate {

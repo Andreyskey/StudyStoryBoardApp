@@ -10,24 +10,16 @@ import UIKit
 class ShowPhotoViewController: UIViewController {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var likeView: UIView!
-    @IBOutlet weak var commView: UIView!
-    @IBOutlet weak var shareView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var images = [String]()
+    var images = [PhotoUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        likeView.layer.cornerRadius = likeView.layer.frame.size.height / 2
-        commView.layer.cornerRadius = commView.layer.frame.size.height / 2
-        shareView.layer.cornerRadius = shareView.layer.frame.size.height / 2
-        
         collectionView.register(UINib(nibName: "ShowImageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "showPhoto")
-        
     }
     
     
@@ -45,8 +37,7 @@ extension ShowPhotoViewController: UICollectionViewDelegate, UICollectionViewDat
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "showPhoto", for: indexPath) as? ShowImageCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.configurate(img: images[indexPath.row])
-        
+        cell.configurate(imageUrl: images[indexPath.row].sizes.last?.url ?? "")
         
         return cell
     }
