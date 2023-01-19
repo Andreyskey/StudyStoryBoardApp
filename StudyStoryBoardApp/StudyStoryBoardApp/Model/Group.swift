@@ -27,7 +27,7 @@ class Group: Decodable {
         case name
         case subscribers = "members_count"
         case id
-        case avatar = "photo_200"
+        case avatar = "photo_100"
     }
     
     convenience required init(from decoder: Decoder) throws {

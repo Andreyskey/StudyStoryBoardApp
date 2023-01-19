@@ -17,7 +17,7 @@ class FriendsViewController: UIViewController {
         "access_token" : Session.share.token,
         "user_id" : Session.share.userId,
         "order" : "random",
-        "fields" : "photo_200_orig, online, status",
+        "fields" : "photo_100, online, status",
         "v" : "5.131"
     ]
     

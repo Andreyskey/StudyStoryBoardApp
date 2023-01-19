@@ -28,7 +28,7 @@ class Friend: Decodable {
         case online
         case firstName = "first_name"
         case lastName = "last_name"
-        case avatar = "photo_200_orig"
+        case avatar = "photo_100"
         case status
     }
     

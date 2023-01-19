@@ -15,7 +15,7 @@ class ServiseAPI {
     func getRequestFriends(method: String, parammeters: Parameters, completion: @escaping ([Friend]?) -> ()) {
         AF.request(baseUrl + "/" + method, method: .get , parameters: parammeters).responseData { responce in
             guard let data = responce.data else { return }
-            let friends = try? JSONDecoder().decode(AllResponceFriends.self, from: data).response.items
+            let friends = try! JSONDecoder().decode(AllResponceFriends.self, from: data).response.items
             
             completion(friends)
         }
@@ -33,57 +33,22 @@ class ServiseAPI {
     func getRequestPhotos(method: String, parammeters: Parameters, completion: @escaping ([PhotoUser]?) -> ()) {
         AF.request(baseUrl + "/" + method, method: .get, parameters: parammeters).responseData { responce in
             guard let data = responce.data else { return }
-            let photos = try! JSONDecoder().decode(AllResponcePhoto.self, from: data).response.items
+            let photos = try? JSONDecoder().decode(AllResponcePhoto.self, from: data).response.items
             
             completion(photos)
         }
-        
-//        AF.request(baseUrl + "/" + method, method: .get , parameters: parammeters).responseData { responce in
-//            guard let data = responce.data else { return }
-//            let photos = try? JSONDecoder().decode(AllResponcePhoto.self, from: data).response.items
-//
-//            completion(photos)
-//        }
     }
+    
+    func getRequestWall(method: String, parammeters: Parameters, completion: @escaping ([Wall]?, [Friend]?, [Group]?) -> ()) {
+        AF.request(baseUrl + "/" + method, method: .get, parameters: parammeters).responseData { responce in
+            guard let data = responce.data else { return }
+            let decodeJson = try! JSONDecoder().decode(AllResponceWalls.self, from: data).response
+            let wall = decodeJson.items
+            let friends = decodeJson.profiles
+            let groups = decodeJson.groups
+            
+            completion(wall, friends, groups)
+        }
+    }
+    
 }
-//
-//
-//let paramsFriend: Parameters = [
-//    "access_token" : Session.share.token,
-//    "user_id" : Session.share.userId,
-//    "order" : "random",
-//    "count" : "8",
-//    "fields" : "nickname",
-//    "v" : "5.131"
-//]
-//
-//let paramsGroup: Parameters = [
-//    "access_token" : Session.share.token,
-//    "user_id" : Session.share.userId,
-//    "extended" : "1",
-//    "count" : "8",
-//    "v" : "5.131"
-//]
-//
-//let paramsPhoto: Parameters = [
-//    "access_token" : Session.share.token,
-//    "owner_id" : Session.share.userId,
-//    "album_id" : "profile",
-//    "count" : "8",
-//    "rev" : "0",
-//    "v" : "5.131"
-//]
-//
-//let paramsSearch: Parameters = [
-//    "access_token" : Session.share.token,
-//    "user_id" : Session.share.userId,
-//    "q" : "apple",
-//    "type" : "page",
-//    "count" : "8",
-//    "v" : "5.131"
-//]
-//
-//getRequest(method: "friends.get", parammeters: paramsFriend)
-//getRequest(method: "groups.search", parammeters: paramsSearch)
-//getRequest(method: "groups.get", parammeters: paramsGroup)
-//getRequest(method: "photos.get", parammeters: paramsPhoto)
