@@ -20,8 +20,8 @@ class AlbumUserViewController: UIViewController {
         }
     }
     
-    var photos = [PhotoUser]()
-    var userId: Friend?
+    var photos = [PhotoItem]()
+    var userId: ProfileItem?
     let PhotoCollectionViewControllerIdentifier = "PhotoCollectionViewControllerIdentifier"
 
     override func viewDidLoad() {
@@ -74,7 +74,7 @@ extension AlbumUserViewController: UICollectionViewDelegate, UICollectionViewDat
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewControllerIdentifier, for: indexPath) as? CustomCollectionViewCell else { return UICollectionViewCell() }
 
-        cell.configCell(imageUrl: photos[indexPath.row].sizes.last?.url ?? "")
+        cell.configCell(imageUrl: photos[indexPath.row].sizes.last?.url)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.loadingIndicator.stopAnimating()

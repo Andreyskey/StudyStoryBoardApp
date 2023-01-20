@@ -10,7 +10,7 @@ import Alamofire
 class SearchViewController: UIViewController {
     
     let searchViewControllerIndentifier = "searchViewControllerIndentifier"
-    var groups = [Group]()
+    var groups = [GroupItem]()
 
     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
@@ -88,5 +88,9 @@ extension SearchViewController: UISearchBarDelegate {
                 self.loadingIndicator.stopAnimating()
             }
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
     }
 }

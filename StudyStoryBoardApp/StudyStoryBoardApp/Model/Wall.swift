@@ -7,125 +7,86 @@
 
 import UIKit
 
-class AllResponceWalls: Decodable {
-    var response: WallResponce
+struct WallsResponse: Decodable {
+    var response: Walls
 }
 
-class WallResponce: Decodable {
-    var items: [Wall]
-    var profiles = [Friend]()
-    var groups = [Group]()
+struct Walls: Decodable {
+    var items: [WallItem]
+    var profiles: [ProfileItem]
+    var groups: [GroupItem]
 }
 
-class Wall: Decodable {
-    var ownerId = 0
-    var date = 0
-    var comments: Int?
-    var reposts: Int?
-    var photosProfile: String?
-    var photosGroups: String?
-    var likes: Int?
-    var views: Int?
-    var text = ""
-//    var heightPhoto = 0
-//    var weightPhoto = 0
-
+struct WallItem: Decodable {
+    var postID: Int
+    var fromID: Int
+    var date: Date
+    var comments: Comments
+    var copyHistory: [CopyHistory]?
+    var attachments: [Attachments]?
+    var likes: Likes
+    var reposts: Reposts
+    var text: String
+    var views: Views?
     
     enum CodingKeys: String, CodingKey {
-        case ownerID = "from_id"
-        case date
-        case text
-        case comments
-        case views
-        case likes
-        case reposts
-        case attachments
+        case postID = "id"
+        case fromID = "from_id"
         case copyHistory = "copy_history"
+        case date, comments, attachments, likes, reposts, text, views
     }
     
-    
-    enum CommentsKeys: String, CodingKey {
-        case count
-    }
-    
-    
-    enum AttachmentsKeys: String, CodingKey {
-        case photo
-    }
-    enum PhotoKeys: String, CodingKey {
-        case sizes
-        case ownerID = "owner_id"
-    }
-    enum SizesKeys: String, CodingKey {
-        case url
-    }
-    
-    
-    enum LikesKeys: String, CodingKey {
-        case count
-    }
-    
-    
-    enum ShareKeys: String, CodingKey {
-        case count
-    }
-    
-    
-    enum ViewsKeys: String, CodingKey {
-        case count
-    }
-
-
-    convenience required init(from decoder: Decoder) throws {
-        self.init()
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.fromID = try container.decode(Int.self, forKey: .fromID)
+        self.copyHistory = try? container.decodeIfPresent([CopyHistory].self, forKey: .copyHistory)
+        self.postID = try container.decode(Int.self, forKey: .postID)
         
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.date = try values.decode(Int.self, forKey: .date)
-        self.text = try values.decode(String.self, forKey: .text)
-        let ownerID = try values.decode(Int.self, forKey: .ownerID)
+        let timeInterval = try container.decode(Double.self, forKey: .date)
+        self.date = Date(timeIntervalSince1970: timeInterval)
         
-        let attach = try? values.decode([Attachments].self, forKey: .attachments)
-        self.photosProfile = attach?.first?.photo.sizes.last?.url
-        
-        let copyHistory = try? values.decode([CopyHistory].self, forKey: .copyHistory)
-        self.photosGroups = copyHistory?.first?.attachments.first?.photo.sizes.last?.url
-        self.ownerId = copyHistory?.first?.ownerID ?? ownerID
-        
-        let likes = try values.nestedContainer(keyedBy: LikesKeys.self, forKey: .likes)
-        self.likes = try? likes.decode(Int.self, forKey: .count)
-        
-        let comments = try values.nestedContainer(keyedBy: CommentsKeys.self, forKey: .comments)
-        self.comments = try? comments.decode(Int.self, forKey: .count)
-        
-        let reposts = try values.nestedContainer(keyedBy: ShareKeys.self, forKey: .reposts)
-        self.reposts = try? reposts.decode(Int.self, forKey: .count)
-        
-        let view = try? values.nestedContainer(keyedBy: ViewsKeys.self, forKey: .views)
-        self.views = try view?.decode(Int.self, forKey: .count)
+        self.comments = try container.decode(Comments.self, forKey: .comments)
+        self.attachments = try? container.decodeIfPresent([Attachments].self, forKey: .attachments)
+        self.likes = try container.decode(Likes.self, forKey: .likes)
+        self.reposts = try container.decode(Reposts.self, forKey: .reposts)
+        self.text = try container.decode(String.self, forKey: .text)
+        self.views = try? container.decode(Views?.self, forKey: .views)
     }
 }
 
-class CopyHistory: Decodable {
+struct CopyHistory: Decodable {
     var attachments: [Attachments]
-    var ownerID = 0
+}
+
+struct Attachments: Decodable {
+    var photo: PhotoItem?
+}
+
+struct Comments: Decodable {
+    var count: Int
+}
+
+struct Likes: Decodable {
+    var count: Int
+    var canLike: Bool
     
     enum CodingKeys: String, CodingKey {
-        case attachments
-        case ownerID = "owner_id"
+        case count
+        case canLike = "can_like"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.count = try container.decode(Int.self, forKey: .count)
+        let canLike = try container.decode(Int.self, forKey: .canLike)
+        self.canLike = (canLike == 1)
     }
 }
 
-class Attachments: Decodable {
-    var photo: Photo
+struct Reposts: Decodable {
+    var count: Int
 }
 
-class Photo: Decodable {
-    var sizes: [SizesImage]
-}
-
-class SizesImage: Decodable {
-    var url = ""
-    var type = ""
-//    var height = 0
-//    var wight = 0
+struct Views: Decodable {
+    var count: Int?
 }
