@@ -7,20 +7,20 @@
 
 import UIKit
 
-class AllResponceFriends: Decodable {
-    var response: FriendsResponce
+struct ProfilesResponce: Decodable {
+    var response: Profiles
 }
 
-class FriendsResponce: Decodable {
-    var items: [Friend]
+struct Profiles: Decodable {
+    var items: [ProfileItem]
 }
 
-class Friend: Decodable {
-    var id: Int = 0
-    var online: Int = 0
-    var firstName: String = ""
-    var lastName: String = ""
-    var avatar: String = ""
+struct ProfileItem: Decodable {
+    var id: Int
+    var online: Bool
+    var firstName: String
+    var lastName: String
+    var avatar: String
     var status: String?
     
     enum CodingKeys: String, CodingKey {
@@ -28,20 +28,18 @@ class Friend: Decodable {
         case online
         case firstName = "first_name"
         case lastName = "last_name"
-        case avatar = "photo_100"
+        case avatar = "photo_200"
         case status
     }
     
-    convenience required init(from decoder: Decoder) throws {
-        self.init()
-        
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        
-        self.id = try values.decode(Int.self, forKey: .id)
-        self.online = try values.decode(Int.self, forKey: .online)
-        self.firstName = try values.decode(String.self, forKey: .firstName)
-        self.lastName = try values.decode(String.self, forKey: .lastName)
-        self.avatar = try values.decode(String.self, forKey: .avatar)
-        self.status = try? values.decode(String.self, forKey: .status)
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        let online = try container.decode(Int.self, forKey: .online)
+        self.online = (online == 1)
+        self.firstName = try container.decode(String.self, forKey: .firstName)
+        self.lastName = try container.decode(String.self, forKey: .lastName)
+        self.avatar = try container.decode(String.self, forKey: .avatar)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
     }
 }

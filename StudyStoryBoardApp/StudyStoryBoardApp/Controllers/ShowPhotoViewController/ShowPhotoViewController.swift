@@ -12,7 +12,7 @@ class ShowPhotoViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var images = [PhotoUser]()
+    var images = [PhotoItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ extension ShowPhotoViewController: UICollectionViewDelegate, UICollectionViewDat
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "showPhoto", for: indexPath) as? ShowImageCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.configurate(imageUrl: images[indexPath.row].sizes.last?.url ?? "")
+        cell.configurate(imageUrl: images[indexPath.row].sizes.last?.url)
         
         return cell
     }
