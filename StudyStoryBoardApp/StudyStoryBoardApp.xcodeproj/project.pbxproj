@@ -88,9 +88,9 @@
 		BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		BA93AD47297AB32E0079225C /* UpdateLikes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLikes.swift; sourceTree = "<group>"; };
-		BA93AD4A297D8EB50079225C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BA93AD4B297D977B0079225C /* NewsfeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedPost.swift; sourceTree = "<group>"; };
 		BA948C8D296C9CF60038415F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		BA9A5F9D297DB45600B92DCC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BABC4376290D406D00FCD98F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		BABC4379290D4D9D00FCD98F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		BABC437F290D73CF00FCD98F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				BA6DAD6228F628C700AA544F /* Base */,
-				BA93AD4A297D8EB50079225C /* en */,
+				BA9A5F9D297DB45600B92DCC /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -31,7 +31,7 @@ class NewsFeedItem: Decodable {
     var likes: Likes
     var reposts: Reposts
     var text: String
-    var views: Views
+    var views: Views?
     var postID: Int
     var ownerID: Int
     

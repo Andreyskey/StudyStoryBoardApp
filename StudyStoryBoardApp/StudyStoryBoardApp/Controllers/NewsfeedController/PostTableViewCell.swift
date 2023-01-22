@@ -104,10 +104,10 @@ class PostTableViewCell: UITableViewCell {
             commentCount.text = String(post.comments.count)
             shareCount.text = String(post.reposts.count)
             
-            if (post.views.count ?? 0) > 9999 {
-                seesPostCount.text = String(Int(post.views.count! / 1000)) + "K"
+            if (post.views?.count ?? 0) > 9999 {
+                seesPostCount.text = String(Int(post.views!.count! / 1000)) + "K"
             } else {
-                seesPostCount.text = String(post.views.count ?? 0)
+                seesPostCount.text = String(post.views?.count ?? 0)
             }
             
             if !(post.likes.canLike ?? true) {
