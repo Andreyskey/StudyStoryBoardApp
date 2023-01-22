@@ -35,7 +35,7 @@ class GroupViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        ServiseAPI().getRequestGroups(method: "groups.get", parammeters: paramsGroup) { array in
+        ServiseAPI().getRequestGroups(method: .groupsGet, parammeters: paramsGroup) { array in
             guard let groupsArr = array else { return }
             self.groups = groupsArr
             self.tableView.reloadData()

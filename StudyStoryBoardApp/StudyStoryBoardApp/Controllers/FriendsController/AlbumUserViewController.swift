@@ -37,15 +37,17 @@ class AlbumUserViewController: UIViewController {
             "access_token" : Session.share.token,
             "owner_id" : String(id),
             "album_id" : "profile",
+            "extended" : "1",
             "rev" : "0",
             "photo_sizes" : "1",
             "v" : "5.131"
         ]
-        ServiseAPI().getRequestPhotos(method: "photos.get", parammeters: paramsPhoto) { array in
+        ServiseAPI().getRequestPhotos(method: .photosGet, parammeters: paramsPhoto) { array in
             guard let photosUser = array else { return }
             self.photos = photosUser
             self.collectionView.reloadData()
             if photosUser.isEmpty { self.textIfAlbumIsEmpty.isHidden = false }
+            self.loadingIndicator.stopAnimating()
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,6 +55,8 @@ class AlbumUserViewController: UIViewController {
         guard let destination = segue.destination as? ShowPhotoViewController
         else { return }
         destination.images = photos
+        destination.startIndexPathItem = collectionView.indexPathsForSelectedItems![0].item
+        
     }
 
     @IBAction func unwindToAlbum(_ unwindSegue: UIStoryboardSegue) {
@@ -84,9 +88,6 @@ extension AlbumUserViewController: UICollectionViewDelegate, UICollectionViewDat
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-
-
         performSegue(withIdentifier: "showImages", sender: nil)
     }
     

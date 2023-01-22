@@ -1,0 +1,78 @@
+
+/* Class = "UILabel"; text = "Фотографий нет"; ObjectID = "4Ze-zM-DYX"; */
+"4Ze-zM-DYX.text" = "Фотографий нет";
+
+/* Class = "UISearchBar"; placeholder = "Поиск"; ObjectID = "6Eo-cW-mq8"; */
+"6Eo-cW-mq8.placeholder" = "Поиск";
+
+/* Class = "UILabel"; text = "30"; ObjectID = "7mu-mM-CT0"; */
+"7mu-mM-CT0.text" = "30";
+
+/* Class = "UINavigationItem"; title = "Поиск групп"; ObjectID = "A9l-Pv-9nS"; */
+"A9l-Pv-9nS.title" = "Поиск групп";
+
+/* Class = "UILabel"; text = "3"; ObjectID = "Fio-Ob-vX3"; */
+"Fio-Ob-vX3.text" = "3";
+
+/* Class = "UITabBarItem"; title = "Группы"; ObjectID = "IsW-BA-CP5"; */
+"IsW-BA-CP5.title" = "Группы";
+
+/* Class = "UILabel"; text = "Новый дизайн в новом приложении"; ObjectID = "L2j-hk-OVV"; */
+"L2j-hk-OVV.text" = "Новый дизайн в новом приложении";
+
+/* Class = "UINavigationItem"; title = "Друзья"; ObjectID = "Mv6-nV-Ahk"; */
+"Mv6-nV-Ahk.title" = "Друзья";
+
+/* Class = "UIButton"; normalTitle = "Войти с помощью VK"; ObjectID = "QQ9-mt-zH3"; */
+"QQ9-mt-zH3.normalTitle" = "Войти с помощью VK";
+
+/* Class = "UINavigationItem"; title = "Фото 1 из 1"; ObjectID = "RIM-4l-oIN"; */
+"RIM-4l-oIN.title" = "Фото 1 из 1";
+
+/* Class = "UINavigationItem"; title = "Вход"; ObjectID = "Rvq-tD-liT"; */
+"Rvq-tD-liT.title" = "Вход";
+
+/* Class = "UIBarButtonItem"; title = "Выход"; ObjectID = "Ui9-Gb-FzY"; */
+"Ui9-Gb-FzY.title" = "Выход";
+
+/* Class = "UIBarButtonItem"; title = "Закрыть"; ObjectID = "XVN-47-fdp"; */
+"XVN-47-fdp.title" = "Закрыть";
+
+/* Class = "UINavigationItem"; title = "Альбом"; ObjectID = "XiF-AV-HEG"; */
+"XiF-AV-HEG.title" = "Альбом";
+
+/* Class = "UILabel"; text = "У вас нет групп"; ObjectID = "ZQd-PX-P0b"; */
+"ZQd-PX-P0b.text" = "У вас нет групп";
+
+/* Class = "UINavigationItem"; title = "Новости"; ObjectID = "aW1-4U-a6S"; */
+"aW1-4U-a6S.title" = "Новости";
+
+/* Class = "UIBarButtonItem"; title = "Закрыть"; ObjectID = "c3v-rK-9Sc"; */
+"c3v-rK-9Sc.title" = "Закрыть";
+
+/* Class = "UITabBarItem"; title = "Друзья"; ObjectID = "ehd-XF-aLh"; */
+"ehd-XF-aLh.title" = "Друзья";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "iJd-Gv-KS3"; */
+"iJd-Gv-KS3.title" = "Item";
+
+/* Class = "UILabel"; text = "400"; ObjectID = "p0M-dT-2tM"; */
+"p0M-dT-2tM.text" = "400";
+
+/* Class = "UITabBarItem"; title = "Новости"; ObjectID = "qcV-lf-gNF"; */
+"qcV-lf-gNF.title" = "Новости";
+
+/* Class = "UINavigationItem"; title = "Мои группы"; ObjectID = "qst-Jd-FDQ"; */
+"qst-Jd-FDQ.title" = "Мои группы";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "tBb-Rn-8iL"; */
+"tBb-Rn-8iL.title" = "Item";
+
+/* Class = "UITabBarItem"; badgeValue = "4"; ObjectID = "tFL-V3-cys"; */
+"tFL-V3-cys.badgeValue" = "4";
+
+/* Class = "UITabBarItem"; title = "Сообщения"; ObjectID = "tFL-V3-cys"; */
+"tFL-V3-cys.title" = "Сообщения";
+
+/* Class = "UINavigationItem"; title = "Сообщения"; ObjectID = "ubl-7F-n3I"; */
+"ubl-7F-n3I.title" = "Сообщения";

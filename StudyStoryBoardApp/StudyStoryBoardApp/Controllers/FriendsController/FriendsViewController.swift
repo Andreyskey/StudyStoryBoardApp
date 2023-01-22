@@ -37,7 +37,7 @@ class FriendsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadingIndicator.startAnimating()
-        ServiseAPI().getRequestFriends(method: "friends.get", parammeters: paramsFriend, completion: { array in
+        ServiseAPI().getRequestFriends(method: .friendsGet, parammeters: paramsFriend, completion: { array in
             guard let friendsArr = array else { return }
             self.friends = friendsArr
             self.tableView.reloadData()

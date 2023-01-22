@@ -22,9 +22,10 @@
 		BA89D1FE29118FE900D88D61 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */; };
 		BA89D1FF29118FE900D88D61 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */; };
 		BA93AD48297AB32E0079225C /* UpdateLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93AD47297AB32E0079225C /* UpdateLikes.swift */; };
+		BA93AD4C297D977B0079225C /* NewsfeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93AD4B297D977B0079225C /* NewsfeedPost.swift */; };
 		BA948C8E296C9CF60038415F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA948C8D296C9CF60038415F /* Singleton.swift */; };
 		BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4376290D406D00FCD98F /* RegistrationViewController.swift */; };
-		BABC437A290D4D9D00FCD98F /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4379290D4D9D00FCD98F /* Friend.swift */; };
+		BABC437A290D4D9D00FCD98F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4379290D4D9D00FCD98F /* Profile.swift */; };
 		BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC437F290D73CF00FCD98F /* CustomButton.swift */; };
 		BABC43C5290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */; };
 		BABC43C6290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43B2290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf */; };
@@ -87,9 +88,11 @@
 		BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		BA93AD47297AB32E0079225C /* UpdateLikes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLikes.swift; sourceTree = "<group>"; };
+		BA93AD4A297D8EB50079225C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		BA93AD4B297D977B0079225C /* NewsfeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedPost.swift; sourceTree = "<group>"; };
 		BA948C8D296C9CF60038415F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		BABC4376290D406D00FCD98F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		BABC4379290D4D9D00FCD98F /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		BABC4379290D4D9D00FCD98F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		BABC437F290D73CF00FCD98F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerHeavyItalic.otf"; sourceTree = "<group>"; };
 		BABC43B2290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerLightItalic.otf"; sourceTree = "<group>"; };
@@ -332,11 +335,12 @@
 		BAEE356128F9BFF300004183 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BABC4379290D4D9D00FCD98F /* Friend.swift */,
+				BABC4379290D4D9D00FCD98F /* Profile.swift */,
 				BAEE356228F9C00000004183 /* Group.swift */,
 				BADB89D429769FCB0036BB30 /* PhotosUser.swift */,
 				BADB89D62978C0120036BB30 /* Wall.swift */,
 				BA93AD47297AB32E0079225C /* UpdateLikes.swift */,
+				BA93AD4B297D977B0079225C /* NewsfeedPost.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -457,6 +461,7 @@
 				BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */,
 				BA93AD48297AB32E0079225C /* UpdateLikes.swift in Sources */,
 				BAEE354328F8AC3F00004183 /* FriendsViewController.swift in Sources */,
+				BA93AD4C297D977B0079225C /* NewsfeedPost.swift in Sources */,
 				BADB89D72978C0120036BB30 /* Wall.swift in Sources */,
 				BAEE355728F9789A00004183 /* CustomCollectionViewCell.swift in Sources */,
 				BADB89D32976470D0036BB30 /* ServiseAPI.swift in Sources */,
@@ -468,7 +473,7 @@
 				BAEE356028F993DB00004183 /* SearchViewController.swift in Sources */,
 				BA948C8E296C9CF60038415F /* Singleton.swift in Sources */,
 				BAEE355028F8B42600004183 /* CustomTableViewCell.swift in Sources */,
-				BABC437A290D4D9D00FCD98F /* Friend.swift in Sources */,
+				BABC437A290D4D9D00FCD98F /* Profile.swift in Sources */,
 				BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */,
 				BA6DAD7028F7078300AA544F /* AuthViewController.swift in Sources */,
 				BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */,
@@ -486,6 +491,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				BA6DAD6228F628C700AA544F /* Base */,
+				BA93AD4A297D8EB50079225C /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
