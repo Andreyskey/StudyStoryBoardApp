@@ -24,10 +24,10 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var commentButton: UIView!
     @IBOutlet weak var shareButton: UIView!
     @IBOutlet weak var seesPostCount: UILabel!
-
+    
     //MARK: - Предустановка и конфигурация ячейки
     var indexPathRow = 0
-    var postSelf: WallItem?
+    var postSelf: AnyObject?
     
     func setup() {
         
@@ -41,7 +41,7 @@ class PostTableViewCell: UITableViewCell {
         shareButton.layer.cornerRadius = shareButton.frame.size.height / 2
     }
     
-    func configurate(post: WallItem, owner: Any?) {
+    func configurate(post: AnyObject?, owner: AnyObject?) {
         
         guard let likesCount = likeButton.subviews[1] as? UILabel,
               let commentCount = commentButton.subviews[1] as? UILabel,
@@ -49,48 +49,100 @@ class PostTableViewCell: UITableViewCell {
               let likeImage = likeButton.subviews[0] as? UIImageView
         else { return }
         
-        postSelf = post
-        // Заполнение поста
-        whenBePublic.text = post.date.formatted(date: .abbreviated, time: .omitted)
-        textPost.text = post.text
-        if post.text == "" { topTextConstraint.constant = 64 } else { topTextConstraint.constant = 76 }
-        likesCount.text = String(post.likes.count)
-        commentCount.text = String(post.comments.count)
-        shareCount.text = String(post.reposts.count)
-        seesPostCount.text = String(post.views?.count ?? 0)
-        
-        if !post.likes.canLike {
-            likeImage.image = UIImage(named: "likefill")
-            likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
-            likesCount.textColor = .white
-        } else {
-            likeImage.image = UIImage(named: "like")
-            likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
-            likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
-        }
-        
-        if let group = owner as? GroupItem {
-            imageProfile.sd_setImage(with: URL(string: group.avatar))
-            imagePost.sd_setImage(with: URL(string: post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
-                guard let img = image
-                else { return }
-                self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
-                NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "loadingSuccess")))
+        if let post = post as? WallItem {
+            postSelf = post
+            // Заполнение поста
+            whenBePublic.text = post.date.formatted(date: .abbreviated, time: .omitted)
+            textPost.text = post.text
+            if post.text == "" { topTextConstraint.constant = 64 } else { topTextConstraint.constant = 76 }
+            likesCount.text = String(post.likes.count)
+            commentCount.text = String(post.comments.count)
+            shareCount.text = String(post.reposts.count)
+            
+            if (post.views?.count ?? 0) > 9999 {
+                seesPostCount.text = String(Int(post.views!.count! / 1000)) + "K"
+            } else {
+                seesPostCount.text = String(post.views?.count ?? 0)
             }
-            name.text = group.name
-        } else if let profile = owner as? ProfileItem {
-            imageProfile.sd_setImage(with: URL(string: profile.avatar))
-            imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
-                guard let img = image
-                else { return }
-                self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
-                NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "loadingSuccess")))
+            
+            if !(post.likes.canLike ?? true) {
+                likeImage.image = UIImage(named: "likefill")
+                likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
+                likesCount.textColor = .white
+            } else {
+                likeImage.image = UIImage(named: "like")
+                likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
+                likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
             }
-            name.text = profile.firstName + " " + profile.lastName
+            
+            if let group = owner as? GroupItem {
+                imageProfile.sd_setImage(with: URL(string: group.avatar))
+                imagePost.sd_setImage(with: URL(string: post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                    guard let img = image
+                    else { return }
+                    self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
+                    NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "loadingSuccess")))
+                }
+                name.text = group.name
+            } else if let profile = owner as? ProfileItem {
+                imageProfile.sd_setImage(with: URL(string: profile.avatar))
+                imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                    guard let img = image
+                    else { return }
+                    self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
+                    NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "loadingSuccess")))
+                }
+                name.text = profile.firstName + " " + profile.lastName
+            }
+        } else if let post = post as? NewsFeedItem {
+            postSelf = post
+            // Заполнение поста
+            whenBePublic.text = post.date.formatted(date: .abbreviated, time: .shortened)
+            textPost.text = post.text
+            if post.text == "" { topTextConstraint.constant = 64 } else { topTextConstraint.constant = 76 }
+            likesCount.text = String(post.likes.count)
+            commentCount.text = String(post.comments.count)
+            shareCount.text = String(post.reposts.count)
+            
+            if (post.views.count ?? 0) > 9999 {
+                seesPostCount.text = String(Int(post.views.count! / 1000)) + "K"
+            } else {
+                seesPostCount.text = String(post.views.count ?? 0)
+            }
+            
+            if !(post.likes.canLike ?? true) {
+                likeImage.image = UIImage(named: "likefill")
+                likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
+                likesCount.textColor = .white
+            } else {
+                likeImage.image = UIImage(named: "like")
+                likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
+                likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
+            }
+            
+            if let group = owner as? GroupItem {
+                imageProfile.sd_setImage(with: URL(string: group.avatar))
+                imagePost.sd_setImage(with: URL(string: post.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                    guard let img = image
+                    else { return }
+                    self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
+                    NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "loadingSuccess")))
+                }
+                name.text = group.name
+            } else if let profile = owner as? ProfileItem {
+                imageProfile.sd_setImage(with: URL(string: profile.avatar))
+                imagePost.sd_setImage(with: URL(string: post.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                    guard let img = image
+                    else { return }
+                    self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
+                    NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "loadingSuccess")))
+                }
+                name.text = profile.firstName + " " + profile.lastName
+            }
         }
     }
-    
-    //MARK: - Функция преобразования картинки в нужный размер для поста
+        
+        //MARK: - Функция преобразования картинки в нужный размер для поста
         
         func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
             
@@ -106,92 +158,115 @@ class PostTableViewCell: UITableViewCell {
             image.draw(in: rect)
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-
+            
             return newImage!
         }
-    
-    //MARK: - Переопределние ячейки
-    
-    func clearCell() {
         
-        guard let likesCount = likeButton.subviews[1] as? UILabel,
-              let commentCount = commentButton.subviews[1] as? UILabel,
-              let shareCount = shareButton.subviews[0] as? UILabel,
-              let likeImage = likeButton.subviews[0] as? UIImageView
-        else { return }
+        //MARK: - Переопределние ячейки
         
-        imageProfile.image = nil
-        name.text = nil
-        whenBePublic.text = nil
-        textPost.text = nil
-        likesCount.text = nil
-        commentCount.text = nil
-        shareCount.text = nil
-        likeImage.image = nil
-        imagePost.image = nil
-    
-    }
-    
-    override func prepareForReuse() {
-        clearCell()
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setup()
-        likeRecogniser()
-        clearCell()
-    }
-    
-    //MARK: - Анимаци нажатия лайка
-    
-    func likeRecogniser() {
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(addLike))
-        recognizer.numberOfTapsRequired = 1
-        recognizer.numberOfTouchesRequired = 1
-        likeButton.addGestureRecognizer(recognizer)
-    }
-    
-    @objc func addLike() {
-        guard let imageView = likeButton.subviews[0] as? UIImageView,
-              let likesCount = likeButton.subviews[1] as? UILabel,
-              let post = postSelf
-        else { return }
-
-        if post.likes.canLike {
-            postSelf?.likes.canLike = false
-            ServiseAPI().postRequestLikeAndUnlike(post: post, method: .like) { count in
-                likesCount.text = count
-                NotificationCenter.default.post(Notification(name: Notification.Name("loadData")))
-            }
-            UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
-                guard let self = self else { return }
-                imageView.image = UIImage(named: "likefill")
-                self.likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
-                likesCount.textColor = .white
-                self.likeButton.layoutIfNeeded()
-            }
-        } else {
-            postSelf?.likes.canLike = true
-            ServiseAPI().postRequestLikeAndUnlike(post: post, method: .unlike) { count in
-                likesCount.text = count
-                NotificationCenter.default.post(Notification(name: Notification.Name("loadData")))
-            }
-            UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
-                guard let self = self else { return }
-                self.likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
-                likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
-            } completion: { _ in
-                UIView.animate(withDuration: 0.25, delay: 0, options: .transitionCrossDissolve) {
-                    imageView.image = UIImage(named: "like")
+        func clearCell() {
+            
+            guard let likesCount = likeButton.subviews[1] as? UILabel,
+                  let commentCount = commentButton.subviews[1] as? UILabel,
+                  let shareCount = shareButton.subviews[0] as? UILabel,
+                  let likeImage = likeButton.subviews[0] as? UIImageView
+            else { return }
+            
+            imageProfile.image = nil
+            name.text = nil
+            whenBePublic.text = nil
+            textPost.text = nil
+            likesCount.text = nil
+            commentCount.text = nil
+            shareCount.text = nil
+            likeImage.image = nil
+            imagePost.image = nil
+            
+        }
+        
+        override func prepareForReuse() {
+            clearCell()
+        }
+        
+        override func awakeFromNib() {
+            super.awakeFromNib()
+            setup()
+            likeRecogniser()
+            clearCell()
+        }
+        
+        //MARK: - Анимаци нажатия лайка
+        
+        func likeRecogniser() {
+            let recognizer = UITapGestureRecognizer(target: self, action: #selector(addLike))
+            recognizer.numberOfTapsRequired = 1
+            recognizer.numberOfTouchesRequired = 1
+            likeButton.addGestureRecognizer(recognizer)
+        }
+        
+        @objc func addLike() {
+            guard let imageView = likeButton.subviews[0] as? UIImageView,
+                  let likesCount = likeButton.subviews[1] as? UILabel
+            else { return }
+            if let post = postSelf as? WallItem {
+                if post.likes.canLike ?? false {
+                    post.likes.canLike = false
+                    ServiseAPI().postRequestLikeAndUnlike(post: post, method: .likesAdd) { count in
+                        likesCount.text = count
+                    }
+                    UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
+                        guard let self = self else { return }
+                        imageView.image = UIImage(named: "likefill")
+                        self.likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
+                        likesCount.textColor = .white
+                        self.likeButton.layoutIfNeeded()
+                    }
+                } else {
+                    post.likes.canLike = true
+                    ServiseAPI().postRequestLikeAndUnlike(post: post, method: .likesDelete) { count in
+                        likesCount.text = count
+                    }
+                    UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
+                        guard let self = self else { return }
+                        self.likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
+                        likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
+                    } completion: { _ in
+                        UIView.animate(withDuration: 0.25, delay: 0, options: .transitionCrossDissolve) {
+                            imageView.image = UIImage(named: "like")
+                        }
+                    }
+                }
+            } else if let post = postSelf as? NewsFeedItem {
+                if post.likes.canLike ?? false {
+                    post.likes.canLike = false
+                    ServiseAPI().postRequestLikeAndUnlike(post: post, method: .likesAdd) { count in
+                        likesCount.text = count
+                    }
+                    UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
+                        guard let self = self else { return }
+                        imageView.image = UIImage(named: "likefill")
+                        self.likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
+                        likesCount.textColor = .white
+                        self.likeButton.layoutIfNeeded()
+                    }
+                } else {
+                    post.likes.canLike = true
+                    ServiseAPI().postRequestLikeAndUnlike(post: post, method: .likesDelete) { count in
+                        likesCount.text = count
+                    }
+                    UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
+                        guard let self = self else { return }
+                        self.likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
+                        likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
+                    } completion: { _ in
+                        UIView.animate(withDuration: 0.25, delay: 0, options: .transitionCrossDissolve) {
+                            imageView.image = UIImage(named: "like")
+                        }
+                    }
                 }
             }
         }
     }
-    
-    
-}
-
 
 
 

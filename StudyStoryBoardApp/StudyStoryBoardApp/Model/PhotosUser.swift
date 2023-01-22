@@ -7,27 +7,32 @@
 
 import UIKit
 
-struct PhotosResponce: Decodable {
+class PhotosResponce: Decodable {
     var response: PhotoUserItems
 }
 
-struct PhotoUserItems: Decodable {
+class PhotoUserItems: Decodable {
     var items: [PhotoItem]
 }
 
-struct PhotoItem: Decodable {
+class PhotoItem: Decodable {
     var ownerID: Int
-    var accessKey: String
+    var accessKey: String?
     var sizes: [SizePhoto]
+    var likes: Likes?
+    var comments: Comments?
+    var reposts: Reposts?
+    var photoID: Int?
     
     enum CodingKeys: String, CodingKey {
         case ownerID = "owner_id"
         case accessKey = "access_key"
-        case sizes
+        case photoID = "id"
+        case sizes, likes, comments, reposts
     }
 }
 
-struct SizePhoto: Decodable {
+class SizePhoto: Decodable {
     var url: String
     var type: String
     var width: Int

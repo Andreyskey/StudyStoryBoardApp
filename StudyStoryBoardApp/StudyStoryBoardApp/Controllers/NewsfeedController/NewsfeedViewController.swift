@@ -35,6 +35,10 @@ class NewsfeedViewController: UIViewController {
         NotificationCenter.default.post(Notification(name: loadData))
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc func loadWall() {
         let params: Parameters = [
             "access_token" : Session.share.token,
@@ -45,7 +49,7 @@ class NewsfeedViewController: UIViewController {
             "v" : "5.131"
         ]
         
-        ServiseAPI().getRequestWall(method: "wall.get", parammeters: params) { wall, friends, groups in
+        ServiseAPI().getRequestWall(method: .wallGet, parammeters: params) { wall, friends, groups in
             guard let posts = wall,
                   let friends = friends,
                   let groupsWall = groups
@@ -77,7 +81,7 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: newsfeedViewControllerIdentificator, for: indexPath) as? PostTableViewCell
         else { return UITableViewCell() }
         
-        var owner: Any?
+        var owner: AnyObject?
         
         for i in profiles {
             if i.id == wall[indexPath.row].fromID && wall[indexPath.row].copyHistory == nil {

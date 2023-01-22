@@ -7,15 +7,15 @@
 
 import UIKit
 
-struct ProfilesResponce: Decodable {
+class ProfilesResponce: Decodable {
     var response: Profiles
 }
 
-struct Profiles: Decodable {
+class Profiles: Decodable {
     var items: [ProfileItem]
 }
 
-struct ProfileItem: Decodable {
+class ProfileItem: Decodable {
     var id: Int
     var online: Bool
     var firstName: String
@@ -32,14 +32,14 @@ struct ProfileItem: Decodable {
         case status
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
-        let online = try container.decode(Int.self, forKey: .online)
-        self.online = (online == 1)
+        let online = try? container.decode(Int.self, forKey: .online)
+        self.online = ((online ?? 0) == 1)
         self.firstName = try container.decode(String.self, forKey: .firstName)
         self.lastName = try container.decode(String.self, forKey: .lastName)
         self.avatar = try container.decode(String.self, forKey: .avatar)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.status = try? container.decodeIfPresent(String.self, forKey: .status)
     }
 }

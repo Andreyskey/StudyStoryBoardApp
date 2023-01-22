@@ -7,15 +7,15 @@
 
 import UIKit
 
-struct GroupsResponce: Decodable {
+class GroupsResponce: Decodable {
     var response: Groups
 }
 
-struct Groups: Decodable {
+class Groups: Decodable {
     var items = [GroupItem]()
 }
 
-struct GroupItem: Decodable {
+class GroupItem: Decodable {
     var id: Int
     var activity: String?
     var name: String

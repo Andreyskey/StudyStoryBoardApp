@@ -15,12 +15,16 @@ class ShowImageCollectionViewCell: UICollectionViewCell {
         image.sd_setImage(with: URL(string: imageUrl ?? ""))
     }
     
+    func setup() {
+    }
+    
     func clearCell() {
         image.image = nil
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setup()
         clearCell()
     }
     

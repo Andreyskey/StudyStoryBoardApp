@@ -7,17 +7,17 @@
 
 import UIKit
 
-struct WallsResponse: Decodable {
+class WallsResponse: Decodable {
     var response: Walls
 }
 
-struct Walls: Decodable {
+class Walls: Decodable {
     var items: [WallItem]
     var profiles: [ProfileItem]
     var groups: [GroupItem]
 }
 
-struct WallItem: Decodable {
+class WallItem: Decodable {
     var postID: Int
     var fromID: Int
     var date: Date
@@ -36,7 +36,7 @@ struct WallItem: Decodable {
         case date, comments, attachments, likes, reposts, text, views
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.fromID = try container.decode(Int.self, forKey: .fromID)
         self.copyHistory = try? container.decodeIfPresent([CopyHistory].self, forKey: .copyHistory)
@@ -54,39 +54,43 @@ struct WallItem: Decodable {
     }
 }
 
-struct CopyHistory: Decodable {
+class CopyHistory: Decodable {
     var attachments: [Attachments]
 }
 
-struct Attachments: Decodable {
+class Attachments: Decodable {
     var photo: PhotoItem?
 }
 
-struct Comments: Decodable {
+class Comments: Decodable {
     var count: Int
 }
 
-struct Likes: Decodable {
+class Likes: Decodable {
     var count: Int
-    var canLike: Bool
+    var canLike: Bool?
+    var userLikes: Bool?
     
     enum CodingKeys: String, CodingKey {
         case count
         case canLike = "can_like"
+        case userLikes = "user_likes"
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.count = try container.decode(Int.self, forKey: .count)
-        let canLike = try container.decode(Int.self, forKey: .canLike)
-        self.canLike = (canLike == 1)
+        let canLike = try? container.decode(Int.self, forKey: .canLike)
+        self.canLike = canLike == 1
+        let userLikes = try? container.decode(Int.self, forKey: .userLikes)
+        self.userLikes = userLikes == 1
     }
 }
 
-struct Reposts: Decodable {
+class Reposts: Decodable {
     var count: Int
 }
 
-struct Views: Decodable {
+class Views: Decodable {
     var count: Int?
 }

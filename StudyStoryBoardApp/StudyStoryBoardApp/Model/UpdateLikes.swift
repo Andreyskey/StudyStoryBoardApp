@@ -7,11 +7,11 @@
 
 import UIKit
 
-struct UpdateLikes: Decodable {
+class UpdateLikes: Decodable {
     var response: NewLikes
 }
 
-struct NewLikes: Decodable {
+class NewLikes: Decodable {
     var count: Int
     
     enum CodingKeys: String, CodingKey {

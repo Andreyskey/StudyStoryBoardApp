@@ -81,7 +81,7 @@ extension SearchViewController: UISearchBarDelegate {
                 "v" : "5.131"
             ]
             
-            ServiseAPI().getRequestGroups(method: "groups.search", parammeters: params) { array in
+            ServiseAPI().getRequestGroups(method: .searchGroupGet, parammeters: params) { array in
                 guard let findGroups = array else { return }
                 self.groups = findGroups
                 self.tableView.reloadData()
