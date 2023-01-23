@@ -22,41 +22,24 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var bottomOnlineConstraint: NSLayoutConstraint!
     
     
-    func configurationCell(object: AnyObject) {
+    func configurationCell(object: Any) {
         
         
-        if let friend = object as? Friend {
-            if let url = URL(string: friend.avatar) {
-                let _ = URLSession.shared.dataTask(with: url) { data, response, error in
-                    guard let data = data, error == nil else { return }
-                    
-                    DispatchQueue.main.async {
-                        self.imageProfile.image = UIImage(data: data)
-                    }
-                }.resume()
-            }
-            
+        if let friend = object as? ProfileItem {
+            imageProfile.sd_setImage(with: URL(string: friend.avatar))
             fullName.text = friend.firstName + " " + friend.lastName
-            
-            if friend.online != 0 { isOnline.isHidden = false }
+            isOnline.isHidden = !friend.online
             
             isFrom.numberOfLines = 1
             isFrom.text = friend.status
         }
         
         
-        if let group = object as? Group {
-            if let url = URL(string: group.avatar) {
-                let _ = URLSession.shared.dataTask(with: url) { data, response, error in
-                    guard let data = data, error == nil else { return }
-                    DispatchQueue.main.async {
-                        self.imageProfile.image = UIImage(data: data)
-                    }
-                }.resume()
-            }
+        if let group = object as? GroupItem {
             
+            imageProfile.sd_setImage(with: URL(string: group.avatar))
             fullName.text = group.name
-            isFrom.text = String(group.activity ?? "")
+            isFrom.text = group.activity
             
             topImageConstraint.constant = 16
             topOnlineConstraint.constant = 50

@@ -10,7 +10,7 @@ import Alamofire
 class SearchViewController: UIViewController {
     
     let searchViewControllerIndentifier = "searchViewControllerIndentifier"
-    var groups = [Group]()
+    var groups = [GroupItem]()
 
     @IBOutlet weak var searchBar: UISearchBar! {
         didSet {
@@ -81,12 +81,16 @@ extension SearchViewController: UISearchBarDelegate {
                 "v" : "5.131"
             ]
             
-            ServiseAPI().getRequestGroups(method: "groups.search", parammeters: params) { array in
+            ServiseAPI().getRequestGroups(method: .searchGroupGet, parammeters: params) { array in
                 guard let findGroups = array else { return }
                 self.groups = findGroups
                 self.tableView.reloadData()
                 self.loadingIndicator.stopAnimating()
             }
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
     }
 }

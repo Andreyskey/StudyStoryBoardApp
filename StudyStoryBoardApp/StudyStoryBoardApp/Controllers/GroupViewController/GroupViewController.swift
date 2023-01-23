@@ -10,7 +10,7 @@ import Alamofire
 
 class GroupViewController: UIViewController {
     
-    var groups = [Group]()
+    var groups = [GroupItem]()
     let groupViewControllerIdentifier = "groupViewControllerIdentifier"
     let paramsGroup: Parameters = [
         "access_token" : Session.share.token,
@@ -35,7 +35,7 @@ class GroupViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        ServiseAPI().getRequestGroups(method: "groups.get", parammeters: paramsGroup) { array in
+        ServiseAPI().getRequestGroups(method: .groupsGet, parammeters: paramsGroup) { array in
             guard let groupsArr = array else { return }
             self.groups = groupsArr
             self.tableView.reloadData()
@@ -67,11 +67,8 @@ class GroupViewController: UIViewController {
 extension GroupViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if groups.count == 0 {
-            return 0
-        } else {
-            return 1
-        }
+        if groups.count == 0 { return 0 }
+        return 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

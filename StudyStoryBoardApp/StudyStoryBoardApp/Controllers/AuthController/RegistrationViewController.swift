@@ -40,7 +40,7 @@ class RegistrationViewController: UIViewController {
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "revoke", value: "1"),
-            URLQueryItem(name: "scope", value: "273887")
+            URLQueryItem(name: "scope", value: "140488159")
         ]
         
         let req = URLRequest(url: url.url!)

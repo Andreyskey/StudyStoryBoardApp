@@ -12,12 +12,12 @@ class FriendsViewController: UIViewController {
     
     // Идентификатор ячейки
     let friendsViewControllerIdentifier = "friendsViewControllerIdentifier"
-    var friends = [Friend]()
+    var friends = [ProfileItem]()
     let paramsFriend: Parameters = [
         "access_token" : Session.share.token,
         "user_id" : Session.share.userId,
         "order" : "random",
-        "fields" : "photo_100, online, status",
+        "fields" : "photo_200, online, status",
         "v" : "5.131"
     ]
     
@@ -37,7 +37,7 @@ class FriendsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadingIndicator.startAnimating()
-        ServiseAPI().getRequestFriends(method: "friends.get", parammeters: paramsFriend, completion: { array in
+        ServiseAPI().getRequestFriends(method: .friendsGet, parammeters: paramsFriend, completion: { array in
             guard let friendsArr = array else { return }
             self.friends = friendsArr
             self.tableView.reloadData()
@@ -45,7 +45,7 @@ class FriendsViewController: UIViewController {
         })
     }
     
-    func letter(array: [Friend]) -> [String] {
+    func letter(array: [ProfileItem]) -> [String] {
         var letters = [String]()
         for item in array {
             let letter = String(item.firstName.prefix(1))
@@ -56,8 +56,8 @@ class FriendsViewController: UIViewController {
         return letters.sorted()
     }
     
-    func arrayByLetter(letter: String) -> [Friend] {
-        var result = [Friend]()
+    func arrayByLetter(letter: String) -> [ProfileItem] {
+        var result = [ProfileItem]()
         for item in friends {
             let letterItem = String(item.firstName.prefix(1))
             if letterItem ==  letter {

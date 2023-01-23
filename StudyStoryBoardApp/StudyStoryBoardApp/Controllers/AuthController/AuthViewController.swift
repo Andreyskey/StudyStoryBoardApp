@@ -10,6 +10,10 @@ import Alamofire
 
 class AuthViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var group6backround: UIImageView!
+    @IBOutlet weak var group5backround: UIImageView!
+    @IBOutlet weak var group4backround: UIImageView!
+    @IBOutlet weak var group3backround: UIImageView!
     @IBOutlet weak var backroundImage: UIImageView!
     @IBOutlet weak var secondImageBackround: UIImageView!
     
@@ -29,6 +33,10 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         UIView.animate(withDuration: 2, delay: 0, options: .curveEaseIn) { [weak self] in
             guard let self = self else { return }
+            self.group3backround.alpha = 1
+            self.group4backround.alpha = 1
+            self.group5backround.alpha = 1
+            self.group6backround.alpha = 1
             self.backroundImage.alpha = 0.5
             self.secondImageBackround.alpha = 1
         }
@@ -61,8 +69,12 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     // Анимация backroundImage
     @objc func animate() {
         print("subscribe succes")
-        backroundImage.rotate(duration: 75, route: .left)
+        backroundImage.rotate(duration: 100, route: .left)
         secondImageBackround.rotate(duration: 120, route: .left)
+        group3backround.rotate(duration: 80, route: .left)
+        group4backround.rotate(duration: 60, route: .left)
+        group5backround.rotate(duration: 40, route: .left)
+        group6backround.rotate(duration: 20, route: .left)
     }
     
     @objc func goToApp() {

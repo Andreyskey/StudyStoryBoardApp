@@ -7,38 +7,24 @@
 
 import UIKit
 
-class AllGroupsResponce: Decodable {
-    var response: GroupsResponce
-}
-
 class GroupsResponce: Decodable {
-    var items = [Group]()
+    var response: Groups
 }
 
-class Group: Decodable {
-    var id = 0
+class Groups: Decodable {
+    var items = [GroupItem]()
+}
+
+class GroupItem: Decodable {
+    var id: Int
     var activity: String?
-    var name = ""
+    var name: String
     var subscribers: Int?
-    var avatar = ""
+    var avatar: String
     
     enum CodingKeys: String, CodingKey {
-        case activity
-        case name
+        case activity, id, name
         case subscribers = "members_count"
-        case id
-        case avatar = "photo_100"
-    }
-    
-    convenience required init(from decoder: Decoder) throws {
-        self.init()
-        
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        
-        self.id = try values.decode(Int.self, forKey: .id)
-        self.activity = try? values.decode(String.self, forKey: .activity)
-        self.name = try values.decode(String.self, forKey: .name)
-        self.subscribers = try? values.decode(Int.self, forKey: .subscribers)
-        self.avatar = try values.decode(String.self, forKey: .avatar)
+        case avatar = "photo_200"
     }
 }
