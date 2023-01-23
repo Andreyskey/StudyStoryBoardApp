@@ -28,8 +28,6 @@ class PostTableViewCell: UITableViewCell {
     //MARK: - Предустановка и конфигурация ячейки
     var indexPathRow = 0
     
-    var postData: Post?
-    
     func setup() {
         
         superView.layer.cornerRadius = 20
@@ -42,7 +40,7 @@ class PostTableViewCell: UITableViewCell {
         shareButton.layer.cornerRadius = shareButton.frame.size.height / 2
     }
     
-    func configurate(post: Post, indexPath: IndexPath) {
+    func configurate(post: Wall, owner: AnyObject?) {
         
         guard let likesCount = likeButton.subviews[1] as? UILabel,
               let commentCount = commentButton.subviews[1] as? UILabel,
@@ -50,41 +48,58 @@ class PostTableViewCell: UITableViewCell {
               let likeImage = likeButton.subviews[0] as? UIImageView
         else { return }
         
-        indexPathRow = indexPath.row
-                          
-        postData = post
+        // Заполнение поста
+        whenBePublic.text = NSDate(timeIntervalSince1970: Double(post.date)).description
+        textPost.text = post.text
+        likesCount.text = String(post.likes ?? 0)
+        commentCount.text = String(post.comments ?? 0)
+        shareCount.text = String(post.reposts ?? 0)
+        seesPostCount.text = String(post.views ?? 0)
         
-        name.text = post.name
-        imageProfile.image = post.imageProfile
-        whenBePublic.text = post.timePost
-        textPost.text = post.textPost
-        likesCount.text = String(post.countLikes)
-        commentCount.text = String(post.countComment)
-        shareCount.text = String(post.countShare)
-        seesPostCount.text = post.seesCount
         
-        if post.ImagePost[0] != nil {
-            let img = UIImage(named: post.ImagePost[0] ?? "")!
-            imagePost.image = resizeImage(image: img, targetSize: CGSize(width: imagePost.bounds.width, height: 0 ))
+        
+        
+        if let group = owner as? Group {
+            downloadingImage(urlImage: group.avatar, imageView: imageProfile)
+            downloadingImage(urlImage: post.photosGroups, imageView: imagePost)
+            name.text = group.name
+        } else if let profile = owner as? Friend {
+            downloadingImage(urlImage: profile.avatar, imageView: imageProfile)
+            downloadingImage(urlImage: post.photosProfile, imageView: imagePost)
+            name.text = profile.firstName + " " + profile.lastName
         }
         
+        likeImage.image = UIImage(named: "like")
+        likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
         
-        if post.isLiked {
-            likeImage.image = UIImage(named: "likefill")
-            likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
-            likesCount.textColor = .white
-        } else {
-            likeImage.image = UIImage(named: "like")
-            likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
-            likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
-        }
-        
-        
+//        if post.isLiked {
+//            likeImage.image = UIImage(named: "likefill")
+//            likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
+//            likesCount.textColor = .white
+//        } else {
+//            likeImage.image = UIImage(named: "like")
+//        }
     }
+        
     
+    func downloadingImage(urlImage: String?, imageView: UIImageView) {
+        guard let url = urlImage else { return }
+        if let url = URL(string: url) {
+            let _ = URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let data = data, error == nil else { return }
+                DispatchQueue.main.async {
+                    imageView.image = self.resizeImage(image: UIImage(data: data),
+                                                       targetSize: CGSize(width: self.imagePost.bounds.width,
+                                                                          height: 0 ))
+                    
+                }
+            }.resume()
+        }
+    }
     //MARK: - Функция преобразования картинки в нужный размер для поста
     
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+    func resizeImage(image: UIImage?, targetSize: CGSize) -> UIImage {
+        guard let image = image else { return UIImage() }
         
         let size = image.size
         
@@ -131,58 +146,55 @@ class PostTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
-        likeRecogniser()
+//        likeRecogniser()
         clearCell()
     }
     
     //MARK: - Анимаци нажатия лайка
     
-    func likeRecogniser() {
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(addLike))
-        recognizer.numberOfTapsRequired = 1
-        recognizer.numberOfTouchesRequired = 1
-        likeButton.addGestureRecognizer(recognizer)
-        
-        let recognizerDoudleTap = UITapGestureRecognizer(target: self, action: #selector(addLike))
-        recognizerDoudleTap.numberOfTapsRequired = 2
-        doubleTapLikeView.addGestureRecognizer(recognizerDoudleTap)
-    }
+//    func likeRecogniser() {
+//        let recognizer = UITapGestureRecognizer(target: self, action: #selector(addLike))
+//        recognizer.numberOfTapsRequired = 1
+//        recognizer.numberOfTouchesRequired = 1
+//        likeButton.addGestureRecognizer(recognizer)
+//
+//        let recognizerDoudleTap = UITapGestureRecognizer(target: self, action: #selector(addLike))
+//        recognizerDoudleTap.numberOfTapsRequired = 2
+//        doubleTapLikeView.addGestureRecognizer(recognizerDoudleTap)
+//    }
     
-    @objc func addLike() {
-        guard let imageView = likeButton.subviews[0] as? UIImageView,
-              let likesCount = likeButton.subviews[1] as? UILabel
-        else { return }
-        
-        var postView = postOne[indexPathRow]
-        
-        if !postView.isLiked {
-            postView.countLikes += 1
-            postView.isLiked = true
-            UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
-                guard let self = self else { return }
-                imageView.image = UIImage(named: "likefill")
-                self.likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
-                likesCount.text = String(postView.countLikes)
-                likesCount.textColor = .white
-                self.likeButton.layoutIfNeeded()
-            }
-        } else {
-            postView.countLikes -= 1
-            postView.isLiked = false
-            UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
-                guard let self = self else { return }
-                self.likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
-                likesCount.text = String(postView.countLikes)
-                likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
-            } completion: { _ in
-                UIView.animate(withDuration: 0.25, delay: 0, options: .transitionCrossDissolve) {
-                    imageView.image = UIImage(named: "like")
-                }
-            }
-        }
-        postOne[indexPathRow] = postView
-        
-    }
+//    @objc func addLike() {
+//        guard let imageView = likeButton.subviews[0] as? UIImageView,
+//              let likesCount = likeButton.subviews[1] as? UILabel
+//        else { return }
+//
+//        if !postView.isLiked {
+//            postView.countLikes += 1
+//            postView.isLiked = true
+//            UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
+//                guard let self = self else { return }
+//                imageView.image = UIImage(named: "likefill")
+//                self.likeButton.layer.backgroundColor = UIColor(red: 0.99, green: 0.24, blue: 0.28, alpha: 1.00).cgColor
+//                likesCount.text = String(postView.countLikes)
+//                likesCount.textColor = .white
+//                self.likeButton.layoutIfNeeded()
+//            }
+//        } else {
+//            postView.countLikes -= 1
+//            postView.isLiked = false
+//            UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
+//                guard let self = self else { return }
+//                self.likeButton.layer.backgroundColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.04).cgColor
+//                likesCount.text = String(postView.countLikes)
+//                likesCount.textColor = UIColor(red: 0.00, green: 0.23, blue: 0.33, alpha: 0.3)
+//            } completion: { _ in
+//                UIView.animate(withDuration: 0.25, delay: 0, options: .transitionCrossDissolve) {
+//                    imageView.image = UIImage(named: "like")
+//                }
+//            }
+//        }
+//
+//    }
     
     
 }

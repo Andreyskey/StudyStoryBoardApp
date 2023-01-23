@@ -12,7 +12,6 @@
 		BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */; };
 		BA11CBAB2969FB000006CB7A /* ShowImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */; };
 		BA11CBAC2969FB000006CB7A /* ShowImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */; };
-		BA350E8A2916E7C700B4DCE6 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA350E892916E7C700B4DCE6 /* UserData.swift */; };
 		BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD5B28F628C700AA544F /* AppDelegate.swift */; };
 		BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD5D28F628C700AA544F /* SceneDelegate.swift */; };
 		BA6DAD6328F628C700AA544F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA6DAD6128F628C700AA544F /* Main.storyboard */; };
@@ -22,10 +21,9 @@
 		BA89D1FB29118F5200D88D61 /* NewsfeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D1FA29118F5200D88D61 /* NewsfeedViewController.swift */; };
 		BA89D1FE29118FE900D88D61 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */; };
 		BA89D1FF29118FE900D88D61 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */; };
-		BA89D2012911A3DF00D88D61 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D2002911A3DF00D88D61 /* PostModel.swift */; };
 		BA948C8E296C9CF60038415F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA948C8D296C9CF60038415F /* Singleton.swift */; };
 		BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4376290D406D00FCD98F /* RegistrationViewController.swift */; };
-		BABC437A290D4D9D00FCD98F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4379290D4D9D00FCD98F /* Data.swift */; };
+		BABC437A290D4D9D00FCD98F /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4379290D4D9D00FCD98F /* Friend.swift */; };
 		BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC437F290D73CF00FCD98F /* CustomButton.swift */; };
 		BABC43C5290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */; };
 		BABC43C6290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43B2290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf */; };
@@ -47,6 +45,9 @@
 		BABC43D6290EDD3400FCD98F /* Fontfabric - MullerThin.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43C2290EDD3400FCD98F /* Fontfabric - MullerThin.otf */; };
 		BABC43D7290EDD3400FCD98F /* Fontfabric - MullerRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43C3290EDD3400FCD98F /* Fontfabric - MullerRegular.otf */; };
 		BABC43D8290EDD3400FCD98F /* Fontfabric - MullerMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC43C4290EDD3400FCD98F /* Fontfabric - MullerMedium.otf */; };
+		BADB89D32976470D0036BB30 /* ServiseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB89D22976470D0036BB30 /* ServiseAPI.swift */; };
+		BADB89D529769FCB0036BB30 /* PhotosUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB89D429769FCB0036BB30 /* PhotosUser.swift */; };
+		BADB89D72978C0120036BB30 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADB89D62978C0120036BB30 /* Wall.swift */; };
 		BAEE353628F7202500004183 /* sf-ui-display-black-58646a6b80d5a.otf in Resources */ = {isa = PBXBuildFile; fileRef = BAEE352E28F7202500004183 /* sf-ui-display-black-58646a6b80d5a.otf */; };
 		BAEE353728F7202500004183 /* sf-ui-display-medium-58646be638f96.otf in Resources */ = {isa = PBXBuildFile; fileRef = BAEE352F28F7202500004183 /* sf-ui-display-medium-58646be638f96.otf */; };
 		BAEE353828F7202500004183 /* sf-ui-display-ultralight-58646b19bf205.otf in Resources */ = {isa = PBXBuildFile; fileRef = BAEE353028F7202500004183 /* sf-ui-display-ultralight-58646b19bf205.otf */; };
@@ -64,7 +65,6 @@
 		BAEE355E28F993D200004183 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE355D28F993D200004183 /* GroupViewController.swift */; };
 		BAEE356028F993DB00004183 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE355F28F993DB00004183 /* SearchViewController.swift */; };
 		BAEE356328F9C00000004183 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE356228F9C00000004183 /* Group.swift */; };
-		BAEE356528F9C02E00004183 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEE356428F9C02E00004183 /* Friend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +72,6 @@
 		BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoViewController.swift; sourceTree = "<group>"; };
 		BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowImageCollectionViewCell.xib; sourceTree = "<group>"; };
-		BA350E892916E7C700B4DCE6 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserData.swift; path = ../../../../../../../Music/UserData.swift; sourceTree = "<group>"; };
 		BA6DAD5828F628C700AA544F /* StudyStoryBoardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyStoryBoardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA6DAD5B28F628C700AA544F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA6DAD5D28F628C700AA544F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,10 +83,9 @@
 		BA89D1FA29118F5200D88D61 /* NewsfeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedViewController.swift; sourceTree = "<group>"; };
 		BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
-		BA89D2002911A3DF00D88D61 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		BA948C8D296C9CF60038415F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		BABC4376290D406D00FCD98F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		BABC4379290D4D9D00FCD98F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		BABC4379290D4D9D00FCD98F /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		BABC437F290D73CF00FCD98F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BABC43B1290EDD3400FCD98F /* Fontfabric - MullerHeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerHeavyItalic.otf"; sourceTree = "<group>"; };
 		BABC43B2290EDD3400FCD98F /* Fontfabric - MullerLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerLightItalic.otf"; sourceTree = "<group>"; };
@@ -109,6 +107,9 @@
 		BABC43C2290EDD3400FCD98F /* Fontfabric - MullerThin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerThin.otf"; sourceTree = "<group>"; };
 		BABC43C3290EDD3400FCD98F /* Fontfabric - MullerRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerRegular.otf"; sourceTree = "<group>"; };
 		BABC43C4290EDD3400FCD98F /* Fontfabric - MullerMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fontfabric - MullerMedium.otf"; sourceTree = "<group>"; };
+		BADB89D22976470D0036BB30 /* ServiseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiseAPI.swift; sourceTree = "<group>"; };
+		BADB89D429769FCB0036BB30 /* PhotosUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUser.swift; sourceTree = "<group>"; };
+		BADB89D62978C0120036BB30 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		BAEE352E28F7202500004183 /* sf-ui-display-black-58646a6b80d5a.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sf-ui-display-black-58646a6b80d5a.otf"; path = "../../../../../../Other/Fonts/sf-ui-display-cufonfonts/sf-ui-display-black-58646a6b80d5a.otf"; sourceTree = "<group>"; };
 		BAEE352F28F7202500004183 /* sf-ui-display-medium-58646be638f96.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sf-ui-display-medium-58646be638f96.otf"; path = "../../../../../../Other/Fonts/sf-ui-display-cufonfonts/sf-ui-display-medium-58646be638f96.otf"; sourceTree = "<group>"; };
 		BAEE353028F7202500004183 /* sf-ui-display-ultralight-58646b19bf205.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "sf-ui-display-ultralight-58646b19bf205.otf"; path = "../../../../../../Other/Fonts/sf-ui-display-cufonfonts/sf-ui-display-ultralight-58646b19bf205.otf"; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		BAEE355D28F993D200004183 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		BAEE355F28F993DB00004183 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BAEE356228F9C00000004183 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		BAEE356428F9C02E00004183 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +178,6 @@
 		BA6DAD5A28F628C700AA544F /* StudyStoryBoardApp */ = {
 			isa = PBXGroup;
 			children = (
-				BA948C8C296C9CE90038415F /* Singleton */,
 				BABC4378290D4D8E00FCD98F /* Data */,
 				BAEE356128F9BFF300004183 /* Model */,
 				BAEE354028F89A3C00004183 /* Controllers */,
@@ -202,18 +201,11 @@
 			path = NewsfeedController;
 			sourceTree = "<group>";
 		};
-		BA948C8C296C9CE90038415F /* Singleton */ = {
-			isa = PBXGroup;
-			children = (
-				BA948C8D296C9CF60038415F /* Singleton.swift */,
-			);
-			path = Singleton;
-			sourceTree = "<group>";
-		};
 		BABC4378290D4D8E00FCD98F /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				BABC4379290D4D9D00FCD98F /* Data.swift */,
+				BA948C8D296C9CF60038415F /* Singleton.swift */,
+				BADB89D22976470D0036BB30 /* ServiseAPI.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -334,10 +326,10 @@
 		BAEE356128F9BFF300004183 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BABC4379290D4D9D00FCD98F /* Friend.swift */,
 				BAEE356228F9C00000004183 /* Group.swift */,
-				BAEE356428F9C02E00004183 /* Friend.swift */,
-				BA89D2002911A3DF00D88D61 /* PostModel.swift */,
-				BA350E892916E7C700B4DCE6 /* UserData.swift */,
+				BADB89D429769FCB0036BB30 /* PhotosUser.swift */,
+				BADB89D62978C0120036BB30 /* Wall.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -454,21 +446,21 @@
 				BAEE355E28F993D200004183 /* GroupViewController.swift in Sources */,
 				BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */,
 				BAEE354328F8AC3F00004183 /* FriendsViewController.swift in Sources */,
+				BADB89D72978C0120036BB30 /* Wall.swift in Sources */,
 				BAEE355728F9789A00004183 /* CustomCollectionViewCell.swift in Sources */,
+				BADB89D32976470D0036BB30 /* ServiseAPI.swift in Sources */,
 				BAEE356328F9C00000004183 /* Group.swift in Sources */,
 				BA89D1FB29118F5200D88D61 /* NewsfeedViewController.swift in Sources */,
 				BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */,
 				BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */,
+				BADB89D529769FCB0036BB30 /* PhotosUser.swift in Sources */,
 				BAEE356028F993DB00004183 /* SearchViewController.swift in Sources */,
 				BA948C8E296C9CF60038415F /* Singleton.swift in Sources */,
 				BAEE355028F8B42600004183 /* CustomTableViewCell.swift in Sources */,
-				BABC437A290D4D9D00FCD98F /* Data.swift in Sources */,
+				BABC437A290D4D9D00FCD98F /* Friend.swift in Sources */,
 				BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */,
 				BA6DAD7028F7078300AA544F /* AuthViewController.swift in Sources */,
 				BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */,
-				BA350E8A2916E7C700B4DCE6 /* UserData.swift in Sources */,
-				BA89D2012911A3DF00D88D61 /* PostModel.swift in Sources */,
-				BAEE356528F9C02E00004183 /* Friend.swift in Sources */,
 				BA11CBA52969D4A20006CB7A /* MessageViewController.swift in Sources */,
 				BA11CBAB2969FB000006CB7A /* ShowImageCollectionViewCell.swift in Sources */,
 				BAEE355A28F9806200004183 /* AlbumUserViewController.swift in Sources */,

@@ -72,6 +72,8 @@ extension RegistrationViewController: WKNavigationDelegate {
         Session.share.token = params["access_token"]!
         Session.share.userId = params["user_id"]!
         
+        print(Session.share.token)
+        
         decisionHandler(.allow)
         
         if Session.share.token != "" {

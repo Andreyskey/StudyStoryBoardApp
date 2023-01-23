@@ -7,17 +7,38 @@
 
 import UIKit
 
-struct Group {
-    let name: String
-    let image: String
-    let infoGroup: String
+class AllGroupsResponce: Decodable {
+    var response: GroupsResponce
 }
 
-extension Group: Equatable {}
+class GroupsResponce: Decodable {
+    var items = [Group]()
+}
 
-func ==(lhs: Group, rhs: Group) -> Bool {
-    let areEqual = lhs.name == rhs.name &&
-        lhs.image == rhs.image
+class Group: Decodable {
+    var id = 0
+    var activity: String?
+    var name = ""
+    var subscribers: Int?
+    var avatar = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case activity
+        case name
+        case subscribers = "members_count"
+        case id
+        case avatar = "photo_100"
+    }
+    
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
         
-    return areEqual
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.id = try values.decode(Int.self, forKey: .id)
+        self.activity = try? values.decode(String.self, forKey: .activity)
+        self.name = try values.decode(String.self, forKey: .name)
+        self.subscribers = try? values.decode(Int.self, forKey: .subscribers)
+        self.avatar = try values.decode(String.self, forKey: .avatar)
+    }
 }

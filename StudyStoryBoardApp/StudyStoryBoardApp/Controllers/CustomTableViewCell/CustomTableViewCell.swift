@@ -22,41 +22,46 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var bottomOnlineConstraint: NSLayoutConstraint!
     
     
-    func configurationCell(friend: Friend?, group: Group?, isLast: Bool = false, isFirst: Bool = false, isMessage: Bool = false) {
+    func configurationCell(object: AnyObject) {
         
-        if let friend = friend {
-            if isFirst {
-                topImageConstraint.constant = 16
-                topOnlineConstraint.constant = 50
-            }
-            if isLast {
-                bottomOnlineConstraint.constant = 16
-                bottomImageConstraint.constant = 16
-            }
-            
-            if friend.isOnline {
-                isOnline.isHidden = false
+        
+        if let friend = object as? Friend {
+            if let url = URL(string: friend.avatar) {
+                let _ = URLSession.shared.dataTask(with: url) { data, response, error in
+                    guard let data = data, error == nil else { return }
+                    
+                    DispatchQueue.main.async {
+                        self.imageProfile.image = UIImage(data: data)
+                    }
+                }.resume()
             }
             
-            imageProfile.image = UIImage(named: friend.image)!
-            fullName.text = friend.fullName
+            fullName.text = friend.firstName + " " + friend.lastName
             
-            if isMessage {
-                isFrom.text = friend.lastMessage
-            } else {
-                isFrom.text = friend.isFrom
-            }
+            if friend.online != 0 { isOnline.isHidden = false }
+            
+            isFrom.numberOfLines = 1
+            isFrom.text = friend.status
         }
         
-        if let group = group {
+        
+        if let group = object as? Group {
+            if let url = URL(string: group.avatar) {
+                let _ = URLSession.shared.dataTask(with: url) { data, response, error in
+                    guard let data = data, error == nil else { return }
+                    DispatchQueue.main.async {
+                        self.imageProfile.image = UIImage(data: data)
+                    }
+                }.resume()
+            }
+            
+            fullName.text = group.name
+            isFrom.text = String(group.activity ?? "")
+            
             topImageConstraint.constant = 16
             topOnlineConstraint.constant = 50
             bottomOnlineConstraint.constant = 16
             bottomImageConstraint.constant = 16
-            
-            imageProfile.image = UIImage(named: group.image)!
-            fullName.text = group.name
-            isFrom.text = group.infoGroup
         }
     }
     

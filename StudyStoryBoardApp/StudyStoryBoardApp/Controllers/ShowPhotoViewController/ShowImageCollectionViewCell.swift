@@ -11,8 +11,16 @@ class ShowImageCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var image: UIImageView!
     
-    func configurate(img: String) {
-        image.image = UIImage(named: img)
+    func configurate(imageUrl: String) {
+        if let url = URL(string: imageUrl) {
+            let _ = URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let data = data, error == nil else { return }
+                
+                DispatchQueue.main.async {
+                    self.image.image = UIImage(data: data)
+                }
+            }.resume()
+        }
     }
     
     func clearCell() {
