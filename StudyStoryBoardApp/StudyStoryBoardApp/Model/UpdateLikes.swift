@@ -7,11 +7,7 @@
 
 import UIKit
 
-class UpdateLikes: Decodable {
-    var response: NewLikes
-}
-
-class NewLikes: Decodable {
+class NewLikesCount: Decodable {
     var count: Int
     
     enum CodingKeys: String, CodingKey {

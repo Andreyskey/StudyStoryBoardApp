@@ -15,7 +15,7 @@ class ServiseAPI {
     func getRequestFriends(method: Methods, parammeters: Parameters, completion: @escaping ([ProfileItem]?) -> ()) {
         AF.request(baseUrl + method.rawValue, method: .get , parameters: parammeters).responseData { responce in
             guard let data = responce.data else { return }
-            let friends = try! JSONDecoder().decode(ProfilesResponce.self, from: data).response.items
+            let friends = try! JSONDecoder().decode(ResponseObject<Profiles>.self, from: data).response.items
             
             completion(friends)
         }
@@ -24,7 +24,7 @@ class ServiseAPI {
     func getRequestGroups(method: Methods, parammeters: Parameters, completion: @escaping ([GroupItem]?) -> ()) {
         AF.request(baseUrl + method.rawValue, method: .get , parameters: parammeters).responseData { responce in
             guard let data = responce.data else { return }
-            let groups = try! JSONDecoder().decode(GroupsResponce.self, from: data).response.items
+            let groups = try! JSONDecoder().decode(ResponseObject<Groups>.self, from: data).response.items
             
             completion(groups)
         }
@@ -33,7 +33,7 @@ class ServiseAPI {
     func getRequestPhotos(method: Methods, parammeters: Parameters, completion: @escaping ([PhotoItem]?) -> ()) {
         AF.request(baseUrl + method.rawValue, method: .get, parameters: parammeters).responseData { responce in
             guard let data = responce.data else { return }
-            let photos = try! JSONDecoder().decode(PhotosResponce.self, from: data).response.items
+            let photos = try! JSONDecoder().decode(ResponseObject<PhotoUserItems>.self, from: data).response.items
             
             completion(photos)
         }
@@ -42,7 +42,7 @@ class ServiseAPI {
     func getRequestWall(method: Methods, parammeters: Parameters, completion: @escaping ([WallItem]?, [ProfileItem]?, [GroupItem]?) -> ()) {
         AF.request(baseUrl + method.rawValue, method: .get, parameters: parammeters).responseData { responce in
             guard let data = responce.data else { return }
-            let decodeJson = try! JSONDecoder().decode(WallsResponse.self, from: data).response
+            let decodeJson = try! JSONDecoder().decode(ResponseObject<Walls>.self, from: data).response
             let wall = decodeJson.items
             let friends = decodeJson.profiles
             let groups = decodeJson.groups
@@ -54,7 +54,7 @@ class ServiseAPI {
     func getRequestNewsfeed(method: Methods, parammeters: Parameters, completion: @escaping ([NewsFeedItem]?, [ProfileItem]?, [GroupItem]?, String?) -> ()) {
         AF.request(baseUrl + method.rawValue, method: .get, parameters: parammeters).responseData { responce in
             guard let data = responce.data else { return }
-            let newsfeed = try! JSONDecoder().decode(NewsfeedRespounce.self, from: data).response
+            let newsfeed = try! JSONDecoder().decode(ResponseObject<Newsfeed>.self, from: data).response
             let wall = newsfeed.items
             let friends = newsfeed.profiles
             let groups = newsfeed.groups
@@ -64,7 +64,7 @@ class ServiseAPI {
         }
     }
     
-    func postRequestLikeAndUnlike(post: AnyObject?, method: Methods, completion: @escaping (String) -> ()) {
+    func postRequestLikeAndUnlike(post: AnyObject?, method: Methods, completion: @escaping (Int) -> ()) {
         var params: Parameters = [:]
         if let post = post as? WallItem {
             params = [
@@ -108,9 +108,9 @@ class ServiseAPI {
         
         AF.request(baseUrl + method.rawValue, method: .post, parameters: params).responseData { response in
             guard let data = response.data else { return }
-            let likes = try! JSONDecoder().decode(UpdateLikes.self, from: data).response
+            let likes = try! JSONDecoder().decode(ResponseObject<NewLikesCount>.self, from: data).response
             
-            completion(String(likes.count))
+            completion(likes.count)
         }
     }
     

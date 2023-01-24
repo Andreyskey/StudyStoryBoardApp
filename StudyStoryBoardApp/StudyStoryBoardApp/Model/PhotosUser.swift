@@ -7,10 +7,6 @@
 
 import UIKit
 
-class PhotosResponce: Decodable {
-    var response: PhotoUserItems
-}
-
 class PhotoUserItems: Decodable {
     var items: [PhotoItem]
 }

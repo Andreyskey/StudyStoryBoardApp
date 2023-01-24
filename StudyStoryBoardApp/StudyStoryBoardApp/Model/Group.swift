@@ -7,10 +7,6 @@
 
 import UIKit
 
-class GroupsResponce: Decodable {
-    var response: Groups
-}
-
 class Groups: Decodable {
     var items = [GroupItem]()
 }
