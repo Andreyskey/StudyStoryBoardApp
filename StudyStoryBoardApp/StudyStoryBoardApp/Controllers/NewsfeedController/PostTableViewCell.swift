@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import SDWebImageMapKit
 
 class PostTableViewCell: UITableViewCell {
     
@@ -50,6 +51,7 @@ class PostTableViewCell: UITableViewCell {
         else { return }
         
         if let post = post as? WallItem {
+            
             postSelf = post
             // Заполнение поста
             whenBePublic.text = post.date.formatted(date: .abbreviated, time: .omitted)
@@ -77,6 +79,8 @@ class PostTableViewCell: UITableViewCell {
             
             if let group = owner as? GroupItem {
                 imageProfile.sd_setImage(with: URL(string: group.avatar))
+                superView.frame.size.height += CGFloat(post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.height ?? 0)
+                layoutIfNeeded()
                 imagePost.sd_setImage(with: URL(string: post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
                     guard let img = image
                     else { return }
@@ -86,6 +90,8 @@ class PostTableViewCell: UITableViewCell {
                 name.text = group.name
             } else if let profile = owner as? ProfileItem {
                 imageProfile.sd_setImage(with: URL(string: profile.avatar))
+                superView.frame.size.height += CGFloat(post.attachments?.first?.photo?.sizes.last?.height ?? 0)
+                layoutIfNeeded()
                 imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
                     guard let img = image
                     else { return }
@@ -101,7 +107,7 @@ class PostTableViewCell: UITableViewCell {
             textPost.text = post.text
             if post.text == "" { topTextConstraint.constant = 64 } else { topTextConstraint.constant = 76 }
             likesCount.text = String(post.likes.count)
-            commentCount.text = String(post.comments.count)
+            commentCount.text = String(post.comments?.count ?? 0)
             shareCount.text = String(post.reposts.count)
             
             if (post.views?.count ?? 0) > 9999 {
@@ -122,6 +128,8 @@ class PostTableViewCell: UITableViewCell {
             
             if let group = owner as? GroupItem {
                 imageProfile.sd_setImage(with: URL(string: group.avatar))
+                superView.frame.size.height += CGFloat(post.attachments.first?.photo?.sizes.last?.height ?? 0)
+                layoutIfNeeded()
                 imagePost.sd_setImage(with: URL(string: post.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
                     guard let img = image
                     else { return }
@@ -131,6 +139,8 @@ class PostTableViewCell: UITableViewCell {
                 name.text = group.name
             } else if let profile = owner as? ProfileItem {
                 imageProfile.sd_setImage(with: URL(string: profile.avatar))
+                superView.frame.size.height += CGFloat(post.attachments.first?.photo?.sizes.last?.height ?? 0)
+                layoutIfNeeded()
                 imagePost.sd_setImage(with: URL(string: post.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
                     guard let img = image
                     else { return }
@@ -212,7 +222,8 @@ class PostTableViewCell: UITableViewCell {
                 if post.likes.canLike ?? false {
                     post.likes.canLike = false
                     ServiseAPI().postRequestLikeAndUnlike(post: post, method: .likesAdd) { count in
-                        likesCount.text = count
+                        likesCount.text = String(count)
+                        post.likes.count = count
                     }
                     UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
                         guard let self = self else { return }
@@ -224,7 +235,8 @@ class PostTableViewCell: UITableViewCell {
                 } else {
                     post.likes.canLike = true
                     ServiseAPI().postRequestLikeAndUnlike(post: post, method: .likesDelete) { count in
-                        likesCount.text = count
+                        likesCount.text = String(count)
+                        post.likes.count = count
                     }
                     UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
                         guard let self = self else { return }
@@ -240,7 +252,8 @@ class PostTableViewCell: UITableViewCell {
                 if post.likes.canLike ?? false {
                     post.likes.canLike = false
                     ServiseAPI().postRequestLikeAndUnlike(post: post, method: .likesAdd) { count in
-                        likesCount.text = count
+                        likesCount.text = String(count)
+                        post.likes.count = count
                     }
                     UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
                         guard let self = self else { return }
@@ -252,7 +265,8 @@ class PostTableViewCell: UITableViewCell {
                 } else {
                     post.likes.canLike = true
                     ServiseAPI().postRequestLikeAndUnlike(post: post, method: .likesDelete) { count in
-                        likesCount.text = count
+                        likesCount.text = String(count)
+                        post.likes.count = count
                     }
                     UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
                         guard let self = self else { return }

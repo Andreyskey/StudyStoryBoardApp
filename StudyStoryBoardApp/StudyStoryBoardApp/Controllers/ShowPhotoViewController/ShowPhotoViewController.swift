@@ -121,7 +121,7 @@ extension ShowPhotoViewController: UICollectionViewDelegate, UICollectionViewDat
             photo.likes?.userLikes = true
             photo.likes?.count += 1
             ServiseAPI().postRequestLikeAndUnlike(post: photo, method: .likesAdd) { count in
-                likesCount.text = count
+                likesCount.text = String(count)
             }
             UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
                 guard let self = self else { return }
@@ -134,7 +134,7 @@ extension ShowPhotoViewController: UICollectionViewDelegate, UICollectionViewDat
             photo.likes?.userLikes = false
             photo.likes?.count -= 1
             ServiseAPI().postRequestLikeAndUnlike(post: photo, method: .likesDelete) { count in
-                likesCount.text = count
+                likesCount.text = String(count)
             }
             UIView.animate(withDuration: 0.25, delay: 0.05, options: .showHideTransitionViews) { [weak self] in
                 guard let self = self else { return }

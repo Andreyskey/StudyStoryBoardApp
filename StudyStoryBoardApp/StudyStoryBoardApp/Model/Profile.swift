@@ -7,10 +7,6 @@
 
 import UIKit
 
-class ProfilesResponce: Decodable {
-    var response: Profiles
-}
-
 class Profiles: Decodable {
     var items: [ProfileItem]
 }

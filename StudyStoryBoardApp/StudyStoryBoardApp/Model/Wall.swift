@@ -7,10 +7,6 @@
 
 import UIKit
 
-class WallsResponse: Decodable {
-    var response: Walls
-}
-
 class Walls: Decodable {
     var items: [WallItem]
     var profiles: [ProfileItem]
