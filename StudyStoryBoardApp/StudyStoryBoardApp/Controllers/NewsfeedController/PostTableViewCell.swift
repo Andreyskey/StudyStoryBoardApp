@@ -79,7 +79,11 @@ class PostTableViewCell: UITableViewCell {
             
             if let group = owner as? GroupItem {
                 imageProfile.sd_setImage(with: URL(string: group.avatar))
+<<<<<<< HEAD
                 superView.frame.size.height += CGFloat(post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.height ?? 0)
+=======
+                imagePost.frame.size.height = CGFloat(post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.height ?? 0)
+>>>>>>> main
                 layoutIfNeeded()
                 imagePost.sd_setImage(with: URL(string: post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
                     guard let img = image
@@ -90,7 +94,11 @@ class PostTableViewCell: UITableViewCell {
                 name.text = group.name
             } else if let profile = owner as? ProfileItem {
                 imageProfile.sd_setImage(with: URL(string: profile.avatar))
+<<<<<<< HEAD
                 superView.frame.size.height += CGFloat(post.attachments?.first?.photo?.sizes.last?.height ?? 0)
+=======
+                imagePost.frame.size.height = CGFloat(post.attachments?.first?.photo?.sizes.last?.height ?? 0)
+>>>>>>> main
                 layoutIfNeeded()
                 imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
                     guard let img = image
