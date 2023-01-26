@@ -44,7 +44,7 @@ class NewsFeedItem: Decodable {
         let timeInterval = try container.decode(Double.self, forKey: .date)
         self.date = Date(timeIntervalSince1970: timeInterval)
         
-        self.comments = try container.decode(Comments?.self, forKey: .comments)
+        self.comments = try? container.decode(Comments?.self, forKey: .comments)
         self.attachments = try container.decode([Attachments].self, forKey: .attachments)
         self.likes = try container.decode(Likes.self, forKey: .likes)
         self.reposts = try container.decode(Reposts.self, forKey: .reposts)
