@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class Walls: Decodable {
     var items: [WallItem]
@@ -13,7 +14,7 @@ class Walls: Decodable {
     var groups: [GroupItem]
 }
 
-class WallItem: Decodable {
+class WallItem: Object, Decodable {
     var postID: Int
     var fromID: Int
     var date: Date
@@ -50,19 +51,19 @@ class WallItem: Decodable {
     }
 }
 
-class CopyHistory: Decodable {
+class CopyHistory: EmbeddedObject, Decodable {
     var attachments: [Attachments]
 }
 
-class Attachments: Decodable {
+class Attachments: EmbeddedObject, Decodable {
     var photo: PhotoItem?
 }
 
-class Comments: Decodable {
+class Comments: EmbeddedObject, Decodable {
     var count: Int
 }
 
-class Likes: Decodable {
+class Likes: EmbeddedObject, Decodable {
     var count: Int
     var canLike: Bool?
     var userLikes: Bool?
@@ -83,10 +84,10 @@ class Likes: Decodable {
     }
 }
 
-class Reposts: Decodable {
+class Reposts: EmbeddedObject, Decodable {
     var count: Int
 }
 
-class Views: Decodable {
+class Views: EmbeddedObject, Decodable {
     var count: Int?
 }

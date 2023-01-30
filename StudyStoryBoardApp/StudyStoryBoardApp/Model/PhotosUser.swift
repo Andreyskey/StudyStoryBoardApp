@@ -6,19 +6,20 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PhotoUserItems: Decodable {
     var items: [PhotoItem]
 }
 
-class PhotoItem: Decodable {
-    var ownerID: Int
-    var accessKey: String?
+class PhotoItem: Object, Decodable {
+    @Persisted var ownerID: Int
+    @Persisted var accessKey: String?
     var sizes: [SizePhoto]
-    var likes: Likes?
-    var comments: Comments?
-    var reposts: Reposts?
-    var photoID: Int?
+    @Persisted var likes: Likes?
+    @Persisted var comments: Comments?
+    @Persisted var reposts: Reposts?
+    @Persisted var photoID: Int?
     
     enum CodingKeys: String, CodingKey {
         case ownerID = "owner_id"
@@ -28,7 +29,7 @@ class PhotoItem: Decodable {
     }
 }
 
-class SizePhoto: Decodable {
+class SizePhoto: EmbeddedObject, Decodable {
     var url: String
     var type: String
     var width: Int

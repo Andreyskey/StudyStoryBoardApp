@@ -6,17 +6,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class Groups: Decodable {
     var items = [GroupItem]()
 }
 
-class GroupItem: Decodable {
-    var id: Int
-    var activity: String?
-    var name: String
-    var subscribers: Int?
-    var avatar: String
+class GroupItem: Object, Decodable {
+    @Persisted var id: Int
+    @Persisted var activity: String?
+    @Persisted var name: String
+    @Persisted var subscribers: Int?
+    @Persisted var avatar: String
     
     enum CodingKeys: String, CodingKey {
         case activity, id, name

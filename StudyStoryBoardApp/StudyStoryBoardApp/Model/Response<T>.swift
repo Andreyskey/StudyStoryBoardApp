@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ResponseObject<T: Decodable>: Decodable {
     var response: T
