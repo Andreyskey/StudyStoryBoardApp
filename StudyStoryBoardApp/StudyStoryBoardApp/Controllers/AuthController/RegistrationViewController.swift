@@ -69,16 +69,14 @@ extension RegistrationViewController: WKNavigationDelegate {
                 dict[key] = value
                 return dict
             }
-        Session.share.token = params["access_token"]!
-        Session.share.userId = params["user_id"]!
+        UserDefaults().set(params["access_token"], forKey: "token")
+        UserDefaults().set(params["user_id"], forKey: "userID")
         
-        print(Session.share.token)
+        print(UserDefaults().value(forKey: "token")!)
         
         decisionHandler(.allow)
         
-        if Session.share.token != "" {
-            performSegue(withIdentifier: "succesAuth", sender: nil)
-        }
+        performSegue(withIdentifier: "succesAuth", sender: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
             let notifyName = Notification.Name("succes")

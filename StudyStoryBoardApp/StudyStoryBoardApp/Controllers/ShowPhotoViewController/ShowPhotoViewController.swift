@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ShowPhotoViewController: UIViewController {
 
@@ -16,9 +17,11 @@ class ShowPhotoViewController: UIViewController {
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let realm = try! Realm()
     var images = [PhotoItem]()
-    var indexPathRow = 0
+    var userID = 0
     var startIndexPathItem = 0
+    var indexPathRow = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,11 +118,13 @@ extension ShowPhotoViewController: UICollectionViewDelegate, UICollectionViewDat
               let likesCount = likeView.subviews[1] as? UILabel
         else { return }
         
-        let photo = images[indexPathRow]
-
-        if !(photo.likes?.userLikes ?? false) {
-            photo.likes?.userLikes = true
-            photo.likes?.count += 1
+        let photo = realm.object(ofType: ProfileItem.self, forPrimaryKey: userID)?.albumPhoto?.items[indexPathRow]
+        
+        if !(photo?.likes?.userLikes ?? false) {
+            try! realm.write {
+                photo?.likes?.userLikes = true
+                photo?.likes?.count += 1
+            }
             ServiseAPI().postRequestLikeAndUnlike(post: photo, method: .likesAdd) { count in
                 likesCount.text = String(count)
             }
@@ -131,8 +136,10 @@ extension ShowPhotoViewController: UICollectionViewDelegate, UICollectionViewDat
                 self.likeView.layoutIfNeeded()
             }
         } else {
-            photo.likes?.userLikes = false
-            photo.likes?.count -= 1
+            try! realm.write {
+                photo?.likes?.userLikes = false
+                photo?.likes?.count -= 1
+            }
             ServiseAPI().postRequestLikeAndUnlike(post: photo, method: .likesDelete) { count in
                 likesCount.text = String(count)
             }

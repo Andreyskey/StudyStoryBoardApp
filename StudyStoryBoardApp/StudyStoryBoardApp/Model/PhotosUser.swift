@@ -8,14 +8,14 @@
 import UIKit
 import RealmSwift
 
-class PhotoUserItems: Decodable {
-    var items: [PhotoItem]
+class PhotoUserItems: EmbeddedObject, Decodable {
+    @Persisted var items: List<PhotoItem>
 }
 
-class PhotoItem: Object, Decodable {
+class PhotoItem: EmbeddedObject, Decodable {
     @Persisted var ownerID: Int
     @Persisted var accessKey: String?
-    var sizes: [SizePhoto]
+    @Persisted var sizes: List<SizePhoto>
     @Persisted var likes: Likes?
     @Persisted var comments: Comments?
     @Persisted var reposts: Reposts?
@@ -30,8 +30,7 @@ class PhotoItem: Object, Decodable {
 }
 
 class SizePhoto: EmbeddedObject, Decodable {
-    var url: String
-    var type: String
-    var width: Int
-    var height: Int
+    @Persisted var url: String
+    @Persisted var width: Int
+    @Persisted var height: Int
 }

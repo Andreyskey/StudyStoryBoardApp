@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Invalid update: invalid number of sections. The number of sections contained in the table view after the update (2) must be equal to the number of sections c
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let versionBaseDate = Realm.Configuration(schemaVersion: 4)
+        Realm.Configuration.defaultConfiguration = versionBaseDate
+    
         return true
     }
 

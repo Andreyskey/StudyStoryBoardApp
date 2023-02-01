@@ -128,9 +128,9 @@ class PostTableViewCell: UITableViewCell {
             
             if let group = owner as? GroupItem {
                 imageProfile.sd_setImage(with: URL(string: group.avatar))
-                superView.frame.size.height += CGFloat(post.attachments.first?.photo?.sizes.last?.height ?? 0)
+                superView.frame.size.height += CGFloat(post.attachments?.first?.photo?.sizes.last?.height ?? 0)
                 layoutIfNeeded()
-                imagePost.sd_setImage(with: URL(string: post.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
                     guard let img = image
                     else { return }
                     self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
@@ -139,9 +139,9 @@ class PostTableViewCell: UITableViewCell {
                 name.text = group.name
             } else if let profile = owner as? ProfileItem {
                 imageProfile.sd_setImage(with: URL(string: profile.avatar))
-                superView.frame.size.height += CGFloat(post.attachments.first?.photo?.sizes.last?.height ?? 0)
+                superView.frame.size.height += CGFloat(post.attachments?.first?.photo?.sizes.last?.height ?? 0)
                 layoutIfNeeded()
-                imagePost.sd_setImage(with: URL(string: post.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
                     guard let img = image
                     else { return }
                     self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))

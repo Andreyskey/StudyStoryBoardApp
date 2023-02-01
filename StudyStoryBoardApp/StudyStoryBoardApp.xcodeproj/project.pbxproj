@@ -12,6 +12,7 @@
 		BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */; };
 		BA11CBAB2969FB000006CB7A /* ShowImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */; };
 		BA11CBAC2969FB000006CB7A /* ShowImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */; };
+		BA1C39422989A62C00B40C98 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = BA1C39412989A62C00B40C98 /* SwiftyJSON */; };
 		BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD5B28F628C700AA544F /* AppDelegate.swift */; };
 		BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD5D28F628C700AA544F /* SceneDelegate.swift */; };
 		BA6DAD6328F628C700AA544F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA6DAD6128F628C700AA544F /* Main.storyboard */; };
@@ -93,7 +94,6 @@
 		BA93AD47297AB32E0079225C /* UpdateLikes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLikes.swift; sourceTree = "<group>"; };
 		BA93AD4B297D977B0079225C /* NewsfeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedPost.swift; sourceTree = "<group>"; };
 		BA948C8D296C9CF60038415F /* Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
-		BA9A5F9D297DB45600B92DCC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BABC4376290D406D00FCD98F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		BABC4379290D4D9D00FCD98F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		BABC437F290D73CF00FCD98F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -145,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA1C39422989A62C00B40C98 /* SwiftyJSON in Frameworks */,
 				BAFAEE9F297A2608001F5256 /* SDWebImage in Frameworks */,
 				BAFAEEA1297A2608001F5256 /* SDWebImageMapKit in Frameworks */,
 				BAB7EA0E2987B70E00AE69BC /* Realm in Frameworks */,
@@ -374,6 +375,7 @@
 				BAFAEEA0297A2608001F5256 /* SDWebImageMapKit */,
 				BAB7EA0D2987B70E00AE69BC /* Realm */,
 				BAB7EA0F2987B70E00AE69BC /* RealmSwift */,
+				BA1C39412989A62C00B40C98 /* SwiftyJSON */,
 			);
 			productName = StudyStoryBoardApp;
 			productReference = BA6DAD5828F628C700AA544F /* StudyStoryBoardApp.app */;
@@ -407,6 +409,7 @@
 				BA04257029708B26002E4A26 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BAFAEE9D297A2608001F5256 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				BAB7EA0C2987B70E00AE69BC /* XCRemoteSwiftPackageReference "realm-swift" */,
+				BA1C39402989A62C00B40C98 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = BA6DAD5928F628C700AA544F /* Products */;
 			projectDirPath = "";
@@ -502,7 +505,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				BA6DAD6228F628C700AA544F /* Base */,
-				BA9A5F9D297DB45600B92DCC /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -724,6 +726,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		BA1C39402989A62C00B40C98 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		BAB7EA0C2987B70E00AE69BC /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
@@ -747,6 +757,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BA04257029708B26002E4A26 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		BA1C39412989A62C00B40C98 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA1C39402989A62C00B40C98 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 		BAB7EA0D2987B70E00AE69BC /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;

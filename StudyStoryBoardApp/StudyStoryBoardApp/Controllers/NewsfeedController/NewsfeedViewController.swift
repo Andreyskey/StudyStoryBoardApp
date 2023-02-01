@@ -7,10 +7,10 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class NewsfeedViewController: UIViewController {
 
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
     let nofityLoadingData = Notification.Name("loadingSuccess")
@@ -41,22 +41,22 @@ class NewsfeedViewController: UIViewController {
     
     @objc func loadWall() {
         let params: Parameters = [
-            "access_token" : Session.share.token,
+            "access_token" : UserDefaults().value(forKey: "token") as! String,
             "extended" : "1",
-            "count" : "30",
+            "count" : "100",
             "filter" : "all",
             "fields" : "photo_200, online, status",
             "v" : "5.131"
         ]
         
-        ServiseAPI().getRequestWall(method: .wallGet, parammeters: params) { wall, friends, groups in
-            guard let posts = wall,
-                  let friends = friends,
-                  let groupsWall = groups
+        ServiseAPI().getRequestWall(method: .wallGet, parammeters: params) { walls in
+            guard let posts = walls?.items,
+                  let friends = walls?.profiles,
+                  let groupsWall = walls?.groups
             else { return }
-            self.wall = posts
-            self.profiles = friends
-            self.groups = groupsWall
+            self.wall = Array(posts)
+            self.profiles = Array(friends)
+            self.groups = Array(groupsWall)
             self.tableView.reloadData()
         }
     }
@@ -67,8 +67,18 @@ class NewsfeedViewController: UIViewController {
         UIView.animate(withDuration: 1.5) {
             self.tableView.alpha = 1
         }
-        loadingIndicator.stopAnimating()
     }
+    
+    @IBAction func logoutApp(_ sender: Any) {
+        UserDefaults().setValue(false, forKey: "isLogin")
+        UserDefaults().removeObject(forKey: "token")
+        UserDefaults().removeObject(forKey: "userID")
+        try! Realm().write{
+            try! Realm().deleteAll()
+        }
+        
+    }
+    
 }
 
 extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
