@@ -61,7 +61,7 @@ class PostTableViewCell: UITableViewCell {
             commentCount.text = String(post.comments.count)
             shareCount.text = String(post.reposts.count)
             
-            if (post.views?.count ?? 0) > 9999 {
+            if (post.views?.count ?? 0) > 999 {
                 seesPostCount.text = String(Int(post.views!.count! / 1000)) + "K"
             } else {
                 seesPostCount.text = String(post.views?.count ?? 0)
@@ -81,7 +81,7 @@ class PostTableViewCell: UITableViewCell {
                 imageProfile.sd_setImage(with: URL(string: group.avatar))
                 superView.frame.size.height += CGFloat(post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.height ?? 0)
                 layoutIfNeeded()
-                imagePost.sd_setImage(with: URL(string: post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                imagePost.sd_setImage(with: URL(string: post.copyHistory?.first?.attachments.first?.photo?.sizes.last?.url ?? ""), placeholderImage: nil, options: [.progressiveLoad]) { image, _, _, _ in
                     guard let img = image
                     else { return }
                     self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
@@ -92,7 +92,7 @@ class PostTableViewCell: UITableViewCell {
                 imageProfile.sd_setImage(with: URL(string: profile.avatar))
                 superView.frame.size.height += CGFloat(post.attachments?.first?.photo?.sizes.last?.height ?? 0)
                 layoutIfNeeded()
-                imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? ""), placeholderImage: nil, options: [.progressiveLoad]) { image, _, _, _ in
                     guard let img = image
                     else { return }
                     self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
@@ -101,6 +101,7 @@ class PostTableViewCell: UITableViewCell {
                 name.text = profile.firstName + " " + profile.lastName
             }
         } else if let post = post as? NewsFeedItem {
+            print(post.attachments, post.postID, post.text)
             postSelf = post
             // Заполнение поста
             whenBePublic.text = post.date.formatted(date: .abbreviated, time: .shortened)
@@ -110,7 +111,7 @@ class PostTableViewCell: UITableViewCell {
             commentCount.text = String(post.comments?.count ?? 0)
             shareCount.text = String(post.reposts.count)
             
-            if (post.views?.count ?? 0) > 9999 {
+            if (post.views?.count ?? 0) > 999 {
                 seesPostCount.text = String(Int(post.views!.count! / 1000)) + "K"
             } else {
                 seesPostCount.text = String(post.views?.count ?? 0)
@@ -127,10 +128,11 @@ class PostTableViewCell: UITableViewCell {
             }
             
             if let group = owner as? GroupItem {
+                print(group.name)
                 imageProfile.sd_setImage(with: URL(string: group.avatar))
                 superView.frame.size.height += CGFloat(post.attachments?.first?.photo?.sizes.last?.height ?? 0)
                 layoutIfNeeded()
-                imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? ""), placeholderImage: nil, options: [.progressiveLoad]) { image, _, _, _ in
                     guard let img = image
                     else { return }
                     self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))
@@ -141,7 +143,7 @@ class PostTableViewCell: UITableViewCell {
                 imageProfile.sd_setImage(with: URL(string: profile.avatar))
                 superView.frame.size.height += CGFloat(post.attachments?.first?.photo?.sizes.last?.height ?? 0)
                 layoutIfNeeded()
-                imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? "")) { image, _, _, _ in
+                imagePost.sd_setImage(with: URL(string: post.attachments?.first?.photo?.sizes.last?.url ?? ""), placeholderImage: nil, options: [.progressiveLoad]) { image, _, _, _ in
                     guard let img = image
                     else { return }
                     self.imagePost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagePost.frame.width, height: 0))

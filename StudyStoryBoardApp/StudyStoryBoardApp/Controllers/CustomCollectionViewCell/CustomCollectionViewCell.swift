@@ -12,7 +12,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var img: UIImageView!
     
     func configCell(imageUrl: String?) {
-        img.sd_setImage(with: URL(string: imageUrl ?? ""))
+        img.sd_setImage(with: URL(string: imageUrl ?? ""), placeholderImage: nil, options: [.progressiveLoad])
     }
     
     func clearCell() {

@@ -7,9 +7,11 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class SearchViewController: UIViewController {
     
+    let realm = try! Realm()
     let searchViewControllerIndentifier = "searchViewControllerIndentifier"
     var groups = [GroupItem]()
 
@@ -56,12 +58,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let actionJoin = UIAlertAction(title: "Вступить", style: .default) { action in
-            ServiseAPI().joinGrouo(idGroup: self.groups[indexPath.section].id) { result in
+            ServiseAPI().joinGroup(idGroup: self.groups[indexPath.section].id) { result in
                 if result {
-                    print("joined group")
+                    try! self.realm.write {
+                        let user = self.realm.object(ofType: User.self, forPrimaryKey: Int(UserDefaults().object(forKey: "userID") as! String) ?? 0)
+                        user?.groups.append(self.groups[indexPath.section])
+                    }
                     self.performSegue(withIdentifier: "addedGroup", sender: nil)
                 } else {
-                    let alert = UIAlertController(title: "Вы уже состоите в группе",
+                    let alert = UIAlertController(title: "Вы уже состоите в этой группе",
                                                  message: nil,
                                                  preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ок", style: .cancel))
@@ -80,7 +85,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
-            
             ServiseAPI().searchGroups(searchText: searchText) { array in
                 guard let findGroups = array else { return }
                 self.groups = Array(findGroups)

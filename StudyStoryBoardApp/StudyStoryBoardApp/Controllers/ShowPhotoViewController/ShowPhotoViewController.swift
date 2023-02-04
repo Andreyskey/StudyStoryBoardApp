@@ -44,8 +44,8 @@ class ShowPhotoViewController: UIViewController {
         else { return }
         
         likesCount.text = String(images[indexPathRow].likes?.count ?? 0)
-        shareCount.text = String(images[indexPathRow].reposts?.count ?? 0)
-        commentsCount.text = String(images[indexPathRow].comments?.count ?? 0)
+        shareCount.text = String(images[indexPathRow].reposts)
+        commentsCount.text = String(images[indexPathRow].comments)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -118,7 +118,7 @@ extension ShowPhotoViewController: UICollectionViewDelegate, UICollectionViewDat
               let likesCount = likeView.subviews[1] as? UILabel
         else { return }
         
-        let photo = realm.object(ofType: ProfileItem.self, forPrimaryKey: userID)?.albumPhoto?.items[indexPathRow]
+        let photo = realm.object(ofType: ProfileItem.self, forPrimaryKey: userID)?.photos[indexPathRow]
         
         if !(photo?.likes?.userLikes ?? false) {
             try! realm.write {

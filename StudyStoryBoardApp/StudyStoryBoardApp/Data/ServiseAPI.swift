@@ -13,9 +13,9 @@ import SwiftyJSON
 class ServiseAPI {
     
     let realm = try! Realm()
-    let baseUrl = "https://api.vk.com/method"
-    let token = UserDefaults().value(forKey: "token") as! String
-    let userID = UserDefaults().value(forKey: "userID") as! String
+    private let baseURL = "https://api.vk.com/method"
+    private let token = UserDefaults().value(forKey: "token") as! String
+    private let userID = UserDefaults().value(forKey: "userID") as! String
     
     func getRequestFriends(completion: @escaping () -> ()) {
         
@@ -23,25 +23,24 @@ class ServiseAPI {
             "access_token" : token,
             "user_id" : userID,
             "order" : "random",
-            "fields" : "photo_200, online, status",
+            "fields" : "photo_200, online, status, bdate, country, city, sex",
             "v" : "5.131"
         ]
         
-        AF.request(baseUrl + Methods.friendsGet.rawValue, method: .get , parameters: params).responseData { responce in
+        AF.request(baseURL + Methods.friendsGet.rawValue, method: .get , parameters: params).responseData { responce in
             guard let data = responce.data,
-                  let friends = try? JSONDecoder().decode(ResponseObject<Profiles>.self, from: data).response
+                  let friends = try? JSONDecoder().decode(ResponseObject<Profiles>.self, from: data).response.items,
+                  let user = self.realm.object(ofType: User.self, forPrimaryKey: Int(self.userID) ?? 0)
             else {
                 print("Error request or decode JSON from Get Friends")
                 return
             }
             
-            let allProfiles = self.realm.objects(Profiles.self)
-            
-            if allProfiles.isEmpty {
+            if user.friends.isEmpty {
                 try! self.realm.write{
-                    self.realm.add(friends)
+                    user.friends = friends
                 }
-            } else if allProfiles.first != nil {
+            } else if user.friends != friends {
                 try! self.realm.write{
                     self.realm.add(friends, update: .modified)
                 }
@@ -60,21 +59,20 @@ class ServiseAPI {
             "v" : "5.131"
         ]
         
-        AF.request(baseUrl + Methods.groupsGet.rawValue, method: .get , parameters: params).responseData { responce in
+        AF.request(baseURL + Methods.groupsGet.rawValue, method: .get , parameters: params).responseData { responce in
             guard let data = responce.data,
-                  let groups = try? JSONDecoder().decode(ResponseObject<Groups>.self, from: data).response
+                  let groups = try? JSONDecoder().decode(ResponseObject<Groups>.self, from: data).response.items,
+                  let user = self.realm.object(ofType: User.self, forPrimaryKey: Int(self.userID) ?? 0)
             else {
                 print("Error request or decode JSON from Get Groups")
                 return
             }
             
-            let allGroups = self.realm.objects(Groups.self)
-            
-            if allGroups.isEmpty {
+            if user.groups.isEmpty {
                 try! self.realm.write{
-                    self.realm.add(groups)
+                    user.groups = groups
                 }
-            } else if allGroups.first != nil {
+            } else if user.groups != groups {
                 try! self.realm.write{
                     self.realm.add(groups, update: .modified)
                 }
@@ -83,37 +81,26 @@ class ServiseAPI {
         }
     }
     
-    func getRequestPhotos(ownerUserID: Int, completion: @escaping () -> ()) {
-        
+    func getRequestPhotos(ownerID: Int, completion: @escaping () -> ()) {
         let params: Parameters = [
             "access_token" : token,
-            "owner_id" : String(ownerUserID),
+            "owner_id" : String(ownerID),
             "album_id" : "profile",
             "extended" : "1",
-            "rev" : "0",
-            "photo_sizes" : "1",
             "v" : "5.131"
         ]
         
-        AF.request(baseUrl + Methods.photosGet.rawValue, method: .get, parameters: params).responseData { responce in
+        AF.request(baseURL + Methods.photosGet.rawValue, method: .get, parameters: params).responseData { responce in
             guard let data = responce.data,
-                  let photos = try? JSONDecoder().decode(ResponseObject<PhotoUserItems>.self, from: data).response
+                  let photos = try? JSONDecoder().decode(ResponseObject<PhotoUserItems>.self, from: data).response.items
             else {
                 print("Error request or decode JSON from Get Photos")
                 return
             }
             
-            let profile = self.realm.object(ofType: ProfileItem.self, forPrimaryKey: ownerUserID)
-            
-            if profile?.albumPhoto != nil {
-                try! self.realm.write {
-                    profile!.albumPhoto = photos
-                    self.realm.add(profile!, update: .modified)
-                }
-            } else if profile != nil {
-                try! self.realm.write {
-                    profile!.albumPhoto = photos
-                }
+            try! self.realm.write {
+                let profile = self.realm.object(ofType: ProfileItem.self, forPrimaryKey: ownerID)
+                profile?.photos = photos
             }
             completion()
         }
@@ -127,7 +114,7 @@ class ServiseAPI {
             "v" : "5.131"
         ]
         
-        AF.request(baseUrl + Methods.groupsLeave.rawValue, method: .post, parameters: params).responseData { responce in
+        AF.request(baseURL + Methods.groupsLeave.rawValue, method: .post, parameters: params).responseData { responce in
             guard let data = responce.data,
                   let json = try? JSON(data: data)
             else { return }
@@ -139,14 +126,14 @@ class ServiseAPI {
         }
     }
     
-    func joinGrouo(idGroup: Int, completion: @escaping (_ Result: Bool) -> ()) {
+    func joinGroup(idGroup: Int, completion: @escaping (_ Result: Bool) -> ()) {
         let params: Parameters = [
             "access_token" : token,
             "group_id" : String(idGroup),
             "v" : "5.131"
         ]
         
-        AF.request(baseUrl + Methods.groupsJoin.rawValue, method: .post, parameters: params).responseData { responce in
+        AF.request(baseURL + Methods.groupsJoin.rawValue, method: .post, parameters: params).responseData { responce in
             guard let data = responce.data,
                   let json = try? JSON(data: data)
             else { return }
@@ -170,16 +157,16 @@ class ServiseAPI {
             "v" : "5.131"
         ]
         
-        AF.request(baseUrl + Methods.searchGroupGet.rawValue, method: .get, parameters: params).responseData { responce in
+        AF.request(baseURL + Methods.searchGroupGet.rawValue, method: .get, parameters: params).responseData { responce in
             guard let data = responce.data else { return }
-            let groups = try? JSONDecoder().decode(ResponseObject<Groups>.self, from: data).response.items
+            let groups = try! JSONDecoder().decode(ResponseObject<Groups>.self, from: data).response.items
             
             completion(groups)
         }
     }
     
     func getRequestWall(method: Methods, parammeters: Parameters, completion: @escaping (Walls?) -> ()) {
-        AF.request(baseUrl + method.rawValue, method: .get, parameters: parammeters).responseData { responce in
+        AF.request(baseURL + method.rawValue, method: .get, parameters: parammeters).responseData { responce in
             guard let data = responce.data else { return }
             let walls = try? JSONDecoder().decode(ResponseObject<Walls>.self, from: data).response
             
@@ -188,7 +175,7 @@ class ServiseAPI {
     }
     
     func getRequestNewsfeed(method: Methods, parammeters: Parameters, completion: @escaping ([NewsFeedItem]?, [ProfileItem]?, [GroupItem]?, String?) -> ()) {
-        AF.request(baseUrl + method.rawValue, method: .get, parameters: parammeters).responseData { responce in
+        AF.request(baseURL + method.rawValue, method: .get, parameters: parammeters).responseData { responce in
             guard let data = responce.data
             else {
                 print("Error request or decode JSON from NewsFeed.get")
@@ -201,9 +188,9 @@ class ServiseAPI {
             let wall = newsfeed.items
             let friends = newsfeed.profiles
             let groups = newsfeed.groups
-            let nextFrom = newsfeed.nextForm
+//            let nextFrom = newsfeed.nextForm
             
-            completion(wall, friends, groups, nextFrom)
+            completion(wall, friends, groups, nil)
         }
     }
     
@@ -249,11 +236,58 @@ class ServiseAPI {
             fatalError("ERROR REQUEST LIKE ACTION! *file* ServiceAPI, Check object")
         }
         
-        AF.request(baseUrl + method.rawValue, method: .post, parameters: params).responseData { response in
+        AF.request(baseURL + method.rawValue, method: .post, parameters: params).responseData { response in
             guard let data = response.data else { return }
             let likes = try! JSONDecoder().decode(ResponseObject<NewLikesCount>.self, from: data).response
             
             completion(likes.count)
+        }
+    }
+    
+    final func loadUserData() {
+        let params: Parameters = [
+            "access_token" : token,
+            "v" : "5.131"
+        ]
+        AF.request(baseURL + Methods.accountGetProfileInfo.rawValue, method: .get, parameters: params).responseData { response in
+            guard let data = response.data,
+                  let userInfo = try? JSONDecoder().decode(ResponseObject<User>.self, from: data).response
+            else {
+                print("Error request or decode JSON from get account info")
+                print(JSON(response.data as Any))
+                return
+            }
+            
+            try! self.realm.write {
+                self.realm.add(userInfo)
+            }
+        }
+    }
+    
+    func updateOnlineStatus() {
+        let params: Parameters = [
+            "access_token" : token,
+            "v" : "5.131"
+        ]
+        
+        AF.request(baseURL + Methods.friendsGetOnline.rawValue, method: .get, parameters: params).responseData { response in
+            guard let data = response.data,
+                  let onlineFriends = JSON(data)["response"].rawValue as? [Int]
+            else {
+                print("Fail convertable to [Int]")
+                return
+            }
+            if onlineFriends.isEmpty { return }
+            
+            for i in onlineFriends {
+                if let friend = self.realm.object(ofType: ProfileItem.self, forPrimaryKey: i) {
+                    try! self.realm.write {
+                        friend.online = true
+                    }
+                } else {
+                    self.realm.object(ofType: ProfileItem.self, forPrimaryKey: i)?.online = false
+                }
+            }
         }
     }
     
@@ -270,6 +304,9 @@ class ServiseAPI {
         case newsfeedGet = "/newsfeed.get"
         case groupsLeave = "/groups.leave"
         case groupsJoin = "/groups.join"
+        case accountGetProfileInfo = "/account.getProfileInfo"
+        case friendsGetOnline = "/friends.getOnline"
+
     }
 }
 

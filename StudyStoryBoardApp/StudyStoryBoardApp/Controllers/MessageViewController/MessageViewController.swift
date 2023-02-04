@@ -61,13 +61,11 @@ class MessageViewController: UIViewController {
         ServiseAPI().getRequestNewsfeed(method: .newsfeedGet, parammeters: params) { news, prof, grp, nxtFrm in
             guard let post = news,
                   let profile = prof,
-                  let group = grp,
-                  let nextFrom = nxtFrm
+                  let group = grp
             else { return }
             self.posts = post
             self.profiles = profile
             self.groups = group
-            self.nextfrom = nextFrom
             self.tableView.reloadData()
             self.refresh.endRefreshing()
         }
