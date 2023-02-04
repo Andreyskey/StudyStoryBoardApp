@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewLikesCount: Decodable {
     var count: Int

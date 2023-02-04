@@ -6,18 +6,19 @@
 //
 
 import UIKit
+import RealmSwift
 
 class Profiles: Decodable {
     var items: [ProfileItem]
 }
 
-class ProfileItem: Decodable {
-    var id: Int
-    var online: Bool
-    var firstName: String
-    var lastName: String
-    var avatar: String
-    var status: String?
+class ProfileItem: Object, Decodable {
+    @Persisted var id: Int
+    @Persisted var online: Bool
+    @Persisted var firstName: String
+    @Persisted var lastName: String
+    @Persisted var avatar: String
+    @Persisted var status: String?
     
     enum CodingKeys: String, CodingKey {
         case id

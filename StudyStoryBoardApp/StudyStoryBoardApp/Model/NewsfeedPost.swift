@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class Newsfeed: Decodable {
     var items: [NewsFeedItem]
@@ -19,17 +20,17 @@ class Newsfeed: Decodable {
     }
 }
 
-class NewsFeedItem: Decodable {
-    var sourseID: Int
-    var date: Date
-    var comments: Comments?
+class NewsFeedItem: Object, Decodable {
+    @Persisted var sourseID: Int
+    @Persisted var date: Date
+    @Persisted var comments: Comments?
     var attachments: [Attachments]
-    var likes: Likes
-    var reposts: Reposts
-    var text: String
-    var views: Views?
-    var postID: Int
-    var ownerID: Int
+    @Persisted var likes: Likes
+    @Persisted var reposts: Reposts
+    @Persisted var text: String
+    @Persisted var views: Views?
+    @Persisted var postID: Int
+    @Persisted var ownerID: Int
     
     enum CodingKeys: String, CodingKey {
         case date, comments, attachments, likes, reposts, text, views

@@ -24,6 +24,8 @@
 		BA93AD48297AB32E0079225C /* UpdateLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93AD47297AB32E0079225C /* UpdateLikes.swift */; };
 		BA93AD4C297D977B0079225C /* NewsfeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93AD4B297D977B0079225C /* NewsfeedPost.swift */; };
 		BA948C8E296C9CF60038415F /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA948C8D296C9CF60038415F /* Singleton.swift */; };
+		BAB7EA0E2987B70E00AE69BC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = BAB7EA0D2987B70E00AE69BC /* Realm */; };
+		BAB7EA102987B70E00AE69BC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BAB7EA0F2987B70E00AE69BC /* RealmSwift */; };
 		BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4376290D406D00FCD98F /* RegistrationViewController.swift */; };
 		BABC437A290D4D9D00FCD98F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC4379290D4D9D00FCD98F /* Profile.swift */; };
 		BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABC437F290D73CF00FCD98F /* CustomButton.swift */; };
@@ -145,6 +147,8 @@
 			files = (
 				BAFAEE9F297A2608001F5256 /* SDWebImage in Frameworks */,
 				BAFAEEA1297A2608001F5256 /* SDWebImageMapKit in Frameworks */,
+				BAB7EA0E2987B70E00AE69BC /* Realm in Frameworks */,
+				BAB7EA102987B70E00AE69BC /* RealmSwift in Frameworks */,
 				BA04257229708B26002E4A26 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,6 +372,8 @@
 				BA04257129708B26002E4A26 /* Alamofire */,
 				BAFAEE9E297A2608001F5256 /* SDWebImage */,
 				BAFAEEA0297A2608001F5256 /* SDWebImageMapKit */,
+				BAB7EA0D2987B70E00AE69BC /* Realm */,
+				BAB7EA0F2987B70E00AE69BC /* RealmSwift */,
 			);
 			productName = StudyStoryBoardApp;
 			productReference = BA6DAD5828F628C700AA544F /* StudyStoryBoardApp.app */;
@@ -400,6 +406,7 @@
 			packageReferences = (
 				BA04257029708B26002E4A26 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BAFAEE9D297A2608001F5256 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				BAB7EA0C2987B70E00AE69BC /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = BA6DAD5928F628C700AA544F /* Products */;
 			projectDirPath = "";
@@ -717,6 +724,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		BAB7EA0C2987B70E00AE69BC /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.34.1;
+			};
+		};
 		BAFAEE9D297A2608001F5256 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -732,6 +747,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BA04257029708B26002E4A26 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		BAB7EA0D2987B70E00AE69BC /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAB7EA0C2987B70E00AE69BC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		BAB7EA0F2987B70E00AE69BC /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAB7EA0C2987B70E00AE69BC /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		BAFAEE9E297A2608001F5256 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
