@@ -34,16 +34,13 @@ class AlbumUserViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let id = userId?.id else { return }
-        ServiseAPI().getRequestPhotos(ownerUserID: id) {
-            guard let profile = self.realm.object(ofType: ProfileItem.self, forPrimaryKey: id),
-                  let album = profile.albumPhoto?.items
-            else { return }
+        guard let id = userId?.id,
+              let profile = self.realm.object(ofType: ProfileItem.self, forPrimaryKey: id)
+        else { return }
             
-            self.photos = Array(album)
-            self.collectionView.reloadData()
-            self.loadingIndicator.stopAnimating()
-        }
+        photos = Array(profile.photos)
+        collectionView.reloadData()
+        loadingIndicator.stopAnimating()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

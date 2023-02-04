@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let versionBaseDate = Realm.Configuration(schemaVersion: 4)
+        let versionBaseDate = Realm.Configuration(schemaVersion: 2)
         Realm.Configuration.defaultConfiguration = versionBaseDate
     
         return true

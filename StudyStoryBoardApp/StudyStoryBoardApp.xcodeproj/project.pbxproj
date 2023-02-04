@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA016356298D64380004AB91 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA016355298D64380004AB91 /* User.swift */; };
 		BA04257229708B26002E4A26 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BA04257129708B26002E4A26 /* Alamofire */; };
 		BA11CBA52969D4A20006CB7A /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA42969D4A20006CB7A /* MessageViewController.swift */; };
 		BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */; };
@@ -76,6 +77,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA016355298D64380004AB91 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BA11CBA42969D4A20006CB7A /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoViewController.swift; sourceTree = "<group>"; };
 		BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -342,13 +344,14 @@
 		BAEE356128F9BFF300004183 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BAF408D6297FBA5700E630D2 /* Response<T>.swift */,
+				BA016355298D64380004AB91 /* User.swift */,
 				BABC4379290D4D9D00FCD98F /* Profile.swift */,
 				BAEE356228F9C00000004183 /* Group.swift */,
 				BADB89D429769FCB0036BB30 /* PhotosUser.swift */,
 				BADB89D62978C0120036BB30 /* Wall.swift */,
 				BA93AD47297AB32E0079225C /* UpdateLikes.swift */,
 				BA93AD4B297D977B0079225C /* NewsfeedPost.swift */,
-				BAF408D6297FBA5700E630D2 /* Response<T>.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA016356298D64380004AB91 /* User.swift in Sources */,
 				BAF408D7297FBA5700E630D2 /* Response<T>.swift in Sources */,
 				BAEE355E28F993D200004183 /* GroupViewController.swift in Sources */,
 				BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */,

@@ -47,16 +47,12 @@ class WallItem: Decodable {
         self.likes = try container.decode(Likes.self, forKey: .likes)
         self.reposts = try container.decode(Reposts.self, forKey: .reposts)
         self.text = try container.decode(String.self, forKey: .text)
-        self.views = try? container.decode(Views?.self, forKey: .views)
+        self.views = try? container.decode(Views.self, forKey: .views)
     }
 }
 
 class CopyHistory: Decodable {
     var attachments: [Attachments]
-}
-
-class Attachments: Decodable {
-    var photo: PhotoItem?
 }
 
 class Comments: EmbeddedObject, Decodable {
