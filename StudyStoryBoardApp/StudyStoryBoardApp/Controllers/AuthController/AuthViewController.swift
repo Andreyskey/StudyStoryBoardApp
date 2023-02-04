@@ -86,9 +86,8 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
     @IBAction func unwindToAuth(_ unwindSegue: UIStoryboardSegue) {
         guard let identifier = unwindSegue.identifier else { return }
         if identifier == "succesAuth" {
+            UserDefaults().set(true, forKey: "isLogin")
             animationLoading()
-        } else if identifier == "exit" {
-            self.storyboard?.instantiateInitialViewController()
         }
     }
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class AlbumUserViewController: UIViewController {
     
@@ -20,6 +21,7 @@ class AlbumUserViewController: UIViewController {
         }
     }
     
+    let realm = try! Realm()
     var photos = [PhotoItem]()
     var userId: ProfileItem?
     let PhotoCollectionViewControllerIdentifier = "PhotoCollectionViewControllerIdentifier"
@@ -33,31 +35,25 @@ class AlbumUserViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         guard let id = userId?.id else { return }
-        let paramsPhoto: Parameters = [
-            "access_token" : Session.share.token,
-            "owner_id" : String(id),
-            "album_id" : "profile",
-            "extended" : "1",
-            "rev" : "0",
-            "photo_sizes" : "1",
-            "v" : "5.131"
-        ]
-        ServiseAPI().getRequestPhotos(method: .photosGet, parammeters: paramsPhoto) { array in
-            guard let photosUser = array else { return }
-            self.photos = photosUser
+        ServiseAPI().getRequestPhotos(ownerUserID: id) {
+            guard let profile = self.realm.object(ofType: ProfileItem.self, forPrimaryKey: id),
+                  let album = profile.albumPhoto?.items
+            else { return }
+            
+            self.photos = Array(album)
             self.collectionView.reloadData()
-            if photosUser.isEmpty { self.textIfAlbumIsEmpty.isHidden = false }
             self.loadingIndicator.stopAnimating()
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showImages" else { return }
         guard let destination = segue.destination as? ShowPhotoViewController
         else { return }
         destination.images = photos
-        destination.startIndexPathItem = collectionView.indexPathsForSelectedItems![0].item
-        
+        destination.userID = userId?.id ?? 0
     }
+
 
     @IBAction func unwindToAlbum(_ unwindSegue: UIStoryboardSegue) {
         

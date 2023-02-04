@@ -12,6 +12,8 @@ class MessageViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    let refresh = UIRefreshControl()
+    
     let identifierMessageViewCOntroller = "identifierMessageViewCOntroller"
     let nofityLoadingData = Notification.Name("loadingSuccess")
     let loadData = Notification.Name("loadData")
@@ -26,9 +28,11 @@ class MessageViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.alpha = 0
-        
         tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: identifierMessageViewCOntroller)
+        tableView.addSubview(refresh)
+        
+        refresh.addTarget(self, action: #selector(loadWall), for: .valueChanged)
+        refresh.beginRefreshing()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableViewData), name: nofityLoadingData, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadWall), name: loadData, object: nil)
@@ -45,10 +49,11 @@ class MessageViewController: UIViewController {
     
     @objc func loadWall() {
         let params: Parameters = [
-            "access_token" : Session.share.token,
+            "access_token" : UserDefaults().value(forKey: "token") as! String,
             "filters" : "post",
             "max_photos" : "1",
             "sourse_ids" : "friends, groups, following",
+            "count" : "100",
             "fields" : "photo_200",
             "v" : "5.131"
         ]
@@ -64,16 +69,13 @@ class MessageViewController: UIViewController {
             self.groups = group
             self.nextfrom = nextFrom
             self.tableView.reloadData()
+            self.refresh.endRefreshing()
         }
     }
     
     @objc func reloadTableViewData() {
         tableView.beginUpdates()
         tableView.endUpdates()
-        UIView.animate(withDuration: 1.5) {
-            self.tableView.alpha = 1
-        }
-//        loadingIndicator.stopAnimating()
     }
 }
 
@@ -103,9 +105,15 @@ extension MessageViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         
+        cell.alpha = 0
+        
         cell.configurate(post: posts[indexPath.row], owner: owner)
+        
+        UIView.animate(withDuration: 1, delay: 0, options: .allowUserInteraction) {
+            cell.alpha = 1
+        }
 
         return cell
+        
     }
-
 }

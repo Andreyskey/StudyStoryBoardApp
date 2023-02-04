@@ -8,17 +8,29 @@
 import UIKit
 import RealmSwift
 
-class Profiles: Decodable {
-    var items: [ProfileItem]
+class Profiles: Object, Decodable {
+    @Persisted(primaryKey: true) var objectID: Int = 0
+    @Persisted var items: List<ProfileItem>
+    
+    enum CodingKeys: CodingKey {
+        case items
+    }
+    
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self._items = try container.decode(Persisted<List<ProfileItem>>.self, forKey: .items)
+    }
 }
 
 class ProfileItem: Object, Decodable {
-    @Persisted var id: Int
-    @Persisted var online: Bool
-    @Persisted var firstName: String
-    @Persisted var lastName: String
-    @Persisted var avatar: String
+    @Persisted(primaryKey: true) var id: Int
+    @Persisted var online: Bool = false
+    @Persisted var firstName: String = ""
+    @Persisted var lastName: String = ""
+    @Persisted var avatar: String = ""
     @Persisted var status: String?
+    @Persisted var albumPhoto: PhotoUserItems?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -29,7 +41,8 @@ class ProfileItem: Object, Decodable {
         case status
     }
     
-    required init(from decoder: Decoder) throws {
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(Int.self, forKey: .id)
         let online = try? container.decode(Int.self, forKey: .online)

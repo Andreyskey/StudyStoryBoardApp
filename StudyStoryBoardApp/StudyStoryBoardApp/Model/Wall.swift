@@ -14,7 +14,7 @@ class Walls: Decodable {
     var groups: [GroupItem]
 }
 
-class WallItem: Object, Decodable {
+class WallItem: Decodable {
     var postID: Int
     var fromID: Int
     var date: Date
@@ -51,22 +51,22 @@ class WallItem: Object, Decodable {
     }
 }
 
-class CopyHistory: EmbeddedObject, Decodable {
+class CopyHistory: Decodable {
     var attachments: [Attachments]
 }
 
-class Attachments: EmbeddedObject, Decodable {
+class Attachments: Decodable {
     var photo: PhotoItem?
 }
 
 class Comments: EmbeddedObject, Decodable {
-    var count: Int
+    @Persisted var count: Int
 }
 
 class Likes: EmbeddedObject, Decodable {
-    var count: Int
-    var canLike: Bool?
-    var userLikes: Bool?
+    @Persisted var count: Int
+    @Persisted var canLike: Bool?
+    @Persisted var userLikes: Bool?
     
     enum CodingKeys: String, CodingKey {
         case count
@@ -74,7 +74,8 @@ class Likes: EmbeddedObject, Decodable {
         case userLikes = "user_likes"
     }
     
-    required init(from decoder: Decoder) throws {
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.count = try container.decode(Int.self, forKey: .count)
         let canLike = try? container.decode(Int.self, forKey: .canLike)
@@ -85,9 +86,9 @@ class Likes: EmbeddedObject, Decodable {
 }
 
 class Reposts: EmbeddedObject, Decodable {
-    var count: Int
+    @Persisted var count: Int
 }
 
 class Views: EmbeddedObject, Decodable {
-    var count: Int?
+    @Persisted  var count: Int?
 }

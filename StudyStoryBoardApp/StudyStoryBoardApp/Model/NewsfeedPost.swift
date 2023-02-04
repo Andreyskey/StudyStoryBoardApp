@@ -20,17 +20,17 @@ class Newsfeed: Decodable {
     }
 }
 
-class NewsFeedItem: Object, Decodable {
-    @Persisted var sourseID: Int
-    @Persisted var date: Date
-    @Persisted var comments: Comments?
-    var attachments: [Attachments]
-    @Persisted var likes: Likes
-    @Persisted var reposts: Reposts
-    @Persisted var text: String
-    @Persisted var views: Views?
-    @Persisted var postID: Int
-    @Persisted var ownerID: Int
+class NewsFeedItem: Decodable {
+    var sourseID: Int
+    var date: Date
+    var comments: Comments?
+    var attachments: [Attachments]?
+    var likes: Likes
+    var reposts: Reposts
+    var text: String
+    var views: Views?
+    var postID: Int
+    var ownerID: Int
     
     enum CodingKeys: String, CodingKey {
         case date, comments, attachments, likes, reposts, text, views
@@ -46,7 +46,7 @@ class NewsFeedItem: Object, Decodable {
         self.date = Date(timeIntervalSince1970: timeInterval)
         
         self.comments = try? container.decode(Comments?.self, forKey: .comments)
-        self.attachments = try container.decode([Attachments].self, forKey: .attachments)
+        self.attachments = try? container.decode([Attachments]?.self, forKey: .attachments)
         self.likes = try container.decode(Likes.self, forKey: .likes)
         self.reposts = try container.decode(Reposts.self, forKey: .reposts)
         self.text = try container.decode(String.self, forKey: .text)

@@ -19,12 +19,12 @@
         <!--Auth View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AuthViewController" customModule="StudyStoryBoardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="AuthViewController" customModule="StudyStoryBoardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUm-Zx-y1d">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUm-Zx-y1d">
                                 <rect key="frame" x="0.0" y="47" width="390" height="763"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group6" translatesAutoresizingMaskIntoConstraints="NO" id="iW6-j1-stJ">
@@ -305,11 +305,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="HyC-5j-KMj">
-                                <rect key="frame" x="355" y="61" width="20" height="20"/>
-                                <color key="color" systemColor="systemRedColor"/>
-                            </activityIndicatorView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="4" estimatedSectionHeaderHeight="-1" sectionFooterHeight="4" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="W9S-UW-1Bm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="4" estimatedSectionHeaderHeight="-1" sectionFooterHeight="4" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="W9S-UW-1Bm">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
                                 <color key="backgroundColor" red="0.95707637069999996" green="0.98020476099999998" blue="0.99215894940000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Поиск" id="6Eo-cW-mq8">
@@ -329,19 +325,18 @@
                             <constraint firstItem="W9S-UW-1Bm" firstAttribute="top" secondItem="DSK-3Y-Rm8" secondAttribute="top" id="4X3-Vk-ht0"/>
                             <constraint firstItem="DSK-3Y-Rm8" firstAttribute="bottom" secondItem="W9S-UW-1Bm" secondAttribute="bottom" id="5CS-kp-pMV"/>
                             <constraint firstItem="DSK-3Y-Rm8" firstAttribute="trailing" secondItem="W9S-UW-1Bm" secondAttribute="trailing" id="QM2-KY-1jP"/>
-                            <constraint firstAttribute="trailing" secondItem="HyC-5j-KMj" secondAttribute="trailing" constant="15" id="cP7-rv-l56"/>
-                            <constraint firstItem="W9S-UW-1Bm" firstAttribute="top" secondItem="HyC-5j-KMj" secondAttribute="bottom" constant="10" id="g0y-lb-sRH"/>
                             <constraint firstItem="W9S-UW-1Bm" firstAttribute="leading" secondItem="DSK-3Y-Rm8" secondAttribute="leading" id="twx-F1-3b3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Поиск групп" id="A9l-Pv-9nS"/>
                     <connections>
-                        <outlet property="loadingIndicator" destination="HyC-5j-KMj" id="2GW-ij-Ir9"/>
                         <outlet property="searchBar" destination="6Eo-cW-mq8" id="6tB-rj-sh5"/>
                         <outlet property="tableView" destination="W9S-UW-1Bm" id="VID-id-DvR"/>
+                        <segue destination="Yka-4x-9nc" kind="unwind" identifier="addedGroup" unwindAction="unwindToGroup:" id="Ml2-aE-Cnd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qOZ-ra-8sB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Yka-4x-9nc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4686.1538461538457" y="308.53080568720378"/>
         </scene>
@@ -353,10 +348,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="czG-id-ZGp">
-                                <rect key="frame" x="355" y="61" width="20" height="20"/>
-                                <color key="color" systemColor="systemRedColor"/>
-                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lu3-rZ-OmL">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
                                 <color key="backgroundColor" red="0.95707637069999996" green="0.98020476099999998" blue="0.99215894940000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -368,11 +359,9 @@
                         <viewLayoutGuide key="safeArea" id="w3T-5W-CLE"/>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="lu3-rZ-OmL" firstAttribute="top" secondItem="czG-id-ZGp" secondAttribute="bottom" constant="10" id="23V-sM-ryr"/>
                             <constraint firstItem="w3T-5W-CLE" firstAttribute="bottom" secondItem="lu3-rZ-OmL" secondAttribute="bottom" id="3bV-6k-g5F"/>
                             <constraint firstItem="lu3-rZ-OmL" firstAttribute="leading" secondItem="w3T-5W-CLE" secondAttribute="leading" id="8pP-7I-yuG"/>
                             <constraint firstItem="w3T-5W-CLE" firstAttribute="trailing" secondItem="lu3-rZ-OmL" secondAttribute="trailing" id="VyL-AQ-lGn"/>
-                            <constraint firstAttribute="trailing" secondItem="czG-id-ZGp" secondAttribute="trailing" constant="15" id="bGv-jj-2ws"/>
                             <constraint firstItem="lu3-rZ-OmL" firstAttribute="top" secondItem="w3T-5W-CLE" secondAttribute="top" id="uOd-Sq-j37"/>
                         </constraints>
                     </view>
@@ -382,7 +371,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="loadingIndicator" destination="czG-id-ZGp" id="St2-9T-hB2"/>
                         <outlet property="tableView" destination="lu3-rZ-OmL" id="yst-en-48A"/>
                         <segue destination="vsI-Zj-dh1" kind="show" identifier="showAlbum" id="JGP-Bh-trP"/>
                     </connections>
@@ -587,7 +575,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="gi5-LM-aJV">
             <objects>
-                <tabBarController id="AMI-6P-N2F" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AMI-6P-N2F" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="yWA-QC-AuY"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="centered" itemSpacing="1" id="uyQ-po-Ytd">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
@@ -614,10 +602,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="01C-u0-O0U">
-                                <rect key="frame" x="355" y="61" width="20" height="20"/>
-                                <color key="color" systemColor="systemRedColor"/>
-                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="L0S-kl-1hc">
                                 <rect key="frame" x="0.0" y="91" width="390" height="670"/>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
@@ -632,8 +616,6 @@
                         <color key="backgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="HlC-oE-BVj" firstAttribute="trailing" secondItem="L0S-kl-1hc" secondAttribute="trailing" id="S3B-za-frg"/>
-                            <constraint firstAttribute="trailing" secondItem="01C-u0-O0U" secondAttribute="trailing" constant="15" id="gkJ-Bd-LWD"/>
-                            <constraint firstItem="L0S-kl-1hc" firstAttribute="top" secondItem="01C-u0-O0U" secondAttribute="bottom" constant="10" id="gy2-qe-xku"/>
                             <constraint firstItem="L0S-kl-1hc" firstAttribute="leading" secondItem="HlC-oE-BVj" secondAttribute="leading" id="rKG-CC-tXo"/>
                             <constraint firstItem="L0S-kl-1hc" firstAttribute="top" secondItem="HlC-oE-BVj" secondAttribute="top" id="rOb-GF-wUg"/>
                             <constraint firstItem="HlC-oE-BVj" firstAttribute="bottom" secondItem="L0S-kl-1hc" secondAttribute="bottom" id="vbP-T3-eBv"/>
@@ -643,24 +625,23 @@
                         <barButtonItem key="leftBarButtonItem" title="Выход" id="Ui9-Gb-FzY">
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
-                                <segue destination="AlU-9e-QiN" kind="unwind" identifier="exit" unwindAction="unwindToAuth:" id="aZc-BY-ATC"/>
+                                <action selector="logoutApp:" destination="z5t-ta-prV" id="BE6-TB-RTN"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="logoutAPP" modalPresentationStyle="fullScreen" id="pRs-f7-tAb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="loadingIndicator" destination="01C-u0-O0U" id="N2b-vi-Xam"/>
                         <outlet property="tableView" destination="L0S-kl-1hc" id="hDM-Jy-OPN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gr6-of-DyL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="AlU-9e-QiN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2829.2307692307691" y="-1063.5071090047393"/>
         </scene>
         <!--Друзья-->
         <scene sceneID="Mmx-YG-1Me">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jzN-OR-WJ6" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FriendsController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jzN-OR-WJ6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="friendsIcon" id="ehd-XF-aLh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ryB-fW-U6b">

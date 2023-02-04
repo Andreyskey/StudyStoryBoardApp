@@ -7,43 +7,47 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class FriendsViewController: UIViewController {
     
     // Идентификатор ячейки
     let friendsViewControllerIdentifier = "friendsViewControllerIdentifier"
+    let realm = try! Realm()
+    let refresh = UIRefreshControl()
     var friends = [ProfileItem]()
-    let paramsFriend: Parameters = [
-        "access_token" : Session.share.token,
-        "user_id" : Session.share.userId,
-        "order" : "random",
-        "fields" : "photo_200, online, status",
-        "v" : "5.131"
-    ]
     
-    @IBOutlet weak var tableView: UITableView! {
-        didSet {
-            tableView.delegate = self // Делегируем выполнение контроллеру в котором находится TableView
-            tableView.dataSource = self // Указывваем контрллер как источник данных
-        }
-    }
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Регистрация ячейки
+        
+        tableView.delegate = self // Делегируем выполнение контроллеру в котором находится TableView
+        tableView.dataSource = self // Указывваем контрллер как источник данных
+        
+        refresh.addTarget(self, action: #selector(refrashDataBase), for: .valueChanged)
+        tableView.addSubview(refresh)
+        
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: friendsViewControllerIdentifier)
+        
+        refresh.beginRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadingIndicator.startAnimating()
-        ServiseAPI().getRequestFriends(method: .friendsGet, parammeters: paramsFriend, completion: { array in
-            guard let friendsArr = array else { return }
-            self.friends = friendsArr
-            self.tableView.reloadData()
-            self.loadingIndicator.stopAnimating()
-        })
+        super.viewWillAppear(animated)
+        refrashDataBase()
     }
+    
+    @objc func refrashDataBase() {
+        ServiseAPI().getRequestFriends {
+            if let profiles = self.realm.objects(Profiles.self).first?.items {
+                self.friends = Array(profiles)
+                self.tableView.reloadData()
+                self.refresh.endRefreshing()
+            }
+        }
+    }
+    
     
     func letter(array: [ProfileItem]) -> [String] {
         var letters = [String]()
@@ -88,7 +92,7 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
         else { return UITableViewCell() }
         
         let arrayItems = arrayByLetter(letter: letter(array: friends)[indexPath.section])
-    
+        
         cell.configurationCell(object: arrayItems[indexPath.row])
         
         return cell
@@ -118,7 +122,6 @@ extension FriendsViewController: UITableViewDelegate, UITableViewDataSource {
         headerConfig.textProperties.color = .black
         headerConfig.textProperties.adjustsFontForContentSizeCategory = true
         header.contentConfiguration = headerConfig
-        
         
     }
     

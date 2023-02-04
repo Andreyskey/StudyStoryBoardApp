@@ -7,38 +7,43 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class GroupViewController: UIViewController {
     
     var groups = [GroupItem]()
     let groupViewControllerIdentifier = "groupViewControllerIdentifier"
-    let paramsGroup: Parameters = [
-        "access_token" : Session.share.token,
-        "user_id" : Session.share.userId,
-        "extended" : "1",
-        "fields" : "members_count, activity",
-        "v" : "5.131"
-    ]
+    let refresh = UIRefreshControl()
+    let realm = try! Realm()
 
-    @IBOutlet weak var tableView: UITableView! {
-        didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
-        }
-    }
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noHaveGroupText: UILabel!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        refresh.addTarget(self, action: #selector(refrashGroups), for: .valueChanged)
+        tableView.addSubview(refresh)
+        
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: groupViewControllerIdentifier)
+        
+        refresh.beginRefreshing()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        ServiseAPI().getRequestGroups(method: .groupsGet, parammeters: paramsGroup) { array in
-            guard let groupsArr = array else { return }
-            self.groups = groupsArr
-            self.tableView.reloadData()
+        refrashGroups()
+    }
+    
+    @objc func refrashGroups() {
+        ServiseAPI().getRequestGroups {
+            if let groups = self.realm.objects(Groups.self).first?.items {
+                self.groups = Array(groups)
+                self.tableView.reloadData()
+                self.refresh.endRefreshing()
+            }
         }
     }
     
@@ -47,19 +52,7 @@ class GroupViewController: UIViewController {
     }
 
     @IBAction func unwindToGroup(_ unwindSegue: UIStoryboardSegue) {
-//        guard unwindSegue.identifier == "addGroup",
-//              let segue = unwindSegue.source as? SearchViewController,
-//              let indexPaths = segue.tableView.indexPathsForSelectedRows
-//        else { return }
-//
-//        for i in indexPaths {
-//            let group = groups[i.section]
-//            if !myGroups.contains(where: {$0 == group}) {
-//                myGroups.append(group)
-//            }
-//        }
-//        self.noHaveGroupText.isHidden = true
-//        tableView.reloadData()
+        refrashGroups()
     }
 }
 
@@ -89,16 +82,14 @@ extension GroupViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        groups.remove(at: indexPath.section)
-        print(groups.count)
-        tableView.deleteSections(IndexSet(arrayLiteral: indexPath.section), with: .fade)
-    }
-
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { action, view, complete in
-            self.groups.remove(at: indexPath.section)
-            tableView.deleteSections(IndexSet(arrayLiteral: indexPath.section), with: .fade)
+            ServiseAPI().leaveGroup(idGroup: self.groups[indexPath.section].id) {
+                self.groups.remove(at: indexPath.section)
+                tableView.deleteSections(IndexSet(arrayLiteral: indexPath.section), with: .fade)
+                self.refrashGroups()
+            }
+            
             if self.groups.count == 0 {
                 self.noHaveGroupText.isHidden = false
             } else {
@@ -106,6 +97,7 @@ extension GroupViewController: UITableViewDelegate, UITableViewDataSource {
             }
             complete(true)
         }
+        
         deleteAction.image = UIImage(named: "deleteSection")
         deleteAction.backgroundColor = UIColor(cgColor: CGColor(red: 1, green: 1, blue: 1, alpha: 0))
 

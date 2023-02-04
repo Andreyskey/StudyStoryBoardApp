@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+
 class SearchViewController: UIViewController {
     
     let searchViewControllerIndentifier = "searchViewControllerIndentifier"
@@ -17,7 +18,6 @@ class SearchViewController: UIViewController {
             searchBar.delegate = self
         }
     }
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -27,7 +27,6 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingIndicator.stopAnimating()
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: searchViewControllerIndentifier)
     }
 }
@@ -54,38 +53,38 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         return groups.count
     }
 
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath)
-//        cell?.backgroundConfiguration?.backgroundColor = .white
-//        cell?.backgroundConfiguration?.strokeColor = .systemRed
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-//        let cell = tableView.cellForRow(at: indexPath)
-//        cell?.backgroundConfiguration?.backgroundColor = .white
-//        cell?.backgroundConfiguration?.strokeColor = UIColor(red: 0.90, green: 0.95, blue: 0.96, alpha: 1.00)
-//        return indexPath
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionJoin = UIAlertAction(title: "Вступить", style: .default) { action in
+            ServiseAPI().joinGrouo(idGroup: self.groups[indexPath.section].id) { result in
+                if result {
+                    print("joined group")
+                    self.performSegue(withIdentifier: "addedGroup", sender: nil)
+                } else {
+                    let alert = UIAlertController(title: "Вы уже состоите в группе",
+                                                 message: nil,
+                                                 preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ок", style: .cancel))
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+        let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(actionJoin)
+        alert.addAction(actionCancel)
+        self.present(alert, animated: true)
+    }
+
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
-            loadingIndicator.startAnimating()
-            let params: Parameters = [
-                "access_token" : Session.share.token,
-                "user_id" : Session.share.userId,
-                "q" : searchText,
-                "count" : "50",
-                "v" : "5.131"
-            ]
             
-            ServiseAPI().getRequestGroups(method: .searchGroupGet, parammeters: params) { array in
+            ServiseAPI().searchGroups(searchText: searchText) { array in
                 guard let findGroups = array else { return }
-                self.groups = findGroups
+                self.groups = Array(findGroups)
                 self.tableView.reloadData()
-                self.loadingIndicator.stopAnimating()
             }
         }
     }
