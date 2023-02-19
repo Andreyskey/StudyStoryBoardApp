@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Fontfabric - MullerMedium.otf">
+            <string>MullerMedium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="HeaderPostCell" customModule="StudyStoryBoardApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gt4-JZ-PIE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Lm-ow-xIO">
+                                <rect key="frame" x="16" y="16" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3Lm-ow-xIO" secondAttribute="height" multiplier="1:1" id="aRe-NC-2A2"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Nk-FU-U0u">
+                                <rect key="frame" x="76" y="23" width="228" height="18.666666666666671"/>
+                                <fontDescription key="fontDescription" name="MullerMedium" family="Muller" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="сегодня в 15:18" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7I-SL-9nw">
+                                <rect key="frame" x="76" y="43.666666666666664" width="228" height="14"/>
+                                <fontDescription key="fontDescription" name="MullerMedium" family="Muller" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.23137254900000001" blue="0.33333333329999998" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="S7I-SL-9nw" firstAttribute="top" secondItem="1Nk-FU-U0u" secondAttribute="bottom" constant="2" id="3vG-LT-VSf"/>
+                            <constraint firstItem="S7I-SL-9nw" firstAttribute="leading" secondItem="3Lm-ow-xIO" secondAttribute="trailing" constant="12" id="8Ry-1i-4IY"/>
+                            <constraint firstItem="3Lm-ow-xIO" firstAttribute="leading" secondItem="gt4-JZ-PIE" secondAttribute="leading" constant="16" id="HQb-YF-5tl"/>
+                            <constraint firstItem="1Nk-FU-U0u" firstAttribute="top" secondItem="gt4-JZ-PIE" secondAttribute="top" constant="23" id="Iqz-dE-oC1"/>
+                            <constraint firstAttribute="trailing" secondItem="1Nk-FU-U0u" secondAttribute="trailing" constant="16" id="NjT-CF-bwW"/>
+                            <constraint firstItem="S7I-SL-9nw" firstAttribute="top" secondItem="1Nk-FU-U0u" secondAttribute="bottom" constant="2" id="TIp-tF-iPe"/>
+                            <constraint firstAttribute="trailing" secondItem="S7I-SL-9nw" secondAttribute="trailing" constant="16" id="fd9-in-Pdr"/>
+                            <constraint firstAttribute="bottom" secondItem="3Lm-ow-xIO" secondAttribute="bottom" constant="6" id="hjD-Nt-wYa"/>
+                            <constraint firstItem="1Nk-FU-U0u" firstAttribute="leading" secondItem="3Lm-ow-xIO" secondAttribute="trailing" constant="12" id="i55-wo-0tV"/>
+                            <constraint firstItem="3Lm-ow-xIO" firstAttribute="top" secondItem="gt4-JZ-PIE" secondAttribute="top" constant="16" id="lrU-aS-lBj"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gt4-JZ-PIE" secondAttribute="trailing" id="Q2b-f6-ykL"/>
+                    <constraint firstAttribute="bottom" secondItem="gt4-JZ-PIE" secondAttribute="bottom" id="ggX-eN-bBf"/>
+                    <constraint firstItem="gt4-JZ-PIE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sri-Mc-rBX"/>
+                    <constraint firstItem="gt4-JZ-PIE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="zxa-L7-2sq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="backroundViewHeader" destination="gt4-JZ-PIE" id="14S-55-nSe"/>
+                <outlet property="nameProfile" destination="1Nk-FU-U0u" id="N6f-e6-Q5c"/>
+                <outlet property="photoProfile" destination="3Lm-ow-xIO" id="m0U-T6-H5O"/>
+                <outlet property="timePublished" destination="S7I-SL-9nw" id="PvH-aC-93C"/>
+            </connections>
+            <point key="canvasLocation" x="10.687022900763358" y="-2.1126760563380285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
