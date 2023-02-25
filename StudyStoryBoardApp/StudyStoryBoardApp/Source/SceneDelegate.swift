@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if userDefaults.value(forKey: "isLogin") as? Bool ?? false {
             window?.rootViewController = storyBoard.instantiateViewController(withIdentifier: "TabBarController")
         } else {
-            window?.rootViewController = storyBoard.instantiateViewController(withIdentifier: "AuthViewController")
+            window?.rootViewController = storyBoard.instantiateViewController(withIdentifier: "AuthController")
         }
         window?.makeKeyAndVisible()
         

@@ -42,6 +42,7 @@ class NewsfeedViewController: UIViewController {
         tableView.addSubview(refresh)
         
         refresh.addTarget(self, action: #selector(loadWall), for: .valueChanged)
+        refresh.beginRefreshing()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableViewData), name: nofityLoadingData, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadWall), name: loadData, object: nil)
@@ -57,26 +58,28 @@ class NewsfeedViewController: UIViewController {
     }
     
     @objc func loadWall() {
-        let params: Parameters = [
-            "access_token" : UserDefaults().value(forKey: "token") as! String,
-            "filters" : "post",
-            "max_photos" : "1",
-            "sourse_ids" : "friends, groups, following",
-            "count" : "100",
-            "fields" : "photo_200",
-            "v" : "5.131"
-        ]
-        
-        ServiseAPI().getRequestNewsfeed(method: .newsfeedGet, parammeters: params) { news, prof, grp, nxtFrm in
-            guard let post = news,
-                  let profile = prof,
-                  let group = grp
-            else { return }
-            self.posts = post
-            self.profiles = profile
-            self.groups = group
-            self.tableView.reloadData()
-            self.refresh.endRefreshing()
+        DispatchQueue.global().async {
+            let params: Parameters = [
+                "access_token" : UserDefaults().value(forKey: "token") as! String,
+                "filters" : "post",
+                "max_photos" : "1",
+                "sourse_ids" : "friends, groups, following",
+                "count" : "100",
+                "fields" : "photo_200",
+                "v" : "5.131"
+            ]
+            
+            ServiseAPI().getRequestNewsfeed(method: .newsfeedGet, parammeters: params) { news, prof, grp, nxtFrm in
+                guard let post = news,
+                      let profile = prof,
+                      let group = grp
+                else { return }
+                self.posts = post
+                self.profiles = profile
+                self.groups = group
+                self.tableView.reloadData()
+                self.refresh.endRefreshing()
+            }
         }
     }
     
@@ -139,12 +142,11 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             } else if postObject.haveTextAndMedia || ((postObject.attachments?.isEmpty) != nil) {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: imagesPostIdentifier, for: indexPath) as? ImagesPostCell {
-                    cell.addImages(image: postObject.attachments?.first?.photo?.sizes.last?.url ?? "error")
+                    cell.addImages(size: postObject.attachments?.first?.photo?.sizes.last)
                     return cell
                 }
             }
         }
-        
         return UITableViewCell()
     }
 }

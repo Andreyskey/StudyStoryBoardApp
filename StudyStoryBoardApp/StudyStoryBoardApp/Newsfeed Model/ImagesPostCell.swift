@@ -14,17 +14,15 @@ class ImagesPostCell: UITableViewCell {
     
     let nofityLoadingData = Notification.Name("loadingSuccess")
     
-    func addImages(image: String) {
-        if image.lowercased() != "error" {
-            let url = URL(string: image)
-            imagesPost.sd_setImage(with: url, placeholderImage: nil, options: [.progressiveLoad]) { img, _, _, _ in
-                if let img = img {
-                    self.imagesPost.image = self.resizeImage(image: img, targetSize: self.imagesPost.frame.size)
-                    NotificationCenter.default.post(Notification(name: self.nofityLoadingData))
-                }
+    func addImages(size: SizePhoto?) {
+        guard let size = size else { return }
+        let url = URL(string: size.url)
+        
+        imagesPost.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder")) { img, _, _, _ in
+            if let img = img {
+                self.imagesPost.image = self.resizeImage(image: img, targetSize: CGSize(width: self.imagesPost.frame.size.width, height: 0))
+                NotificationCenter.default.post(Notification(name: self.nofityLoadingData))
             }
-        } else {
-            imagesPost.image = UIImage(named: "xmark.circle")
         }
     }
     
@@ -34,7 +32,7 @@ class ImagesPostCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        imagesPost.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
     }
     
     private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {

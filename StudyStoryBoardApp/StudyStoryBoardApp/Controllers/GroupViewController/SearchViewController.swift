@@ -56,28 +56,30 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let actionJoin = UIAlertAction(title: "Вступить", style: .default) { action in
-            ServiseAPI().joinGroup(idGroup: self.groups[indexPath.section].id) { result in
-                if result {
-                    try! self.realm.write {
-                        let user = self.realm.object(ofType: User.self, forPrimaryKey: Int(UserDefaults().object(forKey: "userID") as! String) ?? 0)
-                        user?.groups.append(self.groups[indexPath.section])
+        DispatchQueue.global().async {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let actionJoin = UIAlertAction(title: "Вступить", style: .default) { action in
+                ServiseAPI().joinGroup(idGroup: self.groups[indexPath.section].id) { result in
+                    if result {
+                        try! self.realm.write {
+                            let user = self.realm.object(ofType: User.self, forPrimaryKey: Int(UserDefaults().object(forKey: "userID") as! String) ?? 0)
+                            user?.groups.append(self.groups[indexPath.section])
+                        }
+                        self.performSegue(withIdentifier: "addedGroup", sender: nil)
+                    } else {
+                        let alert = UIAlertController(title: "Вы уже состоите в этой группе",
+                                                      message: nil,
+                                                      preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ок", style: .cancel))
+                        self.present(alert, animated: true)
                     }
-                    self.performSegue(withIdentifier: "addedGroup", sender: nil)
-                } else {
-                    let alert = UIAlertController(title: "Вы уже состоите в этой группе",
-                                                 message: nil,
-                                                 preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ок", style: .cancel))
-                    self.present(alert, animated: true)
                 }
             }
+            let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
+            alert.addAction(actionJoin)
+            alert.addAction(actionCancel)
+            self.present(alert, animated: true)
         }
-        let actionCancel = UIAlertAction(title: "Отмена", style: .cancel)
-        alert.addAction(actionJoin)
-        alert.addAction(actionCancel)
-        self.present(alert, animated: true)
     }
 
 }
