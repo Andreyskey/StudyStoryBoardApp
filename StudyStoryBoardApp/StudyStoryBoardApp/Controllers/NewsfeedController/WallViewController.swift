@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import RealmSwift
 
-class NewsfeedViewController: UIViewController {
+class WallViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -81,14 +81,14 @@ class NewsfeedViewController: UIViewController {
     
 }
 
-extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
+extension WallViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return wall.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: newsfeedViewControllerIdentificator, for: indexPath) as? PostTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: newsfeedViewControllerIdentificator, for: indexPath) as? UITableViewCell
         else { return UITableViewCell() }
         
         var owner: AnyObject?
@@ -107,7 +107,7 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
 
-        cell.configurate(post: self.wall[indexPath.row], owner: owner)
+//        cell.configurate(post: self.wall[indexPath.row], owner: owner)
         
         return cell
     }

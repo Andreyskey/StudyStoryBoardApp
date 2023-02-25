@@ -679,7 +679,7 @@
         <!--Новости-->
         <scene sceneID="hD3-JZ-MGZ">
             <objects>
-                <viewController id="BQA-4G-dkm" customClass="MessageViewController" customModule="StudyStoryBoardApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BQA-4G-dkm" customClass="NewsfeedViewController" customModule="StudyStoryBoardApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UG2-5g-IDY">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -705,7 +705,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="Ei0-MD-dZK" id="7dE-c3-LD1"/>
+                        <outlet property="tableView" destination="Ei0-MD-dZK" id="g7n-Zv-TxM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQG-Ar-vTB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

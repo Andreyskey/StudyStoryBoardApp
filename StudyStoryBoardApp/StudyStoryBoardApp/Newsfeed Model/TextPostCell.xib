@@ -23,10 +23,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ic4-31-tdU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                        <rect key="frame" x="16" y="0.0" width="288" height="39"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZv-7l-nlO">
-                                <rect key="frame" x="16" y="6" width="288" height="33"/>
+                                <rect key="frame" x="16" y="12" width="256" height="27"/>
                                 <fontDescription key="fontDescription" name="MullerRegular" family="Muller" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,16 +36,17 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="vZv-7l-nlO" secondAttribute="bottom" id="2oK-J0-shg"/>
                             <constraint firstAttribute="trailing" secondItem="vZv-7l-nlO" secondAttribute="trailing" constant="16" id="DZW-vi-aU4"/>
-                            <constraint firstItem="vZv-7l-nlO" firstAttribute="top" secondItem="ic4-31-tdU" secondAttribute="top" constant="6" id="P5W-Us-qmd"/>
+                            <constraint firstItem="vZv-7l-nlO" firstAttribute="top" secondItem="ic4-31-tdU" secondAttribute="top" constant="12" id="P5W-Us-qmd"/>
                             <constraint firstItem="vZv-7l-nlO" firstAttribute="leading" secondItem="ic4-31-tdU" secondAttribute="leading" constant="16" id="Szq-Uh-6a7"/>
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="ic4-31-tdU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="I6N-oE-Hrl"/>
-                    <constraint firstAttribute="trailing" secondItem="ic4-31-tdU" secondAttribute="trailing" id="Ksc-1o-Rl5"/>
+                    <constraint firstAttribute="trailing" secondItem="ic4-31-tdU" secondAttribute="trailing" constant="16" id="Ksc-1o-Rl5"/>
                     <constraint firstAttribute="bottom" secondItem="ic4-31-tdU" secondAttribute="bottom" id="e63-2b-VvC"/>
-                    <constraint firstItem="ic4-31-tdU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="w8Y-Yb-g6x"/>
+                    <constraint firstItem="ic4-31-tdU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="w8Y-Yb-g6x"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

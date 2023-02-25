@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HeaderPostCell: UITableViewCell {
 
@@ -16,7 +17,8 @@ class HeaderPostCell: UITableViewCell {
     
     
     func configurate(avatar: String, name: String, timePublic: Date) {
-        photoProfile.image = UIImage(named: avatar)
+        let url = URL(string: avatar)
+        photoProfile.sd_setImage(with: url)
         timePublished.text = timePublic.formatted()
         nameProfile.text = name
     }
@@ -33,6 +35,8 @@ class HeaderPostCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // скрутить верних два угла
+        backroundViewHeader.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        backroundViewHeader.layer.cornerRadius = 20
+        photoProfile.layer.cornerRadius = 24
     }
 }

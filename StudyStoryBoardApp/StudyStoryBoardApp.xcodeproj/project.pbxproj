@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BA016356298D64380004AB91 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA016355298D64380004AB91 /* User.swift */; };
 		BA04257229708B26002E4A26 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BA04257129708B26002E4A26 /* Alamofire */; };
-		BA11CBA52969D4A20006CB7A /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA42969D4A20006CB7A /* MessageViewController.swift */; };
+		BA11CBA52969D4A20006CB7A /* NewsfeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA42969D4A20006CB7A /* NewsfeedViewController.swift */; };
 		BA11CBA82969FA8C0006CB7A /* ShowPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */; };
 		BA11CBAB2969FB000006CB7A /* ShowImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */; };
 		BA11CBAC2969FB000006CB7A /* ShowImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */; };
@@ -20,7 +20,7 @@
 		BA6DAD6528F628C900AA544F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA6DAD6428F628C900AA544F /* Assets.xcassets */; };
 		BA6DAD6828F628C900AA544F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA6DAD6628F628C900AA544F /* LaunchScreen.storyboard */; };
 		BA6DAD7028F7078300AA544F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6DAD6F28F7078300AA544F /* AuthViewController.swift */; };
-		BA89D1FB29118F5200D88D61 /* NewsfeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D1FA29118F5200D88D61 /* NewsfeedViewController.swift */; };
+		BA89D1FB29118F5200D88D61 /* WallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D1FA29118F5200D88D61 /* WallViewController.swift */; };
 		BA89D1FE29118FE900D88D61 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */; };
 		BA89D1FF29118FE900D88D61 /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */; };
 		BA93AD48297AB32E0079225C /* UpdateLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93AD47297AB32E0079225C /* UpdateLikes.swift */; };
@@ -86,7 +86,7 @@
 
 /* Begin PBXFileReference section */
 		BA016355298D64380004AB91 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		BA11CBA42969D4A20006CB7A /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		BA11CBA42969D4A20006CB7A /* NewsfeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedViewController.swift; sourceTree = "<group>"; };
 		BA11CBA72969FA8C0006CB7A /* ShowPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoViewController.swift; sourceTree = "<group>"; };
 		BA11CBA92969FB000006CB7A /* ShowImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		BA11CBAA2969FB000006CB7A /* ShowImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		BA6DAD6728F628C900AA544F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA6DAD6928F628C900AA544F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA6DAD6F28F7078300AA544F /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		BA89D1FA29118F5200D88D61 /* NewsfeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedViewController.swift; sourceTree = "<group>"; };
+		BA89D1FA29118F5200D88D61 /* WallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallViewController.swift; sourceTree = "<group>"; };
 		BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		BA93AD47297AB32E0079225C /* UpdateLikes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLikes.swift; sourceTree = "<group>"; };
@@ -175,12 +175,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BA11CBA32969D46D0006CB7A /* MessageViewController */ = {
+		BA11CBA32969D46D0006CB7A /* NewsfeedViewController */ = {
 			isa = PBXGroup;
 			children = (
-				BA11CBA42969D4A20006CB7A /* MessageViewController.swift */,
+				BA11CBA42969D4A20006CB7A /* NewsfeedViewController.swift */,
 			);
-			path = MessageViewController;
+			path = NewsfeedViewController;
 			sourceTree = "<group>";
 		};
 		BA11CBA62969FA5B0006CB7A /* ShowPhotoViewController */ = {
@@ -229,7 +229,7 @@
 		BA89D1F929118F2C00D88D61 /* NewsfeedController */ = {
 			isa = PBXGroup;
 			children = (
-				BA89D1FA29118F5200D88D61 /* NewsfeedViewController.swift */,
+				BA89D1FA29118F5200D88D61 /* WallViewController.swift */,
 				BA89D1FC29118FE900D88D61 /* PostTableViewCell.swift */,
 				BA89D1FD29118FE900D88D61 /* PostTableViewCell.xib */,
 			);
@@ -325,7 +325,7 @@
 		BAEE354028F89A3C00004183 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				BA11CBA32969D46D0006CB7A /* MessageViewController */,
+				BA11CBA32969D46D0006CB7A /* NewsfeedViewController */,
 				BA89D1F929118F2C00D88D61 /* NewsfeedController */,
 				BAEE354D28F8B41400004183 /* CustomTableViewCell */,
 				BAEE355228F9779D00004183 /* CustomCollectionViewCell */,
@@ -523,7 +523,7 @@
 				BAEE355728F9789A00004183 /* CustomCollectionViewCell.swift in Sources */,
 				BADB89D32976470D0036BB30 /* ServiseAPI.swift in Sources */,
 				BAEE356328F9C00000004183 /* Group.swift in Sources */,
-				BA89D1FB29118F5200D88D61 /* NewsfeedViewController.swift in Sources */,
+				BA89D1FB29118F5200D88D61 /* WallViewController.swift in Sources */,
 				BABC4380290D73CF00FCD98F /* CustomButton.swift in Sources */,
 				BABC4377290D406D00FCD98F /* RegistrationViewController.swift in Sources */,
 				BADB89D529769FCB0036BB30 /* PhotosUser.swift in Sources */,
@@ -535,7 +535,7 @@
 				BA6DAD5C28F628C700AA544F /* AppDelegate.swift in Sources */,
 				BA6DAD7028F7078300AA544F /* AuthViewController.swift in Sources */,
 				BA6DAD5E28F628C700AA544F /* SceneDelegate.swift in Sources */,
-				BA11CBA52969D4A20006CB7A /* MessageViewController.swift in Sources */,
+				BA11CBA52969D4A20006CB7A /* NewsfeedViewController.swift in Sources */,
 				BA11CBAB2969FB000006CB7A /* ShowImageCollectionViewCell.swift in Sources */,
 				BAEE355A28F9806200004183 /* AlbumUserViewController.swift in Sources */,
 				BA89D1FE29118FE900D88D61 /* PostTableViewCell.swift in Sources */,
