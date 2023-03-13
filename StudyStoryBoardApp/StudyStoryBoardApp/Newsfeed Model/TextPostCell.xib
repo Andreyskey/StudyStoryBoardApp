@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Fontfabric - MullerRegular.otf">
+            <string>MullerRegular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="39" id="KGk-i7-Jjw" customClass="TextPostCell" customModule="StudyStoryBoardApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ic4-31-tdU">
+                        <rect key="frame" x="16" y="0.0" width="288" height="39"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZv-7l-nlO">
+                                <rect key="frame" x="16" y="12" width="256" height="27"/>
+                                <fontDescription key="fontDescription" name="MullerRegular" family="Muller" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="vZv-7l-nlO" secondAttribute="bottom" id="2oK-J0-shg"/>
+                            <constraint firstAttribute="trailing" secondItem="vZv-7l-nlO" secondAttribute="trailing" constant="16" id="DZW-vi-aU4"/>
+                            <constraint firstItem="vZv-7l-nlO" firstAttribute="top" secondItem="ic4-31-tdU" secondAttribute="top" constant="12" id="P5W-Us-qmd"/>
+                            <constraint firstItem="vZv-7l-nlO" firstAttribute="leading" secondItem="ic4-31-tdU" secondAttribute="leading" constant="16" id="Szq-Uh-6a7"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.94117647058823528" green="0.97647058823529409" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="ic4-31-tdU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="I6N-oE-Hrl"/>
+                    <constraint firstAttribute="trailing" secondItem="ic4-31-tdU" secondAttribute="trailing" constant="16" id="Ksc-1o-Rl5"/>
+                    <constraint firstAttribute="bottom" secondItem="ic4-31-tdU" secondAttribute="bottom" id="e63-2b-VvC"/>
+                    <constraint firstItem="ic4-31-tdU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="w8Y-Yb-g6x"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="descriptionPost" destination="vZv-7l-nlO" id="0Iu-Nl-yM1"/>
+            </connections>
+            <point key="canvasLocation" x="129.7709923664122" y="-14.43661971830986"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

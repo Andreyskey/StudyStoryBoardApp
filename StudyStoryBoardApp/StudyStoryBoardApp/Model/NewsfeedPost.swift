@@ -25,12 +25,13 @@ class NewsFeedItem: Decodable {
     var date: Date
     var comments: Comments?
     var attachments: [Attachments]?
-    var likes: Likes
+    var likes: Likes?
     var reposts: Reposts
     var text: String
     var views: Views?
     var postID: Int
     var ownerID: Int
+    var haveTextAndMedia: Bool
     
     enum CodingKeys: String, CodingKey {
         case date, comments, attachments, likes, reposts, text, views
@@ -47,13 +48,19 @@ class NewsFeedItem: Decodable {
         
         self.comments = try? container.decode(Comments.self, forKey: .comments)
         self.attachments = try? container.decode([Attachments].self, forKey: .attachments)
-        self.likes = try container.decode(Likes.self, forKey: .likes)
+        self.likes = try? container.decode(Likes.self, forKey: .likes)
         self.reposts = try container.decode(Reposts.self, forKey: .reposts)
         self.text = try container.decode(String.self, forKey: .text)
         self.views = try? container.decode(Views.self, forKey: .views)
         self.postID = try container.decode(Int.self, forKey: .postID)
         self.sourseID = try container.decode(Int.self, forKey: .sourseID)
         self.ownerID = try container.decode(Int.self, forKey: .ownerID)
+        
+        if self.attachments != nil && self.text != "" {
+            self.haveTextAndMedia = true
+        } else {
+            self.haveTextAndMedia = false
+        }
     }
 }
 
