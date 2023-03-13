@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class AuthViewController: UIViewController, UITextFieldDelegate {
     
@@ -87,10 +88,15 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         guard let identifier = unwindSegue.identifier else { return }
         if identifier == "succesAuth" {
             UserDefaults().set(true, forKey: "isLogin")
-            DispatchQueue.global().async {
-                ServiseAPI().loadUserData()
-            }
+            ServiseAPI().loadUserData()
             animationLoading()
+        } else if identifier == "logoutApp" {
+            UserDefaults().setValue(false, forKey: "isLogin")
+            UserDefaults().removeObject(forKey: "token")
+            UserDefaults().removeObject(forKey: "userID")
+            try! Realm().write{
+                try! Realm().deleteAll()
+            }
         }
     }
     

@@ -68,17 +68,6 @@ class WallViewController: UIViewController {
             self.tableView.alpha = 1
         }
     }
-    
-    @IBAction func logoutApp(_ sender: Any) {
-        UserDefaults().setValue(false, forKey: "isLogin")
-        UserDefaults().removeObject(forKey: "token")
-        UserDefaults().removeObject(forKey: "userID")
-        try! Realm().write{
-            try! Realm().deleteAll()
-        }
-        
-    }
-    
 }
 
 extension WallViewController: UITableViewDelegate, UITableViewDataSource {

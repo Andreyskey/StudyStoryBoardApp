@@ -626,7 +626,7 @@
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="logoutApp:" destination="z5t-ta-prV" id="BE6-TB-RTN"/>
-                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="logoutAPP" modalPresentationStyle="fullScreen" id="pRs-f7-tAb"/>
+                                <segue destination="cmX-cp-mgi" kind="unwind" identifier="logoutApp" unwindAction="unwindToAuth:" id="fwj-BQ-VzX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -635,6 +635,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gr6-of-DyL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="cmX-cp-mgi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2829.2307692307691" y="-1063.5071090047393"/>
         </scene>
