@@ -87,7 +87,9 @@ class AuthViewController: UIViewController, UITextFieldDelegate {
         guard let identifier = unwindSegue.identifier else { return }
         if identifier == "succesAuth" {
             UserDefaults().set(true, forKey: "isLogin")
-            ServiseAPI().loadUserData()
+            DispatchQueue.global().async {
+                ServiseAPI().loadUserData()
+            }
             animationLoading()
         }
     }
